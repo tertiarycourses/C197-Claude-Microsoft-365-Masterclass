@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Distribution archives (rebuildable — never pushed to GitHub)
+*.zip
+
+# Playwright
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
