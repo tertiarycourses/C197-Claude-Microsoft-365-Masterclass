@@ -1,114 +1,136 @@
-"""
-Domain 2 — Boosting Productivity Across Microsoft 365 with Claude. Labs 5-8.
-
-Continues the SAME Lumina Living Q3 review pack from Domain 1. Having set Claude up,
-connected your files, learned to prompt well and set your safe-use rules, you now
-PRODUCE the pack: the written report in Word, the data analysis in Excel, the slide
-deck in PowerPoint, and the emails that send it in Outlook and Teams. Lab 8 is the
-capstone — it sends the finished pack out.
-"""
-
-PROJECT_NOTE = (
- "BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, "
- "the single deliverable you write, analyse, present and send across all 8 labs."
-)
+"""Topic 2 — company planning, reporting and policy work."""
 
 DOMAIN2 = [
- dict(
- num=5, topic=2,
- title="Write, Rewrite and Summarise in Word",
- objective="Use Claude to draft, restructure and tighten a document, and to summarise a long one, then finish it in Word.",
- desc="You produce the written report. You have Claude draft the Q3 review from the brief and the workbook, "
- "restructure and shorten it, adjust the tone for a management audience, and summarise a longer background "
- "note into key points — pasting the checked result into Word. " + PROJECT_NOTE,
- build="A finished Q3 review report in Microsoft Word, drafted and refined with Claude and checked by you.",
- services="Microsoft Word, Claude (draft / rewrite / summarise), copy-paste, Word > Home formatting",
- steps=[
- ("In your Project, ask Claude to draft the report from the material it already has.",
-  "Using the brief and the Q3 workbook in this project, draft a one-page business-review report for management. Structure it as: Overview, What sold well, What to watch, and Recommended actions. Name the key figure in each section and say where it comes from."),
- ("Read the draft and check every figure it names against the workbook. Mark anything you cannot confirm — you will not keep unverified numbers.", ""),
- ("Restructure and tighten with a follow-up prompt.",
-  "Good. Now cut it to about 250 words, put the Recommended actions as three bullet points, and make the tone confident but plain — no jargon."),
- ("Adjust the tone for the audience if needed (for example more formal, or warmer), then choose the version you will keep.",
-  "Give me the same report in a slightly more formal tone suitable for a board paper."),
- ("Summarise a longer input: paste a longer background note (or the brief's appendix) and ask for a short summary you can use as an intro.",
-  "Summarise this background note into four bullet points I can use as context at the top of the report."),
- ("Open Microsoft Word, paste your chosen report in, and format it: a title, headings for each section, and the three action bullets (Home > Styles).", ""),
- ("Do the final human check: re-read the whole page, confirm every figure ties to the workbook, and fix any wording. Save it as 'Lumina Living — Q3 Review Report.docx'.", ""),
- ],
- test="You have a saved Word report of about 250 words with the four sections and three action bullets, in which every figure has been checked against the Q3 workbook.",
- ),
- dict(
- num=6, topic=2,
- title="Analyse and Explain Data in Excel",
- objective="Use Claude to analyse a dataset, build the formulas you need, and explain a formula — verifying every figure in Excel.",
- desc="You produce the numbers behind the report. You have Claude analyse the Q3 sales workbook, ask it for "
- "the Excel formulas to compute the key figures, paste those formulas into Excel to verify them, and have "
- "Claude explain an unfamiliar formula — trusting no figure you have not confirmed yourself. " + PROJECT_NOTE,
- build="A verified Q3 analysis in Microsoft Excel — key figures computed by formulas you checked, and one formula you can explain.",
- services="Microsoft Excel, Claude (analysis / formula generation / formula explanation), SUM, SUMIF, AVERAGE",
- steps=[
- ("Ask Claude to analyse the workbook and surface the figures the report needs.",
-  "From the Q3 sales workbook, give me: total sales for the quarter, the best- and worst-selling product by value, the top region, and the month-by-month trend. Show the figure for each and say which columns you used."),
- ("Ask Claude for the exact Excel formula for the headline figure so you can reproduce it.",
-  "Give me the Excel formula to compute total Q3 sales from the Total column, assuming the data is in rows 2 to 500."),
- ("In Excel, put that formula in an empty cell and confirm it matches the figure Claude reported.",
-  "=SUM(F2:F500)"),
- ("Ask for a conditional formula and verify it too — for example sales for the top region.",
-  "Give me an Excel formula that totals the Total column only for rows where the Region column equals \"North\"."),
- ("Paste it into Excel and cross-check by filtering the sheet to that region and reading the status-bar Sum.",
-  "=SUMIF(D2:D500,\"North\",F2:F500)"),
- ("Learn from a formula: paste an unfamiliar one and ask Claude to explain it step by step.",
-  "Explain, step by step, what this Excel formula does: =IF(F2>500,\"Large\",\"Standard\")"),
- ("Set the rule and record the checked figures: never accept a number you cannot tie back to a formula in the sheet. Note the verified headline figures where the report can reuse them.", ""),
- ],
- test="Your key Q3 figures each match an Excel formula you ran yourself, one conditional total agrees with a filtered status-bar Sum, and you can explain in one sentence what the =IF formula does.",
- ),
- dict(
- num=7, topic=2,
- title="Generate Slide Outlines and Content for PowerPoint",
- objective="Use Claude to turn the report and analysis into a slide-by-slide outline with titles, bullets and speaker notes.",
- desc="You produce the deck for the management meeting. You have Claude turn the checked report and figures "
- "into a slide-by-slide outline — titles, three bullets each and short speaker notes — refine the flow and "
- "length, then build the slides in PowerPoint from that outline. " + PROJECT_NOTE,
- build="A Q3 review slide deck in Microsoft PowerPoint, built from a Claude-generated outline you refined and checked.",
- services="Microsoft PowerPoint, Claude (slide outline / speaker notes), Outline view, copy-paste",
- steps=[
- ("Ask Claude to convert your report and verified figures into a slide outline.",
-  "Turn the Q3 review report and the verified figures into a 6-slide deck for a 10-minute management meeting. For each slide give a title, no more than three short bullets, and two lines of speaker notes. Keep every figure consistent with the report."),
- ("Read the outline and check the figures on each slide against your verified numbers from Lab 6. Fix any that drift.", ""),
- ("Refine the flow with a follow-up.",
-  "Reorder so the recommended actions are the final slide, and make the opening slide a single headline that states how the quarter went."),
- ("Tighten wording so no bullet runs over one line.",
-  "Shorten every bullet to at most eight words, keeping the meaning."),
- ("Build the slides: open PowerPoint, use View > Outline, and paste the titles and bullets so each slide is created from the outline (Tab to demote a line to a bullet).", ""),
- ("Add the speaker notes: for each slide, paste Claude's two lines into the Notes pane (View > Notes).", ""),
- ("Do the final human check: click through the deck, confirm every figure matches the report and workbook, then save it as 'Lumina Living — Q3 Review.pptx'.", ""),
- ],
- test="You have a saved 6-slide PowerPoint deck with a headline opener and an actions closer, one-line bullets, and speaker notes — with every figure consistent with your Word report and Excel analysis.",
- ),
- dict(
- num=8, topic=2,
- title="Draft and Reply to Email in Outlook and Teams",
- objective="Use Claude to draft, adjust the tone of, and reply to work messages, then send the pack — verifying before it goes.",
- desc="The capstone. You send the pack out. You have Claude draft the stakeholder email that carries the "
- "review, adjust its tone and length, draft a reply to a likely question, and write a short Teams "
- "announcement — checking every detail before anything is sent. " + PROJECT_NOTE,
- build="A ready-to-send Outlook email carrying the Q3 pack, a drafted reply, and a short Teams announcement — all checked by you.",
- services="Microsoft Outlook, Microsoft Teams, Claude (draft / tone / reply), copy-paste",
- steps=[
- ("Ask Claude to draft the covering email for the management team.",
-  "Draft a short email to the management team introducing the attached Q3 business-review report and slide deck. Say what the quarter's headline was, list the three recommended actions, and ask for comments by Friday. Professional and warm, under 150 words."),
- ("Read it and verify: the headline and the three actions must match your report exactly. Fix any drift, and confirm no confidential detail is included.", ""),
- ("Adjust the tone or length if needed, and keep the version you will send.",
-  "Make it a little more concise and add a one-line thank-you at the end."),
- ("Draft a reply to a question you can expect, so you are ready.",
-  "Draft a brief, friendly reply to a manager who asks: 'Can you confirm the total Q3 sales figure and which region led?' Leave placeholders <TOTAL> and <REGION> for me to fill from the verified data."),
- ("Fill the placeholders from your verified Lab 6 figures — never from memory — and check they are right.", ""),
- ("Write a short Teams announcement for the team channel.",
-  "Write a 2-sentence Microsoft Teams message announcing that the Q3 review pack is ready and where to find it, friendly and clear."),
- ("Send safely: open Outlook, paste the covering email, attach 'Q3 Review Report.docx' and 'Q3 Review.pptx', check the recipients and the attachments, and only then send. Post the Teams message to the channel.", ""),
- ],
- test="You have a checked covering email in Outlook with the correct headline, the three matching actions and both files attached; a reply drafted with verified figures; and a short Teams announcement — and you confirmed every figure and name before sending.",
- ),
+    dict(
+        num=4, topic=2,
+        title="Create a Company Marketing Plan in Word",
+        objective="Produce a decision-ready FY2027 marketing plan in the Lumina Living Word template.",
+        desc="Turn an approved commercial brief, customer evidence and budget envelope into a structured marketing plan with objectives, segments, channels, actions, KPIs and approvals.",
+        build="A reviewed FY2027 marketing plan in Word with an evidence appendix and management decision page.",
+        services="Claude for Word, company styles, selected-text editing, comments, tracked changes, evidence register",
+        deck_flow=["Commercial objective", "Customer evidence", "Channel choices", "Campaign plan", "Measures and approval"],
+        deck_cards=[
+            ("Choice, not a list", "Prioritise segments and channels; explain what the company will not fund."),
+            ("Budget connects to action", "Every major campaign has an owner, cost, measure and review date."),
+            ("Evidence stays visible", "Cite the customer or financial source behind each material recommendation."),
+            ("Native Word structure", "Preserve approved headings, tables, numbering, comments and change tracking."),
+        ],
+        case=dict(
+            department="Marketing and E-commerce", sponsor="Chief Commercial Officer",
+            challenge="Grow FY2027 revenue while improving contribution margin and reducing unfocused campaign spend.",
+            decision="Which segments, channels and campaigns should receive the marketing budget?",
+            sources=["FY2026 channel results", "Customer segment note", "Campaign calendar", "Marketing budget envelope"],
+            metrics=["Revenue", "Contribution margin", "Customer acquisition cost", "Repeat purchase rate", "Campaign ROI"],
+            outputs=["Marketing plan", "90-day campaign calendar", "KPI table", "Approval page"],
+            controls=["No invented market facts", "Budget reconciles", "Claims cite source", "CCO approval"],
+        ),
+        prerequisites=["Labs 1–3 completed.", "Open the lab's marketing brief, workbook and Word template.", "Confirm the marketing plan is fictional training material."],
+        steps=[
+            ("Read the marketing brief yourself and list the decision, audience, planning horizon and non-negotiable constraints.", ""),
+            ("Ask Claude to map the source documents and identify missing evidence before drafting.", "Map the open marketing brief and workbook for FY2027 planning. Return: objective, customer evidence, channel performance, budget limits, stated risks and missing evidence. Cite the source heading or workbook range. Do not edit Word yet."),
+            ("Ask Claude to propose three strategic marketing choices and one explicit non-priority.", "Propose three FY2027 marketing choices for Lumina Living and one activity we should not prioritise. For each choice state the evidence, target segment, channel, expected business effect, key risk and success measure. Use only the approved sources and label interpretation."),
+            ("Review the choices with the budget workbook. Remove any recommendation that cannot be funded or evidenced.", ""),
+            ("Draft the plan inside the Word template using its existing styles and tables.", "Draft the FY2027 marketing plan in the open template. Sections: Executive decision, Situation, Objectives, Priority segments, Channel strategy, 90-day campaigns, Budget, KPIs, Risks and Approval. Preserve all styles and numbering. Cite source headings or workbook ranges and flag missing values rather than guessing."),
+            ("Select the campaign table and ask Claude to populate only that table with campaign, segment, channel, owner, timing, budget, KPI and approval status.", "Populate only the selected campaign table with a realistic 90-day plan from the approved brief. Keep the existing columns and formatting. Do not add campaigns outside the approved budget envelope."),
+            ("Turn on tracked changes. Ask Claude to reduce jargon and sharpen the executive decision page without changing figures.", "Rewrite only the selected Executive decision page for senior management. Use plain business language, state the three choices, quantify the approved budget and name the decision required. Preserve every verified figure and show tracked changes."),
+            ("Resolve comments, verify the total budget in Excel, check every cited source and record the CCO approval status.", ""),
+            ("Save the final file as 'Lumina Living FY2027 Marketing Plan — Reviewed.docx'.", ""),
+        ],
+        test="The Word plan uses company styles, reconciles to the marketing budget, contains three clear choices and one non-priority, and every material claim has a source or missing-evidence flag.",
+        troubleshooting=[
+            ("The plan becomes generic", "Require the named segments, channel results, budget envelope and decision owner from the supplied sources."),
+            ("Word formatting drifts", "Select the target section, preserve named styles and request a local edit rather than a full-document rewrite."),
+            ("Campaign costs exceed budget", "Reconcile in Excel and ask Claude to reprioritise—not to invent additional funding."),
+        ],
+        challenge="Add a stop/go decision rule for the weakest campaign after four weeks of evidence.",
+        reflection="Which marketing recommendation became stronger after you forced it to cite evidence?",
+    ),
+    dict(
+        num=5, topic=2,
+        title="Develop a Strategic Plan with Owners and Measures",
+        objective="Develop an aligned strategic plan with explicit choices, initiatives, owners, measures and risks.",
+        desc="Translate Lumina Living's ambition into a strategy-on-a-page, initiative portfolio and governance rhythm that management can execute.",
+        build="A three-year strategic plan, initiative portfolio and quarterly review scorecard in Word and Excel.",
+        services="Claude for Word, Claude for Excel, strategy-on-a-page, initiative portfolio, risk and dependency review",
+        deck_flow=["Ambition", "Diagnosis", "Strategic choices", "Initiative portfolio", "Measures and governance"],
+        deck_cards=[
+            ("Choice architecture", "A strategy selects where to play, how to win and what not to do."),
+            ("Initiatives have owners", "Each priority carries an accountable executive, milestones, measures and dependencies."),
+            ("Measures balance outcomes", "Combine financial, customer, operational and capability indicators."),
+            ("Review drives action", "A quarterly cadence tests assumptions and reallocates resources when evidence changes."),
+        ],
+        case=dict(
+            department="Corporate Strategy", sponsor="Chief Executive Officer",
+            challenge="Align growth, profitability, customer experience and operating capability for FY2027–FY2029.",
+            decision="Which strategic choices and initiatives should the Executive Committee approve?",
+            sources=["CEO ambition note", "Commercial performance summary", "Operations capability review", "Risk register"],
+            metrics=["Revenue CAGR", "Gross margin", "Net promoter score", "Digital share", "Inventory turns", "Employee capability"],
+            outputs=["Strategy-on-a-page", "Initiative portfolio", "Balanced scorecard", "Quarterly review cadence"],
+            controls=["Explicit trade-offs", "Named owners", "Target source", "Risk dependency review"],
+        ),
+        prerequisites=["Labs 1–4 completed.", "Open the strategic planning brief, scorecard workbook and strategy template.", "Use the reviewed marketing plan as one input, not as the whole strategy."],
+        steps=[
+            ("Ask Claude to separate facts, interpretations and assumptions in the strategy brief.", "Analyse the open strategy brief into three tables: verified facts with citations, interpretations to test, and assumptions requiring an owner and validation date. Do not draft a strategy yet."),
+            ("Build a concise diagnosis across market, customer, economics, operations and capability.", "Using only the verified facts, draft a one-page strategic diagnosis. State the central challenge, three strengths, three constraints and two uncertainties. Cite each source and avoid unsupported causal claims."),
+            ("Generate alternative strategic choices and compare their trade-offs in the workbook.", "Propose three coherent strategic choice sets. For each: where to play, how to win, required capability, investment implication, key risk and what Lumina Living will stop doing. Keep choices mutually distinct and cite the evidence behind them."),
+            ("Select one choice set and record the management rationale in the Decision Log.", ""),
+            ("Ask Claude to draft the strategy-on-a-page in Word using the existing company template.", "Draft the strategy-on-a-page in the open template: ambition, strategic diagnosis, three choices, six initiatives, outcome measures and governance. Preserve styles. Each initiative must have an owner, Q1 milestone, 12-month target, dependency and risk."),
+            ("Populate the initiative portfolio and balanced scorecard in Excel. Verify that every measure has a definition, baseline, target, source and review frequency.", "Build the initiative portfolio and balanced scorecard in the open workbook. Use formulas for status and variance. Do not invent baselines; mark missing values as 'Owner to confirm'."),
+            ("Run a sceptical strategy review.", "Act as a sceptical board adviser. Test this strategy for conflicting choices, unfunded initiatives, missing capabilities, weak measures, dependency collisions and risks without owners. Rank findings by decision impact and cite the plan section or workbook row."),
+            ("Resolve the top findings, update tracked changes and record the Executive Committee decision status.", ""),
+            ("Save the reviewed Word plan and Excel scorecard in the lab folder.", ""),
+        ],
+        test="The strategy contains explicit choices and trade-offs, six owned initiatives, balanced measures with sources, a governance cadence and a resolved high-impact risk review.",
+        troubleshooting=[
+            ("The strategy is a wish list", "Force trade-offs: name what will not be prioritised and connect each initiative to one approved choice."),
+            ("Measures are vague", "Require definition, unit, baseline, target, source owner and review frequency."),
+            ("Owners are generic departments", "Assign one accountable role and list supporting roles separately."),
+        ],
+        challenge="Create a scenario trigger that would cause management to revisit one strategic choice.",
+        reflection="Which trade-off made the strategy more executable?",
+    ),
+    dict(
+        num=6, topic=2,
+        title="Draft Sustainability Reporting and HR Policy",
+        objective="Draft source-aware sustainability reporting and an HR policy with appropriate review controls.",
+        desc="Create a management sustainability report section and a flexible-work HR policy while separating evidence, interpretation, procedure and legal review.",
+        build="A sustainability performance section, metric register and flexible-work policy draft with review and approval records.",
+        services="Claude for Word, reporting boundary, metric methodology, HR policy drafting, comments, approval workflow",
+        deck_flow=["Define boundary", "Verify metrics", "Draft narrative", "Separate policy from procedure", "Obtain specialist approval"],
+        deck_cards=[
+            ("Boundary before narrative", "State entities, sites, period, method and exclusions before describing performance."),
+            ("Numbers need lineage", "Every metric names the source system, owner, unit, method and limitation."),
+            ("Policy is not legal advice", "AI drafts require authorised HR and legal review before organisational release."),
+            ("Exceptions are designed", "Eligibility, decision rights, escalation and record keeping prevent an attractive policy from becoming unusable."),
+        ],
+        case=dict(
+            department="Sustainability and People", sponsor="Chief People and Sustainability Officer",
+            challenge="Prepare credible FY2026 sustainability commentary and a flexible-work policy for management review.",
+            decision="Is the evidence and control environment strong enough for internal release?",
+            sources=["Energy and waste register", "Travel summary", "Workforce profile", "Flexible-work pilot feedback"],
+            metrics=["Electricity intensity", "Waste diversion", "Business travel emissions", "Training hours", "Policy participation"],
+            outputs=["Sustainability report section", "Metric register", "Flexible-work policy", "Review record"],
+            controls=["Reporting boundary", "Method note", "No green claims without evidence", "HR and legal approval"],
+        ),
+        prerequisites=["Labs 1–5 completed.", "Open the sustainability metric workbook and HR source note.", "Do not treat this exercise as legal or regulatory advice."],
+        steps=[
+            ("Review the metric register and flag missing owner, unit, method, boundary, period or evidence.", ""),
+            ("Ask Claude to create a reporting-boundary statement before drafting performance commentary.", "Using the open metric register, draft a reporting-boundary statement for FY2026. Include entities, Singapore sites, reporting period, included metrics, exclusions, calculation methods and data limitations. Cite the workbook rows and do not invent an assurance level."),
+            ("Ask Claude to draft a factual performance section that separates results from interpretation.", "Draft a 500-word internal sustainability performance section. Structure: boundary, energy, waste, travel, people metrics, limitations and next actions. Cite each metric row. Label interpretation and avoid words such as 'leading', 'green' or 'net zero' unless the evidence explicitly supports them."),
+            ("Verify all units, denominators, direction-of-change statements and limitations against Excel.", ""),
+            ("Map the HR policy source note into purpose, scope, eligibility, principles, process, manager decision rights, information security, health and safety, exceptions, records and review.", ""),
+            ("Ask Claude to draft only the policy—not legal conclusions or employee-specific decisions.", "Draft a flexible-work policy in the open company template. Use the mapped sections, plain language and neutral criteria. Distinguish policy from procedure. Add placeholders for jurisdiction-specific legal review and do not make claims about statutory entitlement that are absent from the approved source note."),
+            ("Run an equity and operational review.", "Review this policy for inconsistent eligibility, hidden bias, unclear manager discretion, privacy risk, security gaps, inaccessible language and missing appeal or exception routes. Cite the clause and propose a precise revision. Do not approve the policy."),
+            ("Use tracked changes to resolve approved findings. Add HR, legal, IT security and management review rows to the approval table.", ""),
+            ("Save both reviewed drafts and the completed metric register.", ""),
+        ],
+        test="The sustainability section states its boundary and limitations and reconciles every metric; the HR policy separates policy from procedure and carries named HR, legal, security and management reviews.",
+        troubleshooting=[
+            ("Claude overstates sustainability performance", "Require neutral wording, metric citations, limitations and a ban on unsupported leadership or net-zero claims."),
+            ("Policy sounds legally definitive", "Replace legal conclusions with review placeholders and obtain authorised jurisdiction-specific advice."),
+            ("Units do not reconcile", "Check numerator, denominator, reporting period and conversion method in the metric register before editing the narrative."),
+        ],
+        challenge="Add a methodology-change disclosure showing how a revised conversion factor affects comparability.",
+        reflection="Which control most reduced the risk of a misleading sustainability or HR statement?",
+    ),
 ]

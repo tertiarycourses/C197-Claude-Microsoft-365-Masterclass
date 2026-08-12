@@ -1,123 +1,141 @@
-"""
-Domain 1 — Getting Started with Claude for Microsoft 365. Labs 1-4.
-
-THE CONNECTED PROJECT STARTS HERE, IN LAB 1.
-
-Every lab works the SAME deliverable: the Q3 business-review pack for a small
-retailer, "Lumina Living". In Lab 1 you get Claude set up and running a first
-prompt; each lab after that adds one skill — connecting your files, prompting
-effectively, and using AI safely — that you then apply, in Domain 2, to write the
-report, analyse the numbers, build the slides and send the emails. Wherever
-possible use your OWN non-confidential work; the Lumina Living sample material is
-provided for everyone to follow along.
-"""
-
-SCENARIO = (
- "Lumina Living is a small home-and-lifestyle retailer. The quarter has just closed and "
- "your manager needs the Q3 business-review pack — a short written report, the numbers "
- "behind it, a slide deck for the management meeting, and the emails that send it out — by "
- "the end of the day. You have a rough brief, a sales workbook and a handful of facts to work "
- "from. Across this course you use Claude alongside Microsoft 365 to turn that raw material "
- "into a finished, checked pack. Use this scenario only if you cannot use real, non-confidential "
- "work of your own; your own material is always preferred."
-)
-
-PROJECT_NOTE = (
- "BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, "
- "the single deliverable you write, analyse, present and send across all 8 labs."
-)
+"""Topic 1 — governed foundations for Claude and Microsoft 365."""
 
 DOMAIN1 = [
- dict(
- num=1, topic=1,
- title="Get Started with Claude for Microsoft 365",
- objective="Sign in to Claude, understand how it works alongside Microsoft 365, and run a first prompt on your task.",
- desc="This lab gets Claude working for you. You sign in at claude.ai, start a new chat, and paste in "
- "the Q3 brief so Claude can summarise your task and list what the review pack needs — so you see the "
- "ask-check loop before you rely on it. " + PROJECT_NOTE,
- build="A working Claude account with your first, verified answer — a plain-language summary of the Q3 task and a checklist of what the pack must contain.",
- services="claude.ai (or the Claude desktop app), Microsoft 365, a web browser",
- steps=[
- ("Sign in at claude.ai (or open the Claude desktop app) and click 'New chat'. This is where you will work with Claude all day.", ""),
- ("Open the sample 'Lumina Living — Q3 Review Brief' (a short Word document the trainer shares), or use a short brief of your own non-confidential work.", ""),
- ("Copy the brief's text and paste it into the Claude chat with this instruction so Claude tells you what the task involves.",
-  "Here is the brief for a quarterly business review. In plain language, summarise what I am being asked to produce, then list the separate items the final pack should contain."),
- ("Read Claude's answer. Check it against the brief: does its list match what the brief actually asks for? Add anything it missed.", ""),
- ("Ask one follow-up so you see Claude reason over your material.",
-  "For each item in that list, say which Microsoft 365 app I would use to produce it — Word, Excel, PowerPoint or Outlook."),
- ("Confirm the ground rule: Claude has only read text you gave it, and nothing has changed in your files. Claude drafts; you decide what to keep.", ""),
- ("Save this chat — rename it 'Lumina Living Q3'. You now have Claude set up and a clear, checked picture of the task.", ""),
- ],
- test="You are signed in to Claude, and you have a first answer — a summary of the Q3 task and a checklist of the pack's items — that you have checked against the brief and corrected where needed.",
- ),
- dict(
- num=2, topic=1,
- title="Connect Claude to Your Microsoft 365 Files and Apps",
- objective="Give Claude your working files by uploading and pasting, and keep them together in a Project.",
- desc="Now you give Claude your real material to work on. You upload the Q3 brief and the sales workbook, "
- "gather them into a Project with standing instructions, and confirm Claude can read what you gave it — so "
- "every later chat starts with the right context. " + PROJECT_NOTE,
- build="A Claude Project (or a single well-prepared chat) holding your Q3 files, with Claude confirmed to have read them.",
- services="Claude Projects, file upload, custom instructions, connectors (optional)",
- steps=[
- ("Attach a file to the chat: click the paperclip (or drag the file in) and upload the sample 'Lumina Living — Q3 Sales.xlsx' workbook. Claude accepts Word, Excel, PowerPoint, PDF, CSV and images.", ""),
- ("Confirm Claude has read it, and check the answer against the file itself.",
-  "From the workbook I just uploaded, list the column headings and tell me how many rows of data there are."),
- ("Create a Project to hold the whole task (if your plan has Projects): open Projects > New project, name it 'Lumina Living — Q3 Review', and add both the brief and the workbook to it. If you do not have Projects, keep working in your renamed Lab 1 chat and re-attach files as needed.", ""),
- ("Give the Project standing instructions so every chat starts the same way. Put this in the Project's custom instructions.",
-  "You are helping me prepare Lumina Living's Q3 business review. Use only the files in this project. Keep a professional, concise tone. When you give figures, show where in the data they come from so I can check them."),
- ("Optional — connect a source instead of uploading: if your account offers connectors, open Settings > Connectors and connect OneDrive, SharePoint or Google Drive, then point Claude at the folder. Skip this if your account does not offer it.", ""),
- ("Prove the context works: start a fresh chat inside the Project and ask a question without re-attaching anything.",
-  "Without me re-uploading, what files do you have for this review, and what is in each?"),
- ("Confirm Claude answers from the Project's files. Your working set is now connected and reusable.", ""),
- ],
- test="Claude has correctly listed the workbook's columns and row count, your Q3 files sit in a Project (or a prepared chat), and a fresh chat can answer from them without re-uploading.",
- ),
- dict(
- num=3, topic=1,
- title="Write Effective Prompts for Everyday Work Tasks",
- objective="Compare a vague prompt with a specific one and capture a reusable four-part prompt pattern for work tasks.",
- desc="A result is only as good as the prompt. You run a vague prompt, then a specific one that states the "
- "role, context, task and output format, see the difference, and distil what worked into a reusable pattern "
- "you will use for the rest of the course. " + PROJECT_NOTE,
- build="A written four-part prompt pattern (Role · Context · Task · Output) and one strong, tested prompt saved for reuse.",
- services="Prompt design, role/context/task/output, refinement",
- steps=[
- ("Run a deliberately vague prompt in the Project and note how generic the answer is.",
-  "Write something about our sales."),
- ("Now run a specific prompt for the same intent and compare the result.",
-  "You are my business analyst. Context: this is Lumina Living's Q3 sales workbook. Task: write three short paragraphs summarising how the quarter went for a management audience. Output: plain paragraphs, no jargon, with the key figure named in each."),
- ("Write down the four parts that made the second prompt work: the Role, the Context, the Task, and the Output format.", ""),
- ("Capture your reusable pattern where you can find it — a notes doc, or pinned in the Project.",
-  "ROLE: who Claude should act as | CONTEXT: which file/task | TASK: what to produce | OUTPUT: format, length, tone, and what to include"),
- ("Add the conditions that keep results trustworthy: name the file, ask Claude to show where figures come from, and state the length and tone you need.", ""),
- ("Rewrite one request of your own about the Q3 pack using the pattern, and run it.", ""),
- ("Refine once: change the Output part (for example 'make it half as long', or 'more formal') and re-run to see the result change. Keep the better version.", ""),
- ("Save your best prompt in the Project — you will reuse this pattern in every remaining lab.", ""),
- ],
- test="You can show two answers for the same intent (vague vs specific), a written four-part prompt pattern, and one refined prompt that produced the output you specified in the format you asked for.",
- ),
- dict(
- num=4, topic=1,
- title="Use AI Responsibly, Securely and Privately at Work",
- objective="Decide what is safe to share with AI, and write a personal safe-use checklist you apply to the review pack.",
- desc="Before you rely on AI at work, you set the rules. You review what should never go into a prompt, "
- "practise removing sensitive details before sharing, confirm that Claude's output must always be verified, "
- "and write a safe-use checklist you apply to your own material. " + PROJECT_NOTE,
- build="A personal safe-use checklist, and one prompt you have rewritten to remove sensitive data before sending.",
- services="Data privacy, redaction, verification, safe-use checklist",
- steps=[
- ("List the kinds of data that should not go into an AI prompt without approval: passwords and keys, customer names and contact details, staff personal data, unreleased financials, and anything under NDA.", ""),
- ("Practise redacting: take a sentence that names a real customer and rewrite it to make the same request safely.",
-  "Rewrite this so it asks the same question without naming anyone: 'Summarise why customer Tan Wei Ming from 12 Orchard Road cancelled his order.'"),
- ("Ask Claude for good practice, then sanity-check its advice against your own organisation's policy.",
-  "What should I avoid putting into an AI prompt when working with real company data, and how can I get the same help safely?"),
- ("Confirm the verification rule with a quick test: ask Claude for a specific figure from the workbook, then check it in Excel — never accept a number you cannot tie back to the source.",
-  "What was the single best-selling product in the Q3 workbook, and what was its total sales value? Tell me which cells you used."),
- ("Note who is accountable: Claude drafts, but you are responsible for what you send. Decide where you will record that AI helped (for example a note in the document's properties).", ""),
- ("Draft your safe-use checklist — keep confidential data out of prompts; redact before sharing; verify every figure, name and claim; keep a human decision on anything that goes out; record where AI was used.", ""),
- ("Apply the checklist to your Lab 3 prompt: check it contains nothing sensitive, and adjust it if it does.", ""),
- ],
- test="You have a written safe-use checklist, a prompt you rewrote to remove a real name, and a figure from the workbook that you verified in Excel before trusting it.",
- ),
+    dict(
+        num=1, topic=1,
+        title="Choose and Activate the Right Claude Surface",
+        objective="Select and activate the Claude surface that fits a governed Lumina Living task.",
+        desc="Compare the Office add-ins, Microsoft 365 connector, Claude Cowork and Claude-powered Microsoft 365 Copilot experiences before touching company data.",
+        build="A completed operating-surface decision matrix and environment-readiness record.",
+        services="Claude for Microsoft 365, Claude connector, Claude Cowork, Microsoft 365 Copilot, admin deployment",
+        deck_flow=["Define the task", "Compare surfaces", "Check licence and tenant", "Activate the approved route", "Record the fallback"],
+        deck_cards=[
+            ("Office add-ins", "Best for editing the open Word, Excel, PowerPoint or Outlook item in its native structure."),
+            ("M365 connector", "Best for searching approved SharePoint, OneDrive, Outlook and Teams context from Claude."),
+            ("Claude Cowork", "Best for a bounded multi-step task across a folder, Project and connected tools."),
+            ("Copilot experiences", "A separate Microsoft-managed surface whose availability and governance depend on the tenant."),
+        ],
+        case=dict(
+            department="Business Transformation Office", sponsor="Chief Operating Officer",
+            challenge="Choose a safe operating surface for the FY2027 planning pack before granting or requesting access.",
+            decision="Which Claude surface should each planning, analysis and communication task use?",
+            sources=["IT acceptable-use note", "Microsoft 365 tenant capability register", "FY2027 planning brief"],
+            metrics=["Users ready", "Add-ins available", "Connector consent status", "Fallback tested"],
+            outputs=["Surface decision matrix", "Readiness log", "Escalation path"],
+            controls=["No shared password in learner files", "No permission bypass", "Named system owner approval"],
+        ),
+        prerequisites=[
+            "The trainer has privately assigned a classroom account; credentials are not written in this lab or repository.",
+            "Word, Excel, PowerPoint and Outlook are installed or available on the web.",
+            "Claude desktop and Claude Code are installed for later labs, where available.",
+        ],
+        steps=[
+            ("Open the lab folder and inspect the company brief, readiness workbook and executive starter deck before signing in anywhere.", ""),
+            ("Classify four example tasks—edit a strategy section, analyse finance, search recent Outlook decisions and coordinate a multi-file pack—against the four operating surfaces.", ""),
+            ("Open Word, Excel and PowerPoint, locate the Claude add-in and sign in with the trainer-issued classroom account. Record the visible state in the Readiness workbook.", ""),
+            ("Open Outlook and check whether Claude for Outlook is present. If the tenant shows an approval requirement, record it as an environment constraint; do not attempt a workaround.", ""),
+            ("In Claude, open Customize > Connectors and inspect Microsoft 365. Record whether organisation enablement, Entra administrator consent and write tools are available.", ""),
+            ("Open Claude desktop and confirm whether Cowork appears in the mode picker. Do not grant folder access yet.", ""),
+            ("Open Microsoft 365 Copilot only if your tenant provides it. Record it as a distinct Microsoft surface, not as the Anthropic Office add-in.", ""),
+            ("Complete the decision matrix: task, preferred surface, required permission, human approval, fallback and owner.", ""),
+            ("Use Claude to challenge your matrix without asking it to change the file.", "Act as an enterprise AI adoption lead. Review this operating-surface matrix for mismatched tasks, excessive permissions, missing approval owners and unrealistic fallbacks. Cite the row for every finding. Do not edit the workbook."),
+            ("Correct the matrix yourself and save the approved copy in the lab folder.", ""),
+        ],
+        test="Every example task has one preferred surface, one governed fallback, a permission owner and a human approval point; no credential is stored in any learner-facing file.",
+        troubleshooting=[
+            ("An add-in is missing", "Treat the visible state as real. Record it, use the approved upload fallback for class and ask the authorised administrator about deployment."),
+            ("Connector authentication fails", "Confirm a business Entra account and tenant admin consent; personal Outlook.com accounts cannot use this connector."),
+            ("Two products are both labelled Cowork", "Distinguish Anthropic Claude Cowork from Microsoft 365 Copilot Cowork by host, licensing, data boundary and approval model."),
+        ],
+        challenge="Add one recurring task from your role and justify the lowest-privilege surface that can complete it.",
+        reflection="What evidence would convince your system owner that the selected surface is appropriate?",
+    ),
+    dict(
+        num=2, topic=1,
+        title="Connect Microsoft 365 Context and Map Permissions",
+        objective="Connect approved Microsoft 365 context and map what Claude may read or write.",
+        desc="Build a source-and-permission register for Lumina Living's SharePoint, OneDrive, Outlook and Teams planning evidence.",
+        build="A least-privilege source register with access status, evidence owner, retention note and approved use.",
+        services="Microsoft 365 connector, Microsoft Entra, delegated permissions, SharePoint, OneDrive, Outlook, Teams",
+        deck_flow=["Inventory sources", "Assign owners", "Grant tenant consent", "Connect individually", "Test read before write"],
+        deck_cards=[
+            ("Delegated access", "Claude acts through the signed-in user and cannot exceed that user's Microsoft 365 permissions."),
+            ("Read-first rollout", "Search and summarise approved context before enabling any create, update or send capability."),
+            ("Two consent layers", "Organisation enablement and Microsoft Entra administrator consent precede individual connection."),
+            ("Write-tool boundary", "Email, calendar and file writes need additional scopes, policy approval and stronger review."),
+        ],
+        case=dict(
+            department="Information Governance", sponsor="Head of IT and Data Protection Officer",
+            challenge="Connect only the FY2027 planning evidence required by the project team.",
+            decision="Which sources and tools should be enabled for each role?",
+            sources=["SharePoint Strategy site", "OneDrive project folder", "Outlook planning mailbox", "Teams leadership chat"],
+            metrics=["Sources approved", "Owners confirmed", "Read tools tested", "Write tools disabled or approved"],
+            outputs=["Source register", "Permission map", "Connector test record"],
+            controls=["Least privilege", "Business Entra tenant", "Per-user access boundary", "No Teams write claim"],
+        ),
+        prerequisites=["Lab 1 completed.", "The trainer has confirmed whether Entra administrator consent is already present.", "Use only the fictional Lumina Living sources supplied in this folder."],
+        steps=[
+            ("Review the Source Register workbook and identify the business owner, sensitivity, retention need and intended Claude use for every source.", ""),
+            ("In Claude, navigate to Customize > Connectors > Microsoft 365. Connect only if the organisation and tenant consent are already approved.", ""),
+            ("Record the connector's visible tools and whether they are read or write. Do not assume write access from a successful sign-in.", ""),
+            ("Ask Claude to search only the approved FY2027 planning context and return a source inventory rather than a narrative.", "Search the approved Microsoft 365 planning sources for Lumina Living FY2027. Return a table with item title, service, owner if stated, last modified date and direct source citation. Do not infer missing owners and do not create or update anything."),
+            ("Compare the results with the supplied register. Mark missing, duplicate, stale or inaccessible sources.", ""),
+            ("Test an Outlook read query for planning messages and require per-message citations.", "Find the fictional FY2027 planning messages approved for this exercise. List sender, date, subject, decision and unresolved action with a citation to each message. Do not draft or send email."),
+            ("If write tools are not approved, record the limitation and retain read-only operation. If approved, perform only the trainer-authorised low-risk draft-to-self test.", "Draft an email to my own training account summarising the connector test. Leave it as a draft and do not send it."),
+            ("Update the Permission Map with the user group, source, tool, scope, owner, review date and fallback.", ""),
+            ("Ask Claude to identify excessive or missing permissions, then resolve each finding with the source owner.", "Review this permission map for least-privilege issues. Flag any source or write capability that is not necessary for the stated business outcome. Cite the row and propose a narrower alternative."),
+        ],
+        test="The source register reconciles to the connector results, every source has an owner and approved use, and write tools are either explicitly authorised or documented as unavailable.",
+        troubleshooting=[
+            ("Admin approval is required", "Stop the connection attempt and escalate to the authorised Entra Global Administrator."),
+            ("A source is missing", "Check the signed-in user's existing Microsoft 365 permission and the source location; do not request broad tenant access as a shortcut."),
+            ("A Teams action is requested", "The Claude Microsoft 365 connector can read supported Teams context but does not provide tools to post Teams messages or change Teams settings."),
+        ],
+        challenge="Design a read-only pilot group and a separate, smaller write-enabled group for the company rollout.",
+        reflection="Which permission would create the largest consequence if misused, and who should approve it?",
+    ),
+    dict(
+        num=3, topic=1,
+        title="Build an Auditable Prompt and Review Contract",
+        objective="Write reusable prompts that ground evidence, constrain edits and define human approval.",
+        desc="Turn vague requests into professional prompt contracts for Word, Excel and PowerPoint, then log evidence and review outcomes.",
+        build="A reusable cross-app prompt library, prompt test log and acceptance checklist.",
+        services="Prompt architecture, evidence clauses, stop rules, output contracts, review log",
+        deck_flow=["Business outcome", "Named evidence", "Constraints", "Output contract", "Verification and approval"],
+        deck_cards=[
+            ("Outcome", "Name the decision, audience and work product instead of asking for generic help."),
+            ("Evidence", "Name the open file, table, range, section or messages and require citations."),
+            ("Constraints", "Specify what must be preserved, excluded, limited or escalated."),
+            ("Approval", "Ask for a proposal first and keep final acceptance, save and send with the authorised user."),
+        ],
+        case=dict(
+            department="Business Transformation Office", sponsor="Director, Strategy",
+            challenge="Create a prompt standard that works across the full Lumina Living planning pack.",
+            decision="Which prompt elements are mandatory for a company-standard AI workflow?",
+            sources=["FY2027 planning brief", "Company style guide", "Data dictionary", "Approval matrix"],
+            metrics=["Prompt pass rate", "Citations present", "Unsupported claims", "Review time"],
+            outputs=["Prompt library", "Test log", "Approval checklist"],
+            controls=["No unstated assumptions", "No fabricated citations", "Smallest useful edit", "Human approval"],
+        ),
+        prerequisites=["Labs 1–2 completed.", "Word, Excel and PowerPoint sample files open.", "The approved source register is available."],
+        steps=[
+            ("Open the Prompt Library document and the Prompt Test Log workbook.", ""),
+            ("Run the vague request 'Improve our plan' against the supplied Word brief and record why the result is difficult to verify.", "Improve our plan."),
+            ("Rewrite it with the five-part structure: business outcome, evidence, constraints, output contract and approval gate.", "Using the open FY2027 brief, draft only the Executive summary for the Lumina Living leadership team. Preserve the current heading styles and keep it under 180 words. Use only stated facts, cite the source heading for each material claim and list missing evidence separately. Show proposed text before editing the document."),
+            ("Create an Excel prompt that requires formula-first analysis, cell citations and a review plan before edits.", "Using tblFinance in the open workbook, propose a formula-driven Actual vs Budget analysis for Revenue, Gross Profit, Gross Margin and Operating Contribution. Cite source ranges, keep assumptions on the Assumptions sheet and do not hardcode totals. List the formulas and validation checks before applying changes."),
+            ("Create a PowerPoint prompt that preserves the company template and demands native charts, conclusion-led titles and source notes.", "Using the open company template, approved strategy document and verified Excel summary ranges, propose an eight-slide Executive Committee story. Preserve the slide master, use one conclusion-led message per slide, native editable charts and concise speaker notes. Add a source note to every data slide and flag unreconciled figures before building."),
+            ("Test each prompt once. Log the input sources, output quality, citation accuracy, time to review and corrections required.", ""),
+            ("Add a stop rule to any prompt that encouraged guessing.", "If the approved sources do not contain a required fact, stop that part of the task, name the missing evidence and ask one precise question. Do not invent a value, owner, date or citation."),
+            ("Ask Claude to critique the three prompts against the company standard.", "Audit these Word, Excel and PowerPoint prompts. For each, score outcome clarity, grounding, constraints, output contract, verification and approval from 1 to 5. Cite the exact missing phrase and propose the smallest correction."),
+            ("Save the approved prompts as company templates for Labs 4, 7 and 8.", ""),
+        ],
+        test="The Word, Excel and PowerPoint prompts each name a business result, approved evidence, constraints, output format, verification method, stop rule and human approval gate.",
+        troubleshooting=[
+            ("Claude still guesses", "Add an explicit missing-evidence stop rule and require the source location for every material claim."),
+            ("The prompt is too long", "Separate stable company instructions from the task-specific prompt and remove repeated context."),
+            ("The edit is too broad", "Name the exact selected section, sheet, range, slide or object to change."),
+        ],
+        challenge="Create a prompt rubric that a colleague can use without knowing how the prompt was written.",
+        reflection="Which prompt clause most reduced your review effort, and why?",
+    ),
 ]

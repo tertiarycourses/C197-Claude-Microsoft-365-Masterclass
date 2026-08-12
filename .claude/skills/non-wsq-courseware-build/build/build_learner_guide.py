@@ -12,6 +12,8 @@ import os, sys
 from docx import Document
 from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
 import course_data as C
@@ -21,6 +23,9 @@ def _load_domains():
     acts=[]
     for f in sorted(_g0.glob(os.path.join(HERE,"data_domain[0-9]*.py")),
                     key=lambda q:int("".join(c for c in os.path.basename(q) if c.isdigit()) or 0)):
+        base=os.path.basename(f)
+        if not (base.startswith("data_domain") and base.endswith(".py") and base[11:-3].isdigit()):
+            continue
         n="".join(c for c in os.path.basename(f) if c.isdigit())
         acts+=getattr(importlib.import_module(os.path.basename(f)[:-3]),f"DOMAIN{n}",[])
     return acts
@@ -41,7 +46,9 @@ REPO=_find_repo(HERE); ASSETS=os.path.join(os.path.dirname(HERE),"assets")
 # terse course_data steps if a README is missing/unparseable.
 import glob as _glob, re as _re
 def _readme_steps(num):
-    cands=_glob.glob(os.path.join(REPO,"labs",f"lab{num:02d}-*","README.md"))
+    cands=_glob.glob(os.path.join(REPO,"labs",f"lab-{num:02d}-*.md"))
+    if not cands:
+        cands=_glob.glob(os.path.join(REPO,"labs",f"lab-{num:02d}-*","README.md"))
     if not cands: return None
     txt=open(cands[0],encoding="utf-8").read()
     # Terminate the Steps body only at a 2-hash section heading ("## Verification"),
@@ -50,11 +57,11 @@ def _readme_steps(num):
     if not m: return None
     body=m.group(1).strip()
     # Handle both step formats: "N. **Title.** prose" list items AND "### N. Title" headers.
-    items=_re.split(r'\n(?=(?:#{2,4}\s*)?\d+\.\s)', body)
+    items=_re.split(r'\n(?=(?:#{2,4}\s*)?(?:Step\s+)?\d+(?:\.|\s))', body, flags=_re.I)
     out=[]
     for it in items:
         it=it.strip()
-        if not _re.match(r'(?:#{2,4}\s*)?\d+\.\s', it): continue
+        if not _re.match(r'(?:#{2,4}\s*)?(?:Step\s+)?\d+(?:\.|\s)', it, _re.I): continue
         cm=_re.search(r'```[a-zA-Z0-9]*\n(.*?)```', it, _re.S)
         cmd=cm.group(1).strip() if cm else ""
         # ignore non-command fenced snippets (e.g. ```text chat prompts) — keep only real commands
@@ -63,7 +70,7 @@ def _readme_steps(num):
         text=it[:cm.start()] if cm else it
         # drop markdown table rows (| ... |) — tables don't flatten into prose
         text="\n".join(l for l in text.splitlines() if not l.strip().startswith("|"))
-        text=_re.sub(r'^(?:#{2,4}\s*)?\d+\.\s*','',text)      # drop leading '### N.' / 'N.'
+        text=_re.sub(r'^(?:#{2,4}\s*)?(?:Step\s+)?\d+(?:\.|\s)\s*','',text,flags=_re.I)
         text=_re.sub(r'\*\*(.*?)\*\*', r'\1', text)           # drop bold markers
         text=_re.sub(r'\*(.*?)\*', r'\1', text)               # drop italics
         text=_re.sub(r'`([^`]+)`', r'\1', text)               # drop inline code ticks
@@ -110,6 +117,18 @@ if _SETUP:
         if _SETUP.get("verify_code"): code(_SETUP["verify_code"])
     if _SETUP.get("conventions"):
         h3("Conventions used in every lab"); bullets(_SETUP["conventions"])
+    if getattr(C,"LG_SAMPLE_FILES",None):
+        h3("Supplied sample files"); bullets(C.LG_SAMPLE_FILES)
+
+_PROMPTS=getattr(C,"PROMPT_PLAYBOOK",None)
+if _PROMPTS:
+    h1("Prompt Best Practices for Word, Excel and PowerPoint")
+    p("A professional prompt is a compact work contract. It defines the result, evidence, constraints, output and approval boundary before Claude edits the work product.")
+    h3("Five practices")
+    bullets([f"{title} — {body}" for title,body in _PROMPTS.get("principles",[])])
+    for ex in _PROMPTS.get("examples",[]):
+        h3(f"{ex['app']} example — {ex['title']}")
+        code(ex["prompt"])
 
 # ---------------- per-topic, per-lab ----------------
 TOPICS_BY_NUM={t["num"]:t for t in C.TOPICS}
@@ -122,8 +141,20 @@ for t in C.TOPICS:
         h2(f"Lab {a['num']} — {a['title']}")
         p(f"Learning outcome: {a['objective']}.")
         p(f"Goal: {a['desc']}")
+        h3("Company use case")
+        bullets([
+            f"Department: {a['case']['department']}",
+            f"Sponsor: {a['case']['sponsor']}",
+            f"Decision: {a['case']['decision']}",
+            f"Evidence: {'; '.join(a['case']['sources'])}",
+            f"Controls: {'; '.join(a['case']['controls'])}",
+        ])
         h3("What you'll build")
         p(a["build"]+f"   (Tools: {a['services']}.)")
+        h3("Prerequisites")
+        bullets(a.get("prerequisites",[]))
+        h3("Process map")
+        p(" → ".join(a.get("deck_flow",[])))
         h3("Step-by-step")
         # Prefer the detailed README steps. The LG never shows YouTube reference
         # links — videos live in the labs/ READMEs only.
@@ -132,7 +163,16 @@ for t in C.TOPICS:
         steps(st)
         h3("Test it")
         p(a["test"])
-        note(f"Full commands and screenshots are in labs/lab-{a['num']:02d}-*.md. "
+        if a.get("troubleshooting"):
+            h3("Troubleshooting")
+            bullets([f"{label} — {fix}" for label,fix in a["troubleshooting"]])
+        if a.get("challenge"):
+            h3("Challenge")
+            p(a["challenge"])
+        if a.get("reflection"):
+            h3("Reflection")
+            p(a["reflection"])
+        note(f"The matching detailed lab folder is in labs/lab-{a['num']:02d}-{C.LAB_SLUGS[a['num']]}/. "
              + getattr(C,"LAB_NOTE","Use only accounts and data you are authorised to use."))
         rule()
 
@@ -158,6 +198,11 @@ _GLOSSARY=getattr(C,"LG_GLOSSARY",[])
 if _GLOSSARY:
     h1("Glossary")
     B.append(("dl",_GLOSSARY))
+
+_REFERENCES=getattr(C,"LG_REFERENCES",[])
+if _REFERENCES:
+    h1("References and Further Learning")
+    bullets([f"{name}: {url}" for name,url in _REFERENCES])
 
 # ---------------- render Markdown ----------------
 def _anchor(txt):
@@ -211,7 +256,11 @@ prodoc.add_toc(doc)
 
 def code_para(text):
     for line in text.split("\n"):
-        para=doc.add_paragraph(); prodoc._shade_para(para) if hasattr(prodoc,"_shade_para") else None
+        para=doc.add_paragraph()
+        ppr=para._p.get_or_add_pPr(); shd=OxmlElement("w:shd"); shd.set(qn("w:fill"),"EAF2FF"); ppr.append(shd)
+        para.paragraph_format.keep_together=True
+        para.paragraph_format.left_indent=Pt(10); para.paragraph_format.right_indent=Pt(10)
+        para.paragraph_format.space_before=Pt(4); para.paragraph_format.space_after=Pt(7)
         r=para.add_run(line); r.font.name="Consolas"; r.font.size=Pt(9.5); r.font.color.rgb=INKCODE
 
 for kind,*rest in B:
@@ -219,7 +268,8 @@ for kind,*rest in B:
     elif kind=="h2": doc.add_heading(rest[0],level=2)
     elif kind=="h3":
         para=doc.add_paragraph(); r=para.add_run(rest[0]); r.bold=True; r.font.size=Pt(11); r.font.color.rgb=BRAND
-    elif kind=="p": doc.add_paragraph(rest[0])
+    elif kind=="p":
+        para=doc.add_paragraph(rest[0]); para.paragraph_format.keep_together=True
     elif kind=="bullets":
         for x in rest[0]: doc.add_paragraph(x,style="List Bullet")
     elif kind=="steps":
@@ -229,6 +279,8 @@ for kind,*rest in B:
             para=doc.add_paragraph()
             para.paragraph_format.left_indent=Pt(18)
             para.paragraph_format.space_after=Pt(4)
+            para.paragraph_format.keep_with_next=bool(cmd)
+            para.paragraph_format.keep_together=True
             r=para.add_run(f"{i}.  "); r.bold=True
             para.add_run(instr)
             if cmd: code_para(cmd)

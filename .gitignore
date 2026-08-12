@@ -5,6 +5,13 @@ __pycache__/
 # Distribution archives (rebuildable — never pushed to GitHub)
 *.zip
 
+# Trainer-only credentials and local environment files
+.env
+.env.*
+!.env.example
+courseware/archive/
+.claude/skills/non-wsq-courseware-build/build/data_domain* 2.py
+
 # Playwright
 .playwright-mcp/
 

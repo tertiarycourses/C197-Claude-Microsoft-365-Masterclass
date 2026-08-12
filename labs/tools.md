@@ -1,38 +1,57 @@
 # Tools & Accounts — Claude Microsoft 365 Masterclass (C197)
 
-**Course Code:** C197  |  **Version v1.0 · 27 July 2026**
+**Course Code:** C197  |  **Version 2.0 · 12 August 2026**
 
-Everything in this course runs in the browser or in the apps you already have. You need no special installs beyond a modern browser and Microsoft 365.
+## Required apps and access
 
-## Accounts
+- A current Windows or Mac laptop with Chrome or Edge.
+- Microsoft 365 Word, Excel, PowerPoint and Outlook in a supported desktop or web version.
+- A paid Claude plan with the Claude for Word, Excel, PowerPoint and Outlook surfaces available to the learner or trainer.
+- Claude desktop with Claude Cowork access for Lab 10.
+- Claude Code, Python 3, `openpyxl` and `python-docx` for Lab 11.
+- An organisational Microsoft 365 account in a Microsoft Entra tenant for the Microsoft 365 connector. Tenant administrator consent may be required.
 
-- **Claude account** at [claude.ai](https://claude.ai) (a free account is enough to follow every lab; a paid plan adds Projects and larger file uploads — the trainer confirms what your account has on the day).
-- **Microsoft 365 account** with access to **Word, Excel, PowerPoint and Outlook** (desktop apps, or the web apps at [office.com](https://office.com)) and **Microsoft Teams**.
+## Classroom account hand-off
 
-## Apps used
+The trainer provides the assigned classroom sign-in privately. Learner-facing and published files use placeholders only:
 
-- **Claude** ([claude.ai](https://claude.ai) or the Claude desktop app) — the AI assistant you work with all day: reading, writing, analysing and explaining. Claude is a *separate* assistant — you give it your Office content by uploading a file or pasting text, and paste its checked results back into the Office app.
-- **Microsoft Word** — where you write, restructure and finish the review report.
-- **Microsoft Excel** — where you verify the figures and formulas behind the report.
-- **Microsoft PowerPoint** — where you build the slide deck from Claude's outline (View > Outline).
-- **Microsoft Outlook & Teams** — where you send the covering email and post the announcement.
+```text
+M365_TRAINING_USER=<assigned classroom account>
+M365_TRAINING_PASSWORD=<provided privately by trainer>
+```
 
-## Claude features you will use
+Do not paste a password into Claude, a prompt, a screenshot, a workbook, a script, a repository or a shared lab submission. The supplied Outlook.com classroom accounts can support ordinary Office exercises, but the Microsoft 365 connector requires an organisational Entra account; use the trainer demonstration or the documented upload fallback if the connector is unavailable.
 
-- **New chat** — a single conversation with Claude.
-- **File upload** (the paperclip / drag-and-drop) — attach Word, Excel, PowerPoint, PDF, CSV or image files so Claude can work on their contents.
-- **Projects** (paid plans) — a workspace that keeps your files and custom instructions together, so every chat about the same task starts with the right context.
-- **Connectors** (supported plans) — an optional link that lets Claude read from OneDrive, SharePoint or Google Drive instead of uploading.
+## Claude and Microsoft 365 operating surfaces
 
-## Sample material
+- **Claude for Word** works in the active document to draft and revise content while respecting native styles and tracked human review.
+- **Claude for Excel** analyses workbook structures and formulas, creates formula-driven views and native charts, and helps trace outputs to source cells.
+- **Claude for PowerPoint** builds and edits presentations in the active template with editable objects, native charts and speaker notes.
+- **Claude for Outlook** summarises threads and prepares replies or meeting material; the authorised user reviews the native draft and selects **Send**.
+- **Microsoft 365 connector** retrieves content the signed-in user is permitted to access from SharePoint, OneDrive, Outlook and Teams. Optional write tools require separate approval and consent.
+- **Claude Cowork** coordinates multi-step work across a scoped local folder, Claude Projects, plugins and approved connectors, then returns real files for native Office review.
+- **Claude Code** runs approved local tools and MCP connectors to update workbooks, search permitted Outlook context and assemble a repeatable daily brief.
 
-- **'Lumina Living — Q3 Review'** files — a short Word brief, an Excel sales workbook and a slide starter. The trainer shares a link; make your own copies. Prefer your own non-confidential documents where you can.
+## Self-contained lab folders
 
-## Safe use
+Every `lab-NN-*` folder contains:
 
-- Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the sample material if in doubt.
-- Verify every figure, name, date and claim in Claude's output against a source you can confirm before you rely on it or send it.
+- a realistic Lumina Living company brief (`.docx`);
+- a Claude-generated work sample (`.docx`);
+- a working workbook with management data and controls (`.xlsx`);
+- an editable executive starter deck (`.pptx`);
+- a prompt-and-review template (`.docx`); and
+- a decision-and-approval log (`.xlsx`).
+
+Lab 7 contains the full financial dashboard, Lab 8 contains the richer strategic and marketing presentation, and Lab 11 adds safe local automation scripts, inputs and a daily-brief template.
+
+## Approval and evidence rules
+
+- Use only authorised information; the supplied Lumina Living data is fictional training material.
+- Ask for file, heading, cell, range or message citations and verify them at source.
+- Check formulas, chart scales, document changes, presentation claims, recipients, dates and attachments.
+- Keep consequential save, write, invite and send actions behind the named human approval gate.
 
 ---
 
-*Claude Microsoft 365 Masterclass (C197) · C197 · Version v1.0 · © 2026 Tertiary Infotech Academy Pte Ltd*
+*Claude Microsoft 365 Masterclass (C197) · Version 2.0 · © 2026 Tertiary Infotech Academy Pte Ltd*

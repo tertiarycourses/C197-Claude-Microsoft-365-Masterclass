@@ -2,7 +2,7 @@
 """Generate a NON-WSQ course slide deck (all-white Tertiary house style).
 
 Design helpers match the Tertiary house system (cover, section, content,
-two_col, cards3, big_statement, step_slide, test_slide, brk). Content is driven
+two_col, cards3, big_statement, process maps, test_slide, brk). Content is driven
 entirely by course_data.py + data_domainN.py so the deck stays 100% aligned with
 the LP, LG and labs.
 
@@ -11,6 +11,7 @@ attendance content. The assessment block a WSQ deck would carry is replaced by a
 "How You'll Learn" flow, and the deck closes on the wrap-up + Thank You.
 """
 import os, sys, re
+from PIL import Image
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -29,6 +30,8 @@ def _load_domains():
     files=sorted(_glob.glob(os.path.join(HERE,"data_domain[0-9]*.py")),
                  key=lambda p:int("".join(ch for ch in os.path.basename(p) if ch.isdigit()) or 0))
     for f in files:
+        if not re.fullmatch(r"data_domain\d+\.py",os.path.basename(f)):
+            continue
         mod=importlib.import_module(os.path.basename(f)[:-3])
         n="".join(ch for ch in os.path.basename(f) if ch.isdigit())
         acts+=getattr(mod,f"DOMAIN{n}",[])
@@ -49,6 +52,7 @@ def _find_repo(start):
     return os.path.dirname(os.path.dirname(HERE))
 REPO = _find_repo(HERE)
 ASSETS = os.path.join(os.path.dirname(HERE), "assets")   # co-located with the skill
+_SHOTDIR=os.path.join(REPO,"courseware","assets","screenshots")
 
 # ---------------- palette (matches reference) ----------------
 BLUE=RGBColor(0x1F,0x6F,0xEB); TEAL=RGBColor(0x10,0xB9,0x81); AMBER=RGBColor(0xF5,0x9E,0x0B)
@@ -132,8 +136,9 @@ def head(s,title,kicker=None,kcolor=BLUE):
     rect(s,0,0,SW,SH,_bg()); rect(s,0,0,Inches(0.28),Inches(1.55),_acc(kcolor))
     if kicker: txt(s,Inches(0.85),Inches(0.48),Inches(11.9),Inches(0.4),[[(kicker,14,_acc(kcolor),True)]])
     # Auto-fit the title so long lab titles never wrap into the divider rule below.
-    L=len(str(title)); tsize = 29 if L<=42 else (25 if L<=56 else 21)
-    txt(s,Inches(0.85),Inches(0.9),Inches(11.95),Inches(0.82),[[(title,tsize,_ink(),True)]],anchor=MSO_ANCHOR.MIDDLE)
+    L=len(str(title)); tsize = 29 if L<=40 else (21 if L<=52 else 17)
+    title_box=txt(s,Inches(0.85),Inches(0.9),Inches(11.95),Inches(0.82),[[(title,tsize,_ink(),True)]],anchor=MSO_ANCHOR.MIDDLE)
+    title_box.text_frame.word_wrap=False
     rect(s,Inches(0.85),Inches(1.8),Inches(11.63),Inches(0.02),_line())
     return s
 def _logo(name):
@@ -196,12 +201,16 @@ def two_col(title,left,right,kicker=None,lhead="",rhead=""):
     bullets(s,Inches(1.1),Inches(2.7),Inches(5.2),Inches(3.8),left,size=16,color=_ink())
     bullets(s,Inches(7.2),Inches(2.7),Inches(5.05),Inches(3.8),right,size=16,color=_ink(),mcolor=TEAL); footer(s); return s
 def cards3(title,cards,kicker):
-    s=head(slide(),title,kicker); xs=[Inches(0.85),Inches(5.0),Inches(9.15)]
+    s=head(slide(),title,kicker)
+    n=max(1,min(3,len(cards)))
+    if n==1: xs=[Inches(0.85)]; widths=[Inches(11.65)]
+    elif n==2: xs=[Inches(0.85),Inches(6.95)]; widths=[Inches(5.7),Inches(5.55)]
+    else: xs=[Inches(0.85),Inches(5.0),Inches(9.15)]; widths=[Inches(3.65)]*3
     for i,c in enumerate(cards[:3]):
-        x=xs[i]; col=c[0]
-        rect(s,x,Inches(1.95),Inches(3.65),Inches(4.7),_panel()); rect(s,x,Inches(1.95),Inches(3.65),Inches(0.12),col)
-        txt(s,x+Inches(0.25),Inches(2.2),Inches(3.2),Inches(0.6),[[(c[1],19,col,True)]])
-        bullets(s,x+Inches(0.25),Inches(2.95),Inches(3.2),Inches(3.4),c[2],size=14,color=_ink(),mcolor=col,gap=9)
+        x=xs[i]; w=widths[i]; col=c[0]
+        rect(s,x,Inches(1.95),w,Inches(4.7),_panel()); rect(s,x,Inches(1.95),w,Inches(0.12),col)
+        txt(s,x+Inches(0.25),Inches(2.2),w-Inches(0.5),Inches(0.6),[[(c[1],19,col,True)]])
+        bullets(s,x+Inches(0.25),Inches(2.95),w-Inches(0.5),Inches(3.4),c[2],size=14,color=_ink(),mcolor=col,gap=9)
     footer(s); return s
 def big_statement(line1,line2,kicker,color=BLUE):
     s=slide(); rect(s,0,0,SW,SH,_bg()); rect(s,0,0,Inches(0.28),SH,color)
@@ -216,18 +225,22 @@ so past this the cards shrink below their own text and collide. Beyond it,
 tile_grid paginates onto continuation slides instead of shrinking."""
 TILE_MAX=6
 
-def tile_grid(title,items,kicker=None,cols=2,size=15,icons=None,accent=BLUE,_start=0):
+def tile_grid(title,items,kicker=None,cols=2,size=15,icons=None,accent=BLUE,_start=0,_fixed_rows=None):
     """Grid of light panels, each with a coloured icon/number badge + text.
     items: list of strings (or (title,caption) tuples). Much richer than a bullet list.
     More than TILE_MAX items paginate onto '(cont.)' slides; returns the last slide.
     _start offsets the badge numbers so continuation slides keep counting up."""
     if len(items)>TILE_MAX:
         last=None
-        for i in range(0,len(items),TILE_MAX):
-            part=items[i:i+TILE_MAX]
-            ic=icons[i:i+TILE_MAX] if icons else None
+        pages=math.ceil(len(items)/TILE_MAX)
+        chunk=math.ceil(len(items)/pages)
+        fixed_rows=math.ceil(chunk/cols)
+        for i in range(0,len(items),chunk):
+            part=items[i:i+chunk]
+            ic=icons[i:i+chunk] if icons else None
             last=tile_grid(title if i==0 else f"{title} (cont.)",part,
-                           kicker=kicker,cols=cols,size=size,icons=ic,accent=accent,_start=i)
+                           kicker=kicker,cols=cols,size=size,icons=ic,accent=accent,
+                           _start=i,_fixed_rows=fixed_rows)
         return last
     s=head(slide(),title,kicker,kcolor=accent)
     n=len(items); rows=math.ceil(n/cols)
@@ -237,13 +250,16 @@ def tile_grid(title,items,kicker=None,cols=2,size=15,icons=None,accent=BLUE,_sta
     # Card height comes from a FULL page's row count, so a short continuation page
     # keeps the same card size as the page before it instead of stretching each
     # card over the whole area. Capped so a short standalone grid still fills.
-    _rows_h=math.ceil(TILE_MAX/cols) if _start else rows
+    _rows_h=_fixed_rows or rows
     ch=int((AREAH-gy*(_rows_h-1))/_rows_h)
     bd=Inches(0.6)
     for i,it in enumerate(items):
         g=_start+i          # global index across continuation slides
         r=i//cols; c=i%cols
-        x=int(X0+(cw+gx)*c); y=int(Y0+(ch+gy)*r); col=PALETTE[g%len(PALETTE)]
+        x=int(X0+(cw+gx)*c)
+        if r==rows-1 and n%cols and i==n-1:
+            x=int(X0+(TOTW-cw)/2)
+        y=int(Y0+(ch+gy)*r); col=PALETTE[g%len(PALETTE)]
         rect(s,x,y,cw,ch,_panel()); rect(s,x,y,Inches(0.1),ch,col)
         oval(s,x+Inches(0.28),int(y+ch/2-bd/2),bd,bd,col)
         ic=icons[i] if icons else str(g+1)
@@ -561,20 +577,162 @@ def dark_pairs(tag,title_lines,sub,pairs):
         txt(s,x+Inches(2.6),yv,cw-Inches(2.8),Inches(rh),[[(desc,12.5,IVORY,False)]],anchor=MSO_ANCHOR.MIDDLE)
     footer(s); return s
 def shot(title,img,kicker=None,caption=""):
-    """Screenshot slide — a framed, real UI capture with a caption (16:10 source)."""
+    """Screenshot slide — a framed, undistorted artifact capture with caption."""
     s=head(slide(),title,kicker,TEAL)
-    H=Inches(4.5); W=int(H*1440/900)          # native 1440x900 aspect
-    x=int((SW-W)/2); y=Inches(2.02)
-    rect(s,x-Inches(0.06),y-Inches(0.06),W+Inches(0.12),H+Inches(0.12),_line())
-    s.shapes.add_picture(img,x,y,height=H)
+    with Image.open(img) as im:
+        iw,ih=im.size
+    maxw,maxh=Inches(10.9),Inches(4.48)
+    if iw/ih < 1.30:
+        # Portrait Word/Outlook work samples need contextual callouts; otherwise
+        # a readable page preview leaves most of a widescreen slide empty.
+        boxw,boxh=Inches(3.72),maxh
+        scale=min(boxw/iw,boxh/ih); W=int(iw*scale); H=int(ih*scale)
+        x=int(Inches(0.96)+(boxw-W)/2); y=int(Inches(2.02)+(boxh-H)/2)
+        rect(s,x-Inches(0.05),y-Inches(0.05),W+Inches(0.1),H+Inches(0.1),WHITE,line=_line())
+        s.shapes.add_picture(img,x,y,width=W,height=H)
+        px=Inches(5.18); pw=Inches(7.12)
+        txt(s,px,Inches(2.08),pw,Inches(0.38),[[('WHAT TO NOTICE',12,_acc(TEAL),True)]])
+        cues=[
+            ('Business outcome','The opening section states the management decision and intended use.'),
+            ('Evidence structure','Headings, tables and source notes make claims reviewable in native Word.'),
+            ('Approval boundary','The status and named reviewer remain visible before release or send.'),
+        ]
+        cy=Inches(2.62)
+        for i,(label,body) in enumerate(cues):
+            col=PALETTE[i%3]
+            rect(s,px,cy,pw,Inches(1.02),_panel(),line=_line()); rect(s,px,cy,Inches(0.08),Inches(1.02),col)
+            oval(s,px+Inches(0.2),cy+Inches(0.25),Inches(0.5),Inches(0.5),col)
+            txt(s,px+Inches(0.2),cy+Inches(0.25),Inches(0.5),Inches(0.5),[[(str(i+1),14,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+            txt(s,px+Inches(0.88),cy+Inches(0.13),pw-Inches(1.1),Inches(0.74),
+                [[(label,13,col,True)],[(body,11,_ink(),False)]],anchor=MSO_ANCHOR.MIDDLE,space=2)
+            cy+=Inches(1.2)
+    else:
+        scale=min(maxw/iw,maxh/ih); W=int(iw*scale); H=int(ih*scale)
+        x=int((SW-W)/2); y=int(Inches(2.02)+(maxh-H)/2)
+        rect(s,x-Inches(0.06),y-Inches(0.06),W+Inches(0.12),H+Inches(0.12),_line())
+        s.shapes.add_picture(img,x,y,width=W,height=H)
     if caption:
         txt(s,Inches(0.85),Inches(6.68),Inches(11.6),Inches(0.35),[[(caption,12,_grey(),False)]],align=PP_ALIGN.CENTER)
     footer(s); return s
+
+def trust_standard(st):
+    """Replace a sparse statement slide with a substantive evidence standard."""
+    s=head(slide(),"From Polished Output to Trusted Work",st.get("kicker","PROFESSIONAL STANDARD"),BLUE)
+    txt(s,Inches(0.88),Inches(2.02),Inches(11.55),Inches(0.78),
+        [[(st.get("headline",""),24,_ink(),True)]],anchor=MSO_ANCHOR.MIDDLE)
+    items=[
+        ("EVIDENCE","Claims trace to a file, heading, cell, range or approved message."),
+        ("LOGIC","Formulas, assumptions and recommendations remain visible and challengeable."),
+        ("OWNERSHIP","A named reviewer accepts the business decision and unresolved risk."),
+        ("HAND-OFF",st.get("body","The guide and lab folders retain the operational detail.")),
+    ]
+    x0=Inches(0.88); y=Inches(3.05); gap=Inches(0.22); cw=int((Inches(11.55)-gap*3)/4)
+    for i,(label,body) in enumerate(items):
+        x=int(x0+i*(cw+gap)); col=PALETTE[i%4]
+        rect(s,x,y,cw,Inches(2.72),_panel()); rect(s,x,y,cw,Inches(0.1),col)
+        oval(s,int(x+cw/2-Inches(0.34)),y+Inches(0.34),Inches(0.68),Inches(0.68),col)
+        txt(s,int(x+cw/2-Inches(0.34)),y+Inches(0.34),Inches(0.68),Inches(0.68),
+            [[(str(i+1),20,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+        txt(s,x+Inches(0.18),y+Inches(1.2),cw-Inches(0.36),Inches(0.36),
+            [[(label,13,col,True)]],align=PP_ALIGN.CENTER)
+        txt(s,x+Inches(0.18),y+Inches(1.62),cw-Inches(0.36),Inches(0.92),
+            [[(body,11.5,_ink(),False)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+    footer(s); return s
+
+def prompt_example(app,title,prompt,principles):
+    """Annotated prompt exhibit: five readable contract rows, not a text wall."""
+    s=head(slide(),f"{app} Prompt — {title}","GOOD PROMPT EXAMPLE",VIOLET)
+    sentences=[x.strip() for x in re.split(r'(?<=[.!?])\s+',prompt.strip()) if x.strip()]
+    while len(sentences)<5:
+        sentences.append("Return the proposed change for human verification before editing, saving or releasing the file.")
+    labels=[p[0] for p in principles[:5]]
+    y=Inches(2.02); rh=Inches(0.84); gap=Inches(0.1)
+    for i,(label,sentence) in enumerate(zip(labels,sentences[:5])):
+        col=PALETTE[i%4]; yy=int(y+i*(rh+gap))
+        rect(s,Inches(0.85),yy,Inches(11.65),rh,_panel(),line=_line())
+        rect(s,Inches(0.85),yy,Inches(0.09),rh,col)
+        oval(s,Inches(1.1),yy+Inches(0.19),Inches(0.46),Inches(0.46),col)
+        txt(s,Inches(1.1),yy+Inches(0.19),Inches(0.46),Inches(0.46),[[(str(i+1),12,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+        txt(s,Inches(1.75),yy+Inches(0.1),Inches(2.3),Inches(0.64),[[(label,12,col,True)]],anchor=MSO_ANCHOR.MIDDLE)
+        txt(s,Inches(4.0),yy+Inches(0.08),Inches(8.15),Inches(0.68),[[(sentence,12.5,_ink(),False)]],anchor=MSO_ANCHOR.MIDDLE)
+    txt(s,Inches(0.85),Inches(6.72),Inches(11.65),Inches(0.26),
+        [[(f"Copy the complete {app} prompt from the Learner Guide or matching lab folder; verify every source and proposed edit.",10,_grey(),False)]],align=PP_ALIGN.CENTER)
+    footer(s); return s
+
+def artifact_gallery(title,kicker,items):
+    """Three large, realistic Office artifact previews on one visual exhibit."""
+    s=head(slide(),title,kicker,TEAL)
+    x0=Inches(0.72); y=Inches(2.02); gap=Inches(0.22); cw=int((Inches(11.88)-gap*2)/3); ch=Inches(4.62)
+    for i,(lab,label) in enumerate(items[:3]):
+        x=int(x0+i*(cw+gap)); col=PALETTE[i%4]
+        rect(s,x,y,cw,ch,_panel(),line=_line()); rect(s,x,y,cw,Inches(0.09),col)
+        p=os.path.join(_SHOTDIR,f"lab-{lab:02d}-artifact.png")
+        if os.path.exists(p):
+            with Image.open(p) as im:
+                iw,ih=im.size
+            boxw,boxh=cw-Inches(0.28),Inches(3.28)
+            scale=min(boxw/iw,boxh/ih); pw=int(iw*scale); ph=int(ih*scale)
+            px=int(x+(cw-pw)/2); py=int(y+Inches(0.22)+(boxh-ph)/2)
+            rect(s,px-Inches(0.03),py-Inches(0.03),pw+Inches(0.06),ph+Inches(0.06),WHITE,line=_line())
+            s.shapes.add_picture(p,px,py,width=pw,height=ph)
+        txt(s,x+Inches(0.18),y+Inches(3.63),cw-Inches(0.36),Inches(0.34),
+            [[(f"LAB {lab:02d}",10,col,True)]],align=PP_ALIGN.CENTER)
+        txt(s,x+Inches(0.18),y+Inches(3.98),cw-Inches(0.36),Inches(0.52),
+            [[(label,13,_ink(),True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+    footer(s); return s
+
+def dashboard_exhibit(spec):
+    """Readable Excel KPI strip plus two chart zooms from the generated workbook."""
+    s=head(slide(),spec["title"],spec.get("kicker","EXCEL DASHBOARD"),BLUE)
+    kpi=os.path.join(_SHOTDIR,spec["kpis"])
+    rect(s,Inches(0.85),Inches(2.0),Inches(11.65),Inches(1.35),WHITE,line=_line())
+    s.shapes.add_picture(kpi,Inches(1.0),Inches(2.12),width=Inches(11.35),height=Inches(1.08))
+    x0=Inches(0.85); y=Inches(3.58); gap=Inches(0.28); cw=int((Inches(11.65)-gap)/2)
+    for i,(fn,label,caption) in enumerate(spec["charts"]):
+        x=int(x0+i*(cw+gap)); col=PALETTE[i]
+        rect(s,x,y,cw,Inches(2.82),_panel(),line=_line()); rect(s,x,y,cw,Inches(0.08),col)
+        p=os.path.join(_SHOTDIR,fn)
+        s.shapes.add_picture(p,x+Inches(0.16),y+Inches(0.18),width=cw-Inches(0.32),height=Inches(1.82))
+        txt(s,x+Inches(0.2),y+Inches(2.08),cw-Inches(0.4),Inches(0.28),[[(label,12,col,True)]],align=PP_ALIGN.CENTER)
+        txt(s,x+Inches(0.2),y+Inches(2.38),cw-Inches(0.4),Inches(0.3),[[(caption,10.5,_grey(),False)]],align=PP_ALIGN.CENTER)
+    footer(s); return s
 def test_slide(act_title,text,kicker):
     s=head(slide(),act_title,kicker,TEAL)
-    rect(s,Inches(0.85),Inches(2.3),Inches(11.7),Inches(2.6),DK_PANEL if THEME["dark"] else RGBColor(0xE8,0xF7,0xEE))
-    txt(s,Inches(1.2),Inches(2.6),Inches(11),Inches(0.5),[[("✅  Test it",20,DK_GREEN if THEME["dark"] else RGBColor(0x12,0x7A,0x3E),True)]])
-    txt(s,Inches(1.2),Inches(3.3),Inches(11),Inches(1.4),[[(text,18,_ink(),False)]]); footer(s); return s
+    green=DK_GREEN if THEME["dark"] else RGBColor(0x12,0x7A,0x3E)
+    rect(s,Inches(0.85),Inches(2.05),Inches(11.7),Inches(2.1),DK_PANEL if THEME["dark"] else RGBColor(0xE8,0xF7,0xEE))
+    txt(s,Inches(1.15),Inches(2.28),Inches(10.95),Inches(0.42),[[("✅  ACCEPTANCE CHECK",15,green,True)]])
+    txt(s,Inches(1.15),Inches(2.86),Inches(10.95),Inches(1.02),[[(text,16,_ink(),False)]],anchor=MSO_ANCHOR.MIDDLE)
+    cards=[
+        ("INSPECT","Open the native artifact and challenge its sources, formulas, structure and versions."),
+        ("RECONCILE","Confirm every material figure or claim against the approved evidence location."),
+        ("ENDORSE","Record the named reviewer before accepting, saving, releasing or sending the work."),
+    ]
+    x0=Inches(0.85); y=Inches(4.42); gap=Inches(0.22); cw=int((Inches(11.7)-gap*2)/3)
+    for i,(label,body) in enumerate(cards):
+        x=int(x0+i*(cw+gap)); col=PALETTE[i%3]
+        rect(s,x,y,cw,Inches(1.88),_panel(),line=_line()); rect(s,x,y,cw,Inches(0.09),col)
+        txt(s,x+Inches(0.2),y+Inches(0.25),cw-Inches(0.4),Inches(0.34),[[(label,12,col,True)]],align=PP_ALIGN.CENTER)
+        txt(s,x+Inches(0.22),y+Inches(0.72),cw-Inches(0.44),Inches(0.88),[[(body,11.5,_ink(),False)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+    footer(s); return s
+
+def closing_thanks():
+    s=head(slide(),"Thank You — Keep the Workflow Governed","COURSE CLOSE",TEAL)
+    txt(s,Inches(0.88),Inches(2.05),Inches(11.55),Inches(0.65),
+        [[("Carry one connected evidence chain from source to decision.",24,_ink(),True)]],align=PP_ALIGN.CENTER)
+    cards=[
+        ("BUILD","Create useful native Word, Excel and PowerPoint work products."),
+        ("VERIFY","Trace claims, formulas, charts, recipients and assumptions to evidence."),
+        ("APPROVE","Keep final save, release and send decisions with the authorised human."),
+    ]
+    x0=Inches(0.9); y=Inches(3.15); gap=Inches(0.3); cw=int((Inches(11.5)-gap*2)/3)
+    for i,(label,body) in enumerate(cards):
+        x=int(x0+i*(cw+gap)); col=PALETTE[i%3]
+        rect(s,x,y,cw,Inches(2.55),_panel(),line=_line()); rect(s,x,y,cw,Inches(0.1),col)
+        oval(s,int(x+cw/2-Inches(0.36)),y+Inches(0.35),Inches(0.72),Inches(0.72),col)
+        txt(s,int(x+cw/2-Inches(0.36)),y+Inches(0.35),Inches(0.72),Inches(0.72),[[(str(i+1),21,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+        txt(s,x+Inches(0.2),y+Inches(1.28),cw-Inches(0.4),Inches(0.35),[[(label,13,col,True)]],align=PP_ALIGN.CENTER)
+        txt(s,x+Inches(0.25),y+Inches(1.7),cw-Inches(0.5),Inches(0.65),[[(body,12,_ink(),False)]],align=PP_ALIGN.CENTER)
+    footer(s); return s
 def brk(kind,dur,color=AMBER):
     s=slide(); rect(s,0,0,SW,SH,_bg())
     rect(s,0,0,SW,Inches(0.22),color); rect(s,0,Inches(7.28),SW,Inches(0.22),color)
@@ -587,16 +745,12 @@ cover()
 
 # ---------------- ADMIN ----------------
 section("COURSE ADMINISTRATION","Welcome & Housekeeping","")
-trainer_slide("YOUR TRAINER · GENERAL","Your Trainer","General Trainer template —\nto be completed by the trainer",
- [("Name",""),("Title / Designation",""),("Qualifications",""),
-  ("Areas of expertise",""),("Training & industry experience",""),("Contact","")],
- initials="?",accent=GREY)
 trainer_slide("YOUR TRAINER",C.TRAINER,"Principal Trainer\nTertiary Infotech Academy Pte. Ltd.",
  [("Role","Principal Trainer, Tertiary Infotech Academy Pte. Ltd."),
   ("Certification",getattr(C,"TRAINER_CERT","Industry certified in the subject area of this course.")),
   ("Delivers",getattr(C,"TRAINER_DELIVERS","Professional short courses for Tertiary Infotech Academy.")),
   ("Founder","Founder and lead instructor at Tertiary Infotech / Tertiary Courses.")],
- initials="AA",accent=BLUE)
+ initials="JL",accent=BLUE)
 content("Let's Know Each Other",getattr(C,"ICE_BREAKER",[
  "Your name and organisation / role.",
  "Your experience with this subject (if any).",
@@ -606,13 +760,12 @@ tile_grid("Ground Rules",[
  "Mutual respect: agree to disagree.","One conversation at a time.",
  "Be punctual; return from breaks on time.","Learn by doing — try every hands-on lab."],
  kicker="HOUSEKEEPING",cols=2,size=15)
-_dl=flow_h("Download Course Material",[
- "Sign in at the LMS-TMS portal",
- "Open this course from your dashboard",
- "Go to the Courseware tab",
- "Download the Slides (PPT/PDF), Learner Guide and Lesson Plan",
- "Keep them open alongside the labs as you work"],kicker="COURSE PORTAL")
-# Full portal URL as a wide caption (kept out of the narrow chips so it never wraps mid-token)
+_dl=tile_grid("Your Connected Course Workspace",[
+ ("Visual course deck","Concepts, process maps, prompt anatomy and realistic Office exhibits."),
+ ("Detailed Learner Guide","Click-level procedures, full prompts, commands, checks and troubleshooting."),
+ ("Eleven lab folders","A connected Lumina Living workflow with a README in every activity folder."),
+ ("Native Office artifacts","Editable Word, Excel and PowerPoint samples plus reusable review templates.")],
+ kicker="COURSE RESOURCES",cols=2,size=14,accent=BLUE)
 txt(_dl,Inches(0.85),Inches(6.5),Inches(11.6),Inches(0.4),
     [[("Portal:  https://lms-tms.tertiaryinfotech.com",16,_acc(BLUE),True)]],align=PP_ALIGN.CENTER)
 # Lesson plan overview — derived entirely from course_data (day themes + the
@@ -667,12 +820,21 @@ def _topics_by_day():
 
 _BY_DAY=_topics_by_day()
 _TB={t["num"]:t for t in C.TOPICS}
-_d2=min(2,C.DAYS)
-_left=[(f"Day 1 — {C.DAY_THEMES[1]}",0)]+[_topic_line(_TB[n]) for n in _BY_DAY.get(1,[]) if n in _TB]
-_right=[(f"Day {_d2} — {C.DAY_THEMES[_d2]}",0)]+[_topic_line(_TB[n]) for n in _BY_DAY.get(_d2,[]) if n in _TB]+[
- ("Daily timing",0),("9:30am–6:30pm · 1-hour lunch · tea breaks within training time",1)]
-two_col(f"Lesson Plan — {C.DAYS} Day{'s' if C.DAYS>1 else ''}, 8 hours/day",_left,_right,
- kicker="SCHEDULE",lhead="Day 1",rhead=f"Day {min(2,C.DAYS)}")
+if C.DAYS == 1:
+    _ordered=[t["num"] for t in C.TOPICS]
+    _split=max(1,len(_ordered)//2)
+    _left=[("Morning · 9:30am–1:10pm",0)]+[_topic_line(_TB[n]) for n in _ordered[:_split] if n in _TB]
+    _right=[("Afternoon · 2:10pm–6:30pm",0)]+[_topic_line(_TB[n]) for n in _ordered[_split:] if n in _TB]+[
+     ("Daily timing",0),("8 scheduled hours excluding lunch · 7.5 instructional hours · two tea breaks",1)]
+    two_col("Lesson Plan — One Connected Company Day",_left,_right,
+            kicker="SCHEDULE",lhead="Morning",rhead="Afternoon")
+else:
+    _d2=min(2,C.DAYS)
+    _left=[(f"Day 1 — {C.DAY_THEMES[1]}",0)]+[_topic_line(_TB[n]) for n in _BY_DAY.get(1,[]) if n in _TB]
+    _right=[(f"Day {_d2} — {C.DAY_THEMES[_d2]}",0)]+[_topic_line(_TB[n]) for n in _BY_DAY.get(_d2,[]) if n in _TB]+[
+     ("Daily timing",0),("9:30am–6:30pm · 1-hour lunch · tea breaks within training time",1)]
+    two_col(f"Lesson Plan — {C.DAYS} Days, 8 hours/day",_left,_right,
+            kicker="SCHEDULE",lhead="Day 1",rhead=f"Day {_d2}")
 # Learning-outcome tiles built straight from course_data. Optional per-course
 # short titles via course_data.LO_TITLES; otherwise fall back to "LO1", "LO2", …
 _LO_TITLES=getattr(C,"LO_TITLES",[])
@@ -703,8 +865,7 @@ if _OVERVIEW:
         tile_grid(_OVERVIEW.get("framework_title","The Framework"),_OVERVIEW["framework"],
                   kicker="THE BUILDING BLOCKS",cols=2,size=14)
     if _OVERVIEW.get("statement"):
-        st=_OVERVIEW["statement"]
-        big_statement(st.get("headline",""),st.get("body",""),st.get("kicker",""),color=BLUE)
+        trust_standard(_OVERVIEW["statement"])
     if _OVERVIEW.get("pillars"):
         cards3(_OVERVIEW.get("pillars_title","What You'll Build"),
                [(CARD_COLORS[i%3],t,b) for i,(t,b) in enumerate(_OVERVIEW["pillars"])],
@@ -712,6 +873,23 @@ if _OVERVIEW:
     if _OVERVIEW.get("arc"):
         content(_OVERVIEW.get("arc_title","How Every Lab Progresses"),_OVERVIEW["arc"],
                 kicker="THE LEARNING ARC")
+
+# Prompt examples are teaching exhibits, not procedures: they show the anatomy
+# of a strong request while the exact variants and review sequence remain in LG/labs.
+_PLAYBOOK=getattr(C,"PROMPT_PLAYBOOK",None)
+if _PLAYBOOK:
+    section("PROMPTING FOR OFFICE WORK","Prompts That Produce Reviewable Work","",sub="Word · Excel · PowerPoint · evidence · constraints · approval",accent=VIOLET)
+    tile_grid("The Five-Part Prompt Contract",_PLAYBOOK.get("principles",[]),
+              kicker="BUSINESS RESULT TO APPROVAL GATE",cols=2,size=14,accent=VIOLET)
+    for _ex in _PLAYBOOK.get("examples",[]):
+        prompt_example(_ex["app"],_ex["title"],_ex["prompt"],_PLAYBOOK.get("principles",[]))
+
+# Show the actual generated Office artifacts as large previews before teaching
+# the activities. This gives learners a concrete quality bar for their outputs.
+for _gallery in getattr(C,"SAMPLE_GALLERIES",[]):
+    artifact_gallery(_gallery["title"],_gallery.get("kicker","CLAUDE-GENERATED SAMPLES"),_gallery["items"])
+if getattr(C,"DASHBOARD_EXHIBIT",None):
+    dashboard_exhibit(C.DASHBOARD_EXHIBIT)
 
 # ---------------- TOPICS + ACTIVITIES ----------------
 # Optional per-lab screenshot slides. A course drops images into
@@ -744,23 +922,29 @@ for t in C.TOPICS:
     # cards rather than padding the row with empty "—" placeholders.
     third=max(1,(len(acts)+2)//3)
     groups=[g for g in (acts[i:i+third] for i in range(0,len(acts),third)) if g][:3]
-    cards=[(CARD_COLORS[gi], _lab_range(g).strip(" ()"), [a["title"] for a in g])
+    cards=[(CARD_COLORS[gi], _lab_range(g).strip(" ()"),
+            [f"{a['title']} — {a['build']}" for a in g])
            for gi,g in enumerate(groups)]
     cards3(f"Hands-On Labs — {t['title']}", cards, kicker="WHAT YOU'LL DO")
     # per activity
     for a in acts:
         activity_overview(f"LAB {a['num']}", a["title"], a["desc"], a["build"], a["services"], kicker=f"TOPIC {t['code']} · HANDS-ON")
         _lab_extras(a["num"])
-        # The deck never shows YouTube reference links — videos live in the labs/ READMEs only.
-        steps=[(si,sc) for (si,sc) in a["steps"] if "youtube" not in sc.lower() and "youtube" not in si.lower()]
-        total=len(steps)
-        for i,(instr,cmd) in enumerate(steps,1):
-            step_slide(f"LAB {a['num']}", a["title"], i, total, instr, cmd)
+        # COURSE-DECK CONTRACT: the presentation explains concepts, decisions and
+        # process architecture. Detailed clicks, prompts and operational steps live
+        # only in the Learner Guide and lab files.
+        if a.get("deck_flow"):
+            flow_h(f"Lab {a['num']} — Process Map", a["deck_flow"],
+                   kicker="CONCEPT-TO-OUTCOME", color=accent)
+        if a.get("deck_cards"):
+            tile_grid(f"Lab {a['num']} — Professional Practice", a["deck_cards"],
+                      kicker="KEY DECISIONS & CONTROLS", cols=2, size=14, accent=accent)
         test_slide(a["title"], a["test"], kicker=f"LAB {a['num']} · VERIFY")
     # topic recap
-    content(f"Recap — {t['title']}",
-            ["You can now: "+a["objective"] for a in {x["objective"]:x for x in acts}.values()][:6],
-            kicker="TOPIC RECAP", size=17)
+    _recap=[]
+    for a in acts:
+        _recap.extend(["Capability — "+a["objective"],"Evidence retained — "+a["build"]])
+    content(f"Recap — {t['title']}",_recap[:6],kicker="TOPIC RECAP", size=17)
 
 # ---------------- CLOSE ----------------
 section("WRAP-UP","Course Summary & Next Steps","")
@@ -778,10 +962,12 @@ content("Keep Practising After the Course",[
  "Apply the techniques to a real process or project in your own organisation.",
  "Your course material stays available at https://lms-tms.tertiaryinfotech.com/.",
  "Explore the follow-on courses at www.tertiarycourses.com.sg."],kicker="WRAP-UP")
-_ty=getattr(C,"THANK_YOU",{})
-big_statement("Thank You!",
-              _ty.get("body","You now have the practical skills from every lab in this course — keep applying them to your own work."),
-              _ty.get("kicker","THANK YOU FOR ATTENDING"),color=TEAL)
+_refs=getattr(C,"LG_REFERENCES",[])
+if _refs:
+    tile_grid("Selected References & Further Learning",
+              [(name, url.replace("https://","").split("/")[0]) for name,url in _refs[:6]],
+              kicker="CURRENT PRODUCT GUIDANCE",cols=2,size=13,accent=VIOLET)
+closing_thanks()
 
 # Fade slide transition on every slide — matches the source masterclass deck's
 # fade aesthetic. python-pptx has no transition API, so inject the XML directly.

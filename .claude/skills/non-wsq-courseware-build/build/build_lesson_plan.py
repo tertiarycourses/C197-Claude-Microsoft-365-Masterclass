@@ -21,6 +21,9 @@ def _load_domains():
     acts=[]
     for f in sorted(_glob.glob(os.path.join(HERE,"data_domain[0-9]*.py")),
                     key=lambda q:int("".join(c for c in os.path.basename(q) if c.isdigit()) or 0)):
+        base=os.path.basename(f)
+        if not (base.startswith("data_domain") and base.endswith(".py") and base[11:-3].isdigit()):
+            continue
         n="".join(c for c in os.path.basename(f) if c.isdigit())
         acts+=getattr(importlib.import_module(os.path.basename(f)[:-3]),f"DOMAIN{n}",[])
     return acts

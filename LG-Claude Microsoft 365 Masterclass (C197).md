@@ -1,521 +1,1226 @@
-# Claude Microsoft 365 Masterclass (C197) — Learner Guide
+# Claude Microsoft 365 Masterclass (C197) â€” Learner Guide
 
-**Course Code:** C197  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v1.0 · 27 July 2026**
+**Course Code:** C197  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v2.0 Â· 12 August 2026**
 
 ## Contents
 
 - [Introduction](#introduction)
 - [Course Learning Outcomes](#course-learning-outcomes)
-- [Before You Start — Preparation](#before-you-start--preparation)
-- [Topic 01 — Getting Started with Claude for Microsoft 365  (50%)](#topic-01--getting-started-with-claude-for-microsoft-365--50)
-  - [Lab 1 — Get Started with Claude for Microsoft 365](#lab-1--get-started-with-claude-for-microsoft-365)
-  - [Lab 2 — Connect Claude to Your Microsoft 365 Files and Apps](#lab-2--connect-claude-to-your-microsoft-365-files-and-apps)
-  - [Lab 3 — Write Effective Prompts for Everyday Work Tasks](#lab-3--write-effective-prompts-for-everyday-work-tasks)
-  - [Lab 4 — Use AI Responsibly, Securely and Privately at Work](#lab-4--use-ai-responsibly-securely-and-privately-at-work)
-- [Topic 02 — Boosting Productivity Across Microsoft 365 with Claude  (50%)](#topic-02--boosting-productivity-across-microsoft-365-with-claude--50)
-  - [Lab 5 — Write, Rewrite and Summarise in Word](#lab-5--write-rewrite-and-summarise-in-word)
-  - [Lab 6 — Analyse and Explain Data in Excel](#lab-6--analyse-and-explain-data-in-excel)
-  - [Lab 7 — Generate Slide Outlines and Content for PowerPoint](#lab-7--generate-slide-outlines-and-content-for-powerpoint)
-  - [Lab 8 — Draft and Reply to Email in Outlook and Teams](#lab-8--draft-and-reply-to-email-in-outlook-and-teams)
-- [Wrap-Up](#wrap-up)
+- [Before You Start â€” Preparation](#before-you-start--preparation)
+- [Prompt Best Practices for Word, Excel and PowerPoint](#prompt-best-practices-for-word-excel-and-powerpoint)
+- [Topic 01 â€” Governed Foundations for Claude and Microsoft 365  (24%)](#topic-01--governed-foundations-for-claude-and-microsoft-365--24)
+  - [Lab 1 â€” Choose and Activate the Right Claude Surface](#lab-1--choose-and-activate-the-right-claude-surface)
+  - [Lab 2 â€” Connect Microsoft 365 Context and Map Permissions](#lab-2--connect-microsoft-365-context-and-map-permissions)
+  - [Lab 3 â€” Build an Auditable Prompt and Review Contract](#lab-3--build-an-auditable-prompt-and-review-contract)
+- [Topic 02 â€” Company Planning, Reporting and Policy Work  (28%)](#topic-02--company-planning-reporting-and-policy-work--28)
+  - [Lab 4 â€” Create a Company Marketing Plan in Word](#lab-4--create-a-company-marketing-plan-in-word)
+  - [Lab 5 â€” Develop a Strategic Plan with Owners and Measures](#lab-5--develop-a-strategic-plan-with-owners-and-measures)
+  - [Lab 6 â€” Draft Sustainability Reporting and HR Policy](#lab-6--draft-sustainability-reporting-and-hr-policy)
+- [Topic 03 â€” Financial Analysis and Executive Storytelling  (25%)](#topic-03--financial-analysis-and-executive-storytelling--25)
+  - [Lab 7 â€” Build Financial Analysis and an Excel Dashboard](#lab-7--build-financial-analysis-and-an-excel-dashboard)
+  - [Lab 8 â€” Create an Executive Strategy and Marketing Deck](#lab-8--create-an-executive-strategy-and-marketing-deck)
+- [Topic 04 â€” Agentic Coordination with Outlook, Cowork and Claude Code  (23%)](#topic-04--agentic-coordination-with-outlook-cowork-and-claude-code--23)
+  - [Lab 9 â€” Triage and Prepare Approved Outlook Replies](#lab-9--triage-and-prepare-approved-outlook-replies)
+  - [Lab 10 â€” Coordinate the Planning Pack with Claude Cowork](#lab-10--coordinate-the-planning-pack-with-claude-cowork)
+  - [Lab 11 â€” Automate Excel, Outlook and a Daily Brief with Claude Code](#lab-11--automate-excel-outlook-and-a-daily-brief-with-claude-code)
+- [Wrap-Up â€” One Governed Company Workflow](#wrap-up--one-governed-company-workflow)
 - [Next Steps](#next-steps)
 - [Glossary](#glossary)
+- [References and Further Learning](#references-and-further-learning)
 
 
 ## Introduction
 
-This Learner Guide accompanies the Claude Microsoft 365 Masterclass (C197) course, conducted by Tertiary Infotech Academy Pte Ltd. It carries the full detail of all 8 hands-on labs, in the order you will run them, together with the concepts each lab depends on.
+This Learner Guide accompanies C197 and contains the complete procedures for eleven connected company activities. It is the operational companion to the concept-led slide deck.
 
-The labs build one connected result. You take the role of a coordinator at a small retailer, 'Lumina Living', preparing the quarter's business-review pack, and use Claude alongside Microsoft 365 to write the report in Word, analyse the numbers in Excel, build the slides in PowerPoint, and draft the emails that send it in Outlook and Teams — checking Claude's work at every step. Wherever you can, use your own non-confidential work so you leave with skills applied to your own job; the supplied Lumina Living sample material is provided for everyone to follow along.
+Lumina Living is a fictional Singapore omnichannel home-and-lifestyle company with retail, e-commerce and marketplace operations. Learners join its Business Transformation Office to prepare an integrated FY2027 planning and management pack. Every activity uses the same evidence chain so the marketing plan, strategy, policies, financial dashboard, presentation, Outlook hand-off, Cowork task and Claude Code daily brief remain consistent.
 
 
 ## Course Learning Outcomes
 
-- LO1: Explain what Claude is and how it works alongside Microsoft 365, and set up Claude ready for work.
-- LO2: Connect Claude to your Microsoft 365 files and apps by uploading, pasting and using Projects and connectors.
-- LO3: Write clear, effective prompts that get accurate, usable results for everyday work tasks.
-- LO4: Apply AI responsibly, securely and privately — knowing what to share, what to withhold and what to verify.
-- LO5: Use Claude to write, rewrite and summarise documents in Microsoft Word.
-- LO6: Use Claude to analyse and explain data, and to build formulas, for Microsoft Excel.
-- LO7: Use Claude to generate slide outlines and content for Microsoft PowerPoint.
-- LO8: Use Claude to draft and reply to messages in Microsoft Outlook and Teams.
+- LO1: Select the right Claude and Microsoft 365 operating surface for a governed company task.
+- LO2: Connect approved Microsoft 365 context and map permissions, sources and evidence boundaries.
+- LO3: Direct Claude with an auditable prompt contract and a human approval gate.
+- LO4: Produce a decision-ready marketing plan in Word from approved company evidence.
+- LO5: Develop an aligned strategic plan with choices, initiatives, owners, measures and risks.
+- LO6: Draft a sustainability report section and HR policy using source, legal and management review controls.
+- LO7: Build a formula-driven financial analysis and executive dashboard in Excel.
+- LO8: Create a highly visual strategic and marketing PowerPoint with native Excel charts and evidence traceability.
+- LO9: Triage Outlook messages and prepare approval-based replies without bypassing the human send gate.
+- LO10: Use Claude Cowork with Microsoft 365 context to coordinate a multi-file planning workflow.
+- LO11: Use Claude Code and approved connectors to update Excel, search Outlook and produce a daily management brief.
 
 
-## Before You Start — Preparation
+## Before You Start â€” Preparation
 
 **What you need**
 
-- A laptop (Windows or Mac) with a current Chrome or Edge browser.
-- A Claude account at claude.ai (a free account is enough to follow every lab; a paid plan adds Projects and larger uploads — the trainer confirms what your account has on the day).
-- Microsoft 365 with Word, Excel, PowerPoint and Outlook (desktop or the web apps at office.com), and access to Microsoft Teams.
-- The sample 'Lumina Living — Q3 Review' files (a Word brief, an Excel sales workbook and a short slide starter) — the trainer shares a link; make your own copies — or your own non-confidential documents.
+- A current Windows or Mac laptop with Chrome or Edge, Microsoft 365 Word, Excel, PowerPoint and Outlook.
+- A paid Claude plan for Claude for Word, Excel, PowerPoint and Outlook; a trainer-approved upload fallback may be used when an add-in is unavailable.
+- Claude desktop with Cowork access for Lab 10 and Claude Code installed for Lab 11.
+- An organisational Microsoft 365 account in an Entra tenant. The Microsoft 365 connector requires administrator consent; personal Outlook.com accounts are not supported.
+- The self-contained Office files and templates inside each labs/lab-NN-*/ folder.
 
 **Verify your setup**
 
-Before Lab 1, confirm you can sign in to claude.ai, start a new chat, and open Word, Excel, PowerPoint and Outlook. If Claude or any Office app is not available on your account, tell the trainer.
+Confirm the visible availability of every required surface before class. Missing add-ins, connector consent or Cowork access are real environment states and require the authorised administrator or the documented fallback.
 
 ```bash
-Sign in at claude.ai  ·  start a New chat  ·  open Word / Excel / PowerPoint / Outlook  ·  download the sample Lumina Living files
+claude --version  Â·  claude mcp list  Â·  open Word / Excel / PowerPoint / Outlook  Â·  verify the Claude task pane
 ```
 
 **Conventions used in every lab**
 
-- Placeholders such as <YOUR FILE> or <YOUR NAME> are replaced with your own values.
-- Prompts you give Claude are shown in a shaded box — paste them into the Claude chat, attaching the file named in the step where one is used.
-- App paths (e.g., Word > Home > Editor, or File > Info) and menu names are written as you will use them; Claude's own buttons may move over time.
-- Every lab ends with a 'Test it' step — verify Claude's result against a source you can confirm before you move on.
+- All Lumina Living information is fictional and safe for training; do not replace it with confidential or personal data without approval.
+- Shaded blocks are copy-ready prompts or commands. Replace angle-bracket placeholders before use.
+- Every material figure must trace to a workbook cell, table or approved source note.
+- Draft, save, write and send actions remain subject to the named human approval gate.
+
+**Supplied sample files**
+
+- Each lab folder contains a realistic company brief (.docx), working workbook (.xlsx), executive starter deck (.pptx) and reusable review templates.
+- Lab 7 contains the master financial model and dashboard; Lab 8 contains the executive strategy-and-marketing deck that incorporates its verified charts.
+- Lab 11 also contains a safe local automation starter for Excel updates and daily-brief generation; Microsoft 365 search uses the approved connector visible in Claude Code.
 
 
-## Topic 01 — Getting Started with Claude for Microsoft 365  (50%)
+## Prompt Best Practices for Word, Excel and PowerPoint
 
-Introduction to Claude & Microsoft 365 · Connecting Claude to your files and apps · Effective prompting for work tasks · Responsible, secure and private use of AI
+A professional prompt is a compact work contract. It defines the result, evidence, constraints, output and approval boundary before Claude edits the work product.
+
+**Five practices**
+
+- Name the business result â€” State the decision, audience and artifactâ€”not merely the app you are using.
+- Ground the work â€” Name the open file, table, sheet, section or approved message set Claude may use.
+- Constrain the edit â€” Define scope, length, style, formula method, layout and anything Claude must not change.
+- Demand evidence â€” Require cell, range, heading or email citations and ask Claude to flag missing information.
+- Set the approval gate â€” Ask for proposed changes first; verify them before accepting, saving, sending or publishing.
+
+**Word example â€” Draft a decision-ready strategy section**
+
+```bash
+Using the open FY2027 strategy brief, draft only the 'Strategic choices' section for the Executive Committee. Preserve the existing Heading 1/2 styles. For each choice include rationale, owner, measure and Q1 milestone. Use only facts stated in the brief; cite the source heading and flag missing evidence. Show proposed text before editing the document.
+```
+
+**Excel example â€” Build an auditable financial view**
+
+```bash
+Using tblFinance in the open workbook, build a formula-driven Actual vs Budget analysis by month and channel. Include Revenue, Gross Profit, Gross Margin and Operating Contribution. Use native formulas or pivots, cite source ranges, keep assumptions on the Assumptions sheet, and do not paste hardcoded totals. Before editing, list the formulas and checks you will apply.
+```
+
+**PowerPoint example â€” Create an executive planning story**
+
+```bash
+Using the open company template, the approved strategy document and verified Excel dashboard, build an eight-slide Executive Committee story. Use conclusion-led titles, one message per slide, native editable charts linked to the approved summary ranges, and concise speaker notes. Preserve the slide master and brand rules. Add a source note to each data slide and flag any figure that does not reconcile.
+```
+
+
+## Topic 01 â€” Governed Foundations for Claude and Microsoft 365  (24%)
+
+Operating surfaces Â· Microsoft 365 connector Â· permissions Â· evidence Â· prompting Â· human approval
 
 **Key concepts**
 
-- Claude — Anthropic's AI assistant that reads, writes, analyses and explains in plain language, available at claude.ai and in the Claude desktop app.
-- Claude alongside Microsoft 365 — Claude is a separate assistant you feed your Word, Excel, PowerPoint and Outlook content into, then paste its results back; it complements the Office apps you already use.
-- Two ways to give Claude your work — upload a file (Word, Excel, PowerPoint, PDF, CSV, images) or paste the text or table directly into the chat.
-- Projects — a Claude workspace that keeps your files and custom instructions together, so every chat about the same task starts with the right context.
-- Connectors — an optional way to let Claude read from your cloud storage (such as OneDrive, SharePoint or Google Drive) where your account and plan support it.
-- Effective prompting — a good work prompt states the role, the context, the task and the output format, so Claude has no room to guess.
-- Human in the loop — Claude drafts; you decide. Always read, check and edit its output before it becomes your work.
-- Responsible use — keep confidential and personal data out of prompts unless your organisation has approved it, and verify anything you will rely on.
+- Four operating surfaces â€” distinguish Claude for Microsoft 365 add-ins, the Microsoft 365 connector in Claude, Anthropic Claude Cowork, and Claude-powered experiences inside Microsoft 365 Copilot.
+- Open-file context â€” the Word, Excel, PowerPoint and Outlook add-ins work with the active item and preserve native structures such as styles, formulas and slide masters.
+- Connected work context â€” the Microsoft 365 connector can search authorised SharePoint, OneDrive, Outlook and Teams content; optional write tools require additional tenant consent.
+- Least privilege â€” access follows the signed-in user's existing permissions; broad access is not a substitute for a well-scoped business task.
+- Evidence contract â€” every material claim names its source location, confidence and unresolved gap before the output is polished.
+- Human accountability â€” reviewed changes, formulas, recipients and approval records make AI-assisted work defensible.
 
 
-### Lab 1 — Get Started with Claude for Microsoft 365
+### Lab 1 â€” Choose and Activate the Right Claude Surface
 
-Learning outcome: Sign in to Claude, understand how it works alongside Microsoft 365, and run a first prompt on your task..
+Learning outcome: Select and activate the Claude surface that fits a governed Lumina Living task..
 
-Goal: This lab gets Claude working for you. You sign in at claude.ai, start a new chat, and paste in the Q3 brief so Claude can summarise your task and list what the review pack needs — so you see the ask-check loop before you rely on it. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Compare the Office add-ins, Microsoft 365 connector, Claude Cowork and Claude-powered Microsoft 365 Copilot experiences before touching company data.
+
+**Company use case**
+
+- Department: Business Transformation Office
+- Sponsor: Chief Operating Officer
+- Decision: Which Claude surface should each planning, analysis and communication task use?
+- Evidence: IT acceptable-use note; Microsoft 365 tenant capability register; FY2027 planning brief
+- Controls: No shared password in learner files; No permission bypass; Named system owner approval
 
 **What you'll build**
 
-A working Claude account with your first, verified answer — a plain-language summary of the Q3 task and a checklist of what the pack must contain.   (Tools: claude.ai (or the Claude desktop app), Microsoft 365, a web browser.)
+A completed operating-surface decision matrix and environment-readiness record.   (Tools: Claude for Microsoft 365, Claude connector, Claude Cowork, Microsoft 365 Copilot, admin deployment.)
+
+**Prerequisites**
+
+- The trainer has privately assigned a classroom account; credentials are not written in this lab or repository.
+- Word, Excel, PowerPoint and Outlook are installed or available on the web.
+- Claude desktop and Claude Code are installed for later labs, where available.
+
+**Process map**
+
+Define the task â†’ Compare surfaces â†’ Check licence and tenant â†’ Activate the approved route â†’ Record the fallback
 
 **Step-by-step**
 
-1. Sign in at claude.ai (or open the Claude desktop app) and click 'New chat'. This is where you will work with Claude all day.
-2. Open the sample 'Lumina Living — Q3 Review Brief' (a short Word document the trainer shares), or use a short brief of your own non-confidential work.
-3. Copy the brief's text and paste it into the Claude chat with this instruction so Claude tells you what the task involves.
+1. Open the lab folder and inspect the company brief, readiness workbook and executive starter deck before signing in anywhere.
+2. Classify four example tasksâ€”edit a strategy section, analyse finance, search recent Outlook decisions and coordinate a multi-file packâ€”against the four operating surfaces.
+3. Open Word, Excel and PowerPoint, locate the Claude add-in and sign in with the trainer-issued classroom account. Record the visible state in the Readiness workbook.
+4. Open Outlook and check whether Claude for Outlook is present. If the tenant shows an approval requirement, record it as an environment constraint; do not attempt a workaround.
+5. In Claude, open Customize > Connectors and inspect Microsoft 365. Record whether organisation enablement, Entra administrator consent and write tools are available.
+6. Open Claude desktop and confirm whether Cowork appears in the mode picker. Do not grant folder access yet.
+7. Open Microsoft 365 Copilot only if your tenant provides it. Record it as a distinct Microsoft surface, not as the Anthropic Office add-in.
+8. Complete the decision matrix: task, preferred surface, required permission, human approval, fallback and owner.
+9. Use Claude to challenge your matrix without asking it to change the file. Prompt to give Claude:
 
    ```bash
-   Here is the brief for a quarterly business review. In plain language, summarise what I am being asked to produce, then list the separate items the final pack should contain.
+   Act as an enterprise AI adoption lead. Review this operating-surface matrix for mismatched tasks, excessive permissions, missing approval owners and unrealistic fallbacks. Cite the row for every finding. Do not edit the workbook.
    ```
 
-4. Read Claude's answer. Check it against the brief: does its list match what the brief actually asks for? Add anything it missed.
-5. Ask one follow-up so you see Claude reason over your material.
-
-   ```bash
-   For each item in that list, say which Microsoft 365 app I would use to produce it — Word, Excel, PowerPoint or Outlook.
-   ```
-
-6. Confirm the ground rule: Claude has only read text you gave it, and nothing has changed in your files. Claude drafts; you decide what to keep.
-7. Save this chat — rename it 'Lumina Living Q3'. You now have Claude set up and a clear, checked picture of the task.
+10. Correct the matrix yourself and save the approved copy in the lab folder.
 
 **Test it**
 
-You are signed in to Claude, and you have a first answer — a summary of the Q3 task and a checklist of the pack's items — that you have checked against the brief and corrected where needed.
+Every example task has one preferred surface, one governed fallback, a permission owner and a human approval point; no credential is stored in any learner-facing file.
 
-> **Note:** Full commands and screenshots are in labs/lab-01-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- An add-in is missing â€” Treat the visible state as real. Record it, use the approved upload fallback for class and ask the authorised administrator about deployment.
+- Connector authentication fails â€” Confirm a business Entra account and tenant admin consent; personal Outlook.com accounts cannot use this connector.
+- Two products are both labelled Cowork â€” Distinguish Anthropic Claude Cowork from Microsoft 365 Copilot Cowork by host, licensing, data boundary and approval model.
+
+**Challenge**
+
+Add one recurring task from your role and justify the lowest-privilege surface that can complete it.
+
+**Reflection**
+
+What evidence would convince your system owner that the selected surface is appropriate?
+
+> **Note:** The matching detailed lab folder is in labs/lab-01-choose-and-activate-the-right-claude-surface/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 2 — Connect Claude to Your Microsoft 365 Files and Apps
+### Lab 2 â€” Connect Microsoft 365 Context and Map Permissions
 
-Learning outcome: Give Claude your working files by uploading and pasting, and keep them together in a Project..
+Learning outcome: Connect approved Microsoft 365 context and map what Claude may read or write..
 
-Goal: Now you give Claude your real material to work on. You upload the Q3 brief and the sales workbook, gather them into a Project with standing instructions, and confirm Claude can read what you gave it — so every later chat starts with the right context. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Build a source-and-permission register for Lumina Living's SharePoint, OneDrive, Outlook and Teams planning evidence.
+
+**Company use case**
+
+- Department: Information Governance
+- Sponsor: Head of IT and Data Protection Officer
+- Decision: Which sources and tools should be enabled for each role?
+- Evidence: SharePoint Strategy site; OneDrive project folder; Outlook planning mailbox; Teams leadership chat
+- Controls: Least privilege; Business Entra tenant; Per-user access boundary; No Teams write claim
 
 **What you'll build**
 
-A Claude Project (or a single well-prepared chat) holding your Q3 files, with Claude confirmed to have read them.   (Tools: Claude Projects, file upload, custom instructions, connectors (optional).)
+A least-privilege source register with access status, evidence owner, retention note and approved use.   (Tools: Microsoft 365 connector, Microsoft Entra, delegated permissions, SharePoint, OneDrive, Outlook, Teams.)
+
+**Prerequisites**
+
+- Lab 1 completed.
+- The trainer has confirmed whether Entra administrator consent is already present.
+- Use only the fictional Lumina Living sources supplied in this folder.
+
+**Process map**
+
+Inventory sources â†’ Assign owners â†’ Grant tenant consent â†’ Connect individually â†’ Test read before write
 
 **Step-by-step**
 
-1. Attach a file to the chat: click the paperclip (or drag the file in) and upload the sample 'Lumina Living — Q3 Sales.xlsx' workbook. Claude accepts Word, Excel, PowerPoint, PDF, CSV and images.
-2. Confirm Claude has read it, and check the answer against the file itself.
+1. Review the Source Register workbook and identify the business owner, sensitivity, retention need and intended Claude use for every source.
+2. In Claude, navigate to Customize > Connectors > Microsoft 365. Connect only if the organisation and tenant consent are already approved.
+3. Record the connector's visible tools and whether they are read or write. Do not assume write access from a successful sign-in.
+4. Ask Claude to search only the approved FY2027 planning context and return a source inventory rather than a narrative. Prompt to give Claude:
 
    ```bash
-   From the workbook I just uploaded, list the column headings and tell me how many rows of data there are.
+   Search the approved Microsoft 365 planning sources for Lumina Living FY2027. Return a table with item title, service, owner if stated, last modified date and direct source citation. Do not infer missing owners and do not create or update anything.
    ```
 
-3. Create a Project to hold the whole task (if your plan has Projects): open Projects > New project, name it 'Lumina Living — Q3 Review', and add both the brief and the workbook to it. If you do not have Projects, keep working in your renamed Lab 1 chat and re-attach files as needed.
-4. Give the Project standing instructions so every chat starts the same way. Put this in the Project's custom instructions.
+5. Compare the results with the supplied register. Mark missing, duplicate, stale or inaccessible sources.
+6. Test an Outlook read query for planning messages and require per-message citations. Prompt to give Claude:
 
    ```bash
-   You are helping me prepare Lumina Living's Q3 business review. Use only the files in this project. Keep a professional, concise tone. When you give figures, show where in the data they come from so I can check them.
+   Find the fictional FY2027 planning messages approved for this exercise. List sender, date, subject, decision and unresolved action with a citation to each message. Do not draft or send email.
    ```
 
-5. Optional — connect a source instead of uploading: if your account offers connectors, open Settings > Connectors and connect OneDrive, SharePoint or Google Drive, then point Claude at the folder. Skip this if your account does not offer it.
-6. Prove the context works: start a fresh chat inside the Project and ask a question without re-attaching anything.
+7. If write tools are not approved, record the limitation and retain read-only operation. If approved, perform only the trainer-authorised low-risk draft-to-self test. Prompt to give Claude:
 
    ```bash
-   Without me re-uploading, what files do you have for this review, and what is in each?
+   Draft an email to my own training account summarising the connector test. Leave it as a draft and do not send it.
    ```
 
-7. Confirm Claude answers from the Project's files. Your working set is now connected and reusable.
+8. Update the Permission Map with the user group, source, tool, scope, owner, review date and fallback.
+9. Ask Claude to identify excessive or missing permissions, then resolve each finding with the source owner. Prompt to give Claude:
+
+   ```bash
+   Review this permission map for least-privilege issues. Flag any source or write capability that is not necessary for the stated business outcome. Cite the row and propose a narrower alternative.
+   ```
+
 
 **Test it**
 
-Claude has correctly listed the workbook's columns and row count, your Q3 files sit in a Project (or a prepared chat), and a fresh chat can answer from them without re-uploading.
+The source register reconciles to the connector results, every source has an owner and approved use, and write tools are either explicitly authorised or documented as unavailable.
 
-> **Note:** Full commands and screenshots are in labs/lab-02-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- Admin approval is required â€” Stop the connection attempt and escalate to the authorised Entra Global Administrator.
+- A source is missing â€” Check the signed-in user's existing Microsoft 365 permission and the source location; do not request broad tenant access as a shortcut.
+- A Teams action is requested â€” The Claude Microsoft 365 connector can read supported Teams context but does not provide tools to post Teams messages or change Teams settings.
+
+**Challenge**
+
+Design a read-only pilot group and a separate, smaller write-enabled group for the company rollout.
+
+**Reflection**
+
+Which permission would create the largest consequence if misused, and who should approve it?
+
+> **Note:** The matching detailed lab folder is in labs/lab-02-connect-microsoft-365-context-and-permissions/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 3 — Write Effective Prompts for Everyday Work Tasks
+### Lab 3 â€” Build an Auditable Prompt and Review Contract
 
-Learning outcome: Compare a vague prompt with a specific one and capture a reusable four-part prompt pattern for work tasks..
+Learning outcome: Write reusable prompts that ground evidence, constrain edits and define human approval..
 
-Goal: A result is only as good as the prompt. You run a vague prompt, then a specific one that states the role, context, task and output format, see the difference, and distil what worked into a reusable pattern you will use for the rest of the course. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Turn vague requests into professional prompt contracts for Word, Excel and PowerPoint, then log evidence and review outcomes.
+
+**Company use case**
+
+- Department: Business Transformation Office
+- Sponsor: Director, Strategy
+- Decision: Which prompt elements are mandatory for a company-standard AI workflow?
+- Evidence: FY2027 planning brief; Company style guide; Data dictionary; Approval matrix
+- Controls: No unstated assumptions; No fabricated citations; Smallest useful edit; Human approval
 
 **What you'll build**
 
-A written four-part prompt pattern (Role · Context · Task · Output) and one strong, tested prompt saved for reuse.   (Tools: Prompt design, role/context/task/output, refinement.)
+A reusable cross-app prompt library, prompt test log and acceptance checklist.   (Tools: Prompt architecture, evidence clauses, stop rules, output contracts, review log.)
+
+**Prerequisites**
+
+- Labs 1â€“2 completed.
+- Word, Excel and PowerPoint sample files open.
+- The approved source register is available.
+
+**Process map**
+
+Business outcome â†’ Named evidence â†’ Constraints â†’ Output contract â†’ Verification and approval
 
 **Step-by-step**
 
-1. Run a deliberately vague prompt in the Project and note how generic the answer is.
+1. Open the Prompt Library document and the Prompt Test Log workbook.
+2. Run the vague request 'Improve our plan' against the supplied Word brief and record why the result is difficult to verify. Prompt to give Claude:
 
    ```bash
-   Write something about our sales.
+   Improve our plan.
    ```
 
-2. Now run a specific prompt for the same intent and compare the result.
+3. Rewrite it with the five-part structure: business outcome, evidence, constraints, output contract and approval gate. Prompt to give Claude:
 
    ```bash
-   You are my business analyst. Context: this is Lumina Living's Q3 sales workbook. Task: write three short paragraphs summarising how the quarter went for a management audience. Output: plain paragraphs, no jargon, with the key figure named in each.
+   Using the open FY2027 brief, draft only the Executive summary for the Lumina Living leadership team. Preserve the current heading styles and keep it under 180 words. Use only stated facts, cite the source heading for each material claim and list missing evidence separately. Show proposed text before editing the document.
    ```
 
-3. Write down the four parts that made the second prompt work: the Role, the Context, the Task, and the Output format.
-4. Capture your reusable pattern where you can find it — a notes doc, or pinned in the Project.
+4. Create an Excel prompt that requires formula-first analysis, cell citations and a review plan before edits. Prompt to give Claude:
 
    ```bash
-   ROLE: who Claude should act as | CONTEXT: which file/task | TASK: what to produce | OUTPUT: format, length, tone, and what to include
+   Using tblFinance in the open workbook, propose a formula-driven Actual vs Budget analysis for Revenue, Gross Profit, Gross Margin and Operating Contribution. Cite source ranges, keep assumptions on the Assumptions sheet and do not hardcode totals. List the formulas and validation checks before applying changes.
    ```
 
-5. Add the conditions that keep results trustworthy: name the file, ask Claude to show where figures come from, and state the length and tone you need.
-6. Rewrite one request of your own about the Q3 pack using the pattern, and run it.
-7. Refine once: change the Output part (for example 'make it half as long', or 'more formal') and re-run to see the result change. Keep the better version.
-8. Save your best prompt in the Project — you will reuse this pattern in every remaining lab.
+5. Create a PowerPoint prompt that preserves the company template and demands native charts, conclusion-led titles and source notes. Prompt to give Claude:
+
+   ```bash
+   Using the open company template, approved strategy document and verified Excel summary ranges, propose an eight-slide Executive Committee story. Preserve the slide master, use one conclusion-led message per slide, native editable charts and concise speaker notes. Add a source note to every data slide and flag unreconciled figures before building.
+   ```
+
+6. Test each prompt once. Log the input sources, output quality, citation accuracy, time to review and corrections required.
+7. Add a stop rule to any prompt that encouraged guessing. Prompt to give Claude:
+
+   ```bash
+   If the approved sources do not contain a required fact, stop that part of the task, name the missing evidence and ask one precise question. Do not invent a value, owner, date or citation.
+   ```
+
+8. Ask Claude to critique the three prompts against the company standard. Prompt to give Claude:
+
+   ```bash
+   Audit these Word, Excel and PowerPoint prompts. For each, score outcome clarity, grounding, constraints, output contract, verification and approval from 1 to 5. Cite the exact missing phrase and propose the smallest correction.
+   ```
+
+9. Save the approved prompts as company templates for Labs 4, 7 and 8.
 
 **Test it**
 
-You can show two answers for the same intent (vague vs specific), a written four-part prompt pattern, and one refined prompt that produced the output you specified in the format you asked for.
+The Word, Excel and PowerPoint prompts each name a business result, approved evidence, constraints, output format, verification method, stop rule and human approval gate.
 
-> **Note:** Full commands and screenshots are in labs/lab-03-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- Claude still guesses â€” Add an explicit missing-evidence stop rule and require the source location for every material claim.
+- The prompt is too long â€” Separate stable company instructions from the task-specific prompt and remove repeated context.
+- The edit is too broad â€” Name the exact selected section, sheet, range, slide or object to change.
+
+**Challenge**
+
+Create a prompt rubric that a colleague can use without knowing how the prompt was written.
+
+**Reflection**
+
+Which prompt clause most reduced your review effort, and why?
+
+> **Note:** The matching detailed lab folder is in labs/lab-03-build-an-auditable-prompt-and-review-contract/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 4 — Use AI Responsibly, Securely and Privately at Work
+## Topic 02 â€” Company Planning, Reporting and Policy Work  (28%)
 
-Learning outcome: Decide what is safe to share with AI, and write a personal safe-use checklist you apply to the review pack..
-
-Goal: Before you rely on AI at work, you set the rules. You review what should never go into a prompt, practise removing sensitive details before sharing, confirm that Claude's output must always be verified, and write a safe-use checklist you apply to your own material. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
-
-**What you'll build**
-
-A personal safe-use checklist, and one prompt you have rewritten to remove sensitive data before sending.   (Tools: Data privacy, redaction, verification, safe-use checklist.)
-
-**Step-by-step**
-
-1. List the kinds of data that should not go into an AI prompt without approval: passwords and keys, customer names and contact details, staff personal data, unreleased financials, and anything under NDA.
-2. Practise redacting: take a sentence that names a real customer and rewrite it to make the same request safely.
-
-   ```bash
-   Rewrite this so it asks the same question without naming anyone: 'Summarise why customer Tan Wei Ming from 12 Orchard Road cancelled his order.'
-   ```
-
-3. Ask Claude for good practice, then sanity-check its advice against your own organisation's policy.
-
-   ```bash
-   What should I avoid putting into an AI prompt when working with real company data, and how can I get the same help safely?
-   ```
-
-4. Confirm the verification rule with a quick test: ask Claude for a specific figure from the workbook, then check it in Excel — never accept a number you cannot tie back to the source.
-
-   ```bash
-   What was the single best-selling product in the Q3 workbook, and what was its total sales value? Tell me which cells you used.
-   ```
-
-5. Note who is accountable: Claude drafts, but you are responsible for what you send. Decide where you will record that AI helped (for example a note in the document's properties).
-6. Draft your safe-use checklist — keep confidential data out of prompts; redact before sharing; verify every figure, name and claim; keep a human decision on anything that goes out; record where AI was used.
-7. Apply the checklist to your Lab 3 prompt: check it contains nothing sensitive, and adjust it if it does.
-
-**Test it**
-
-You have a written safe-use checklist, a prompt you rewrote to remove a real name, and a figure from the workbook that you verified in Excel before trusting it.
-
-> **Note:** Full commands and screenshots are in labs/lab-04-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
-
----
-
-
-## Topic 02 — Boosting Productivity Across Microsoft 365 with Claude  (50%)
-
-Writing, rewriting & summarising in Word · Analysing & explaining data in Excel · Generating slides for PowerPoint · Drafting & replying to email in Outlook and Teams
+Marketing planning Â· strategic planning Â· sustainability reporting Â· HR policy Â· management review
 
 **Key concepts**
 
-- Writing in Word — describe the document you need and let Claude draft it, then refine the structure, length and tone with follow-up prompts.
-- Rewriting and summarising — paste a long document and ask Claude to shorten it, change its tone, or pull out the key points and actions.
-- Analysing data in Excel — upload or paste a table and ask Claude what it shows: totals, trends, comparisons and a plain-language read of the numbers.
-- Explaining and building formulas — ask Claude for the Excel formula you need, and paste any formula back to have it explained step by step.
-- Generating slides for PowerPoint — turn a document or a brief into a slide-by-slide outline with titles, bullet points and speaker notes.
-- Drafting email in Outlook and Teams — draft, reply to and adjust the tone of work messages, keeping them clear, professional and appropriately brief.
-- Verify before you send — check every figure, name, date and claim in Claude's output against a source you trust before it leaves your desk.
-- One connected workflow — the same review pack flows from Word to Excel to PowerPoint to Outlook, with Claude speeding up each step.
+- Marketing planning â€” connect business goals, customer segments, channel choices, campaign actions, budget and measurable outcomes.
+- Strategic planning â€” turn evidence into explicit choices, initiatives, owners, dependencies, targets and review dates.
+- Sustainability reporting â€” define the reporting boundary, method, source owner and limitation before drafting a credible narrative.
+- HR policy â€” separate policy intent, operational procedure and legal interpretation; require authorised HR and legal review before release.
+- Template fidelity â€” work inside approved Word styles and tables so outputs fit the company's document system rather than becoming detached chat text.
+- Management review â€” label facts, calculations, assumptions and recommendations so decision makers can challenge each layer.
 
 
-### Lab 5 — Write, Rewrite and Summarise in Word
+### Lab 4 â€” Create a Company Marketing Plan in Word
 
-Learning outcome: Use Claude to draft, restructure and tighten a document, and to summarise a long one, then finish it in Word..
+Learning outcome: Produce a decision-ready FY2027 marketing plan in the Lumina Living Word template..
 
-Goal: You produce the written report. You have Claude draft the Q3 review from the brief and the workbook, restructure and shorten it, adjust the tone for a management audience, and summarise a longer background note into key points — pasting the checked result into Word. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Turn an approved commercial brief, customer evidence and budget envelope into a structured marketing plan with objectives, segments, channels, actions, KPIs and approvals.
+
+**Company use case**
+
+- Department: Marketing and E-commerce
+- Sponsor: Chief Commercial Officer
+- Decision: Which segments, channels and campaigns should receive the marketing budget?
+- Evidence: FY2026 channel results; Customer segment note; Campaign calendar; Marketing budget envelope
+- Controls: No invented market facts; Budget reconciles; Claims cite source; CCO approval
 
 **What you'll build**
 
-A finished Q3 review report in Microsoft Word, drafted and refined with Claude and checked by you.   (Tools: Microsoft Word, Claude (draft / rewrite / summarise), copy-paste, Word > Home formatting.)
+A reviewed FY2027 marketing plan in Word with an evidence appendix and management decision page.   (Tools: Claude for Word, company styles, selected-text editing, comments, tracked changes, evidence register.)
+
+**Prerequisites**
+
+- Labs 1â€“3 completed.
+- Open the lab's marketing brief, workbook and Word template.
+- Confirm the marketing plan is fictional training material.
+
+**Process map**
+
+Commercial objective â†’ Customer evidence â†’ Channel choices â†’ Campaign plan â†’ Measures and approval
 
 **Step-by-step**
 
-1. In your Project, ask Claude to draft the report from the material it already has.
+1. Read the marketing brief yourself and list the decision, audience, planning horizon and non-negotiable constraints.
+2. Ask Claude to map the source documents and identify missing evidence before drafting. Prompt to give Claude:
 
    ```bash
-   Using the brief and the Q3 workbook in this project, draft a one-page business-review report for management. Structure it as: Overview, What sold well, What to watch, and Recommended actions. Name the key figure in each section and say where it comes from.
+   Map the open marketing brief and workbook for FY2027 planning. Return: objective, customer evidence, channel performance, budget limits, stated risks and missing evidence. Cite the source heading or workbook range. Do not edit Word yet.
    ```
 
-2. Read the draft and check every figure it names against the workbook. Mark anything you cannot confirm — you will not keep unverified numbers.
-3. Restructure and tighten with a follow-up prompt.
+3. Ask Claude to propose three strategic marketing choices and one explicit non-priority. Prompt to give Claude:
 
    ```bash
-   Good. Now cut it to about 250 words, put the Recommended actions as three bullet points, and make the tone confident but plain — no jargon.
+   Propose three FY2027 marketing choices for Lumina Living and one activity we should not prioritise. For each choice state the evidence, target segment, channel, expected business effect, key risk and success measure. Use only the approved sources and label interpretation.
    ```
 
-4. Adjust the tone for the audience if needed (for example more formal, or warmer), then choose the version you will keep.
+4. Review the choices with the budget workbook. Remove any recommendation that cannot be funded or evidenced.
+5. Draft the plan inside the Word template using its existing styles and tables. Prompt to give Claude:
 
    ```bash
-   Give me the same report in a slightly more formal tone suitable for a board paper.
+   Draft the FY2027 marketing plan in the open template. Sections: Executive decision, Situation, Objectives, Priority segments, Channel strategy, 90-day campaigns, Budget, KPIs, Risks and Approval. Preserve all styles and numbering. Cite source headings or workbook ranges and flag missing values rather than guessing.
    ```
 
-5. Summarise a longer input: paste a longer background note (or the brief's appendix) and ask for a short summary you can use as an intro.
+6. Select the campaign table and ask Claude to populate only that table with campaign, segment, channel, owner, timing, budget, KPI and approval status. Prompt to give Claude:
 
    ```bash
-   Summarise this background note into four bullet points I can use as context at the top of the report.
+   Populate only the selected campaign table with a realistic 90-day plan from the approved brief. Keep the existing columns and formatting. Do not add campaigns outside the approved budget envelope.
    ```
 
-6. Open Microsoft Word, paste your chosen report in, and format it: a title, headings for each section, and the three action bullets (Home > Styles).
-7. Do the final human check: re-read the whole page, confirm every figure ties to the workbook, and fix any wording. Save it as 'Lumina Living — Q3 Review Report.docx'.
+7. Turn on tracked changes. Ask Claude to reduce jargon and sharpen the executive decision page without changing figures. Prompt to give Claude:
+
+   ```bash
+   Rewrite only the selected Executive decision page for senior management. Use plain business language, state the three choices, quantify the approved budget and name the decision required. Preserve every verified figure and show tracked changes.
+   ```
+
+8. Resolve comments, verify the total budget in Excel, check every cited source and record the CCO approval status.
+9. Save the final file as 'Lumina Living FY2027 Marketing Plan â€” Reviewed.docx'.
 
 **Test it**
 
-You have a saved Word report of about 250 words with the four sections and three action bullets, in which every figure has been checked against the Q3 workbook.
+The Word plan uses company styles, reconciles to the marketing budget, contains three clear choices and one non-priority, and every material claim has a source or missing-evidence flag.
 
-> **Note:** Full commands and screenshots are in labs/lab-05-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- The plan becomes generic â€” Require the named segments, channel results, budget envelope and decision owner from the supplied sources.
+- Word formatting drifts â€” Select the target section, preserve named styles and request a local edit rather than a full-document rewrite.
+- Campaign costs exceed budget â€” Reconcile in Excel and ask Claude to reprioritiseâ€”not to invent additional funding.
+
+**Challenge**
+
+Add a stop/go decision rule for the weakest campaign after four weeks of evidence.
+
+**Reflection**
+
+Which marketing recommendation became stronger after you forced it to cite evidence?
+
+> **Note:** The matching detailed lab folder is in labs/lab-04-create-a-company-marketing-plan-in-word/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 6 — Analyse and Explain Data in Excel
+### Lab 5 â€” Develop a Strategic Plan with Owners and Measures
 
-Learning outcome: Use Claude to analyse a dataset, build the formulas you need, and explain a formula — verifying every figure in Excel..
+Learning outcome: Develop an aligned strategic plan with explicit choices, initiatives, owners, measures and risks..
 
-Goal: You produce the numbers behind the report. You have Claude analyse the Q3 sales workbook, ask it for the Excel formulas to compute the key figures, paste those formulas into Excel to verify them, and have Claude explain an unfamiliar formula — trusting no figure you have not confirmed yourself. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Translate Lumina Living's ambition into a strategy-on-a-page, initiative portfolio and governance rhythm that management can execute.
+
+**Company use case**
+
+- Department: Corporate Strategy
+- Sponsor: Chief Executive Officer
+- Decision: Which strategic choices and initiatives should the Executive Committee approve?
+- Evidence: CEO ambition note; Commercial performance summary; Operations capability review; Risk register
+- Controls: Explicit trade-offs; Named owners; Target source; Risk dependency review
 
 **What you'll build**
 
-A verified Q3 analysis in Microsoft Excel — key figures computed by formulas you checked, and one formula you can explain.   (Tools: Microsoft Excel, Claude (analysis / formula generation / formula explanation), SUM, SUMIF, AVERAGE.)
+A three-year strategic plan, initiative portfolio and quarterly review scorecard in Word and Excel.   (Tools: Claude for Word, Claude for Excel, strategy-on-a-page, initiative portfolio, risk and dependency review.)
+
+**Prerequisites**
+
+- Labs 1â€“4 completed.
+- Open the strategic planning brief, scorecard workbook and strategy template.
+- Use the reviewed marketing plan as one input, not as the whole strategy.
+
+**Process map**
+
+Ambition â†’ Diagnosis â†’ Strategic choices â†’ Initiative portfolio â†’ Measures and governance
 
 **Step-by-step**
 
-1. Ask Claude to analyse the workbook and surface the figures the report needs.
+1. Ask Claude to separate facts, interpretations and assumptions in the strategy brief. Prompt to give Claude:
 
    ```bash
-   From the Q3 sales workbook, give me: total sales for the quarter, the best- and worst-selling product by value, the top region, and the month-by-month trend. Show the figure for each and say which columns you used.
+   Analyse the open strategy brief into three tables: verified facts with citations, interpretations to test, and assumptions requiring an owner and validation date. Do not draft a strategy yet.
    ```
 
-2. Ask Claude for the exact Excel formula for the headline figure so you can reproduce it.
+2. Build a concise diagnosis across market, customer, economics, operations and capability. Prompt to give Claude:
 
    ```bash
-   Give me the Excel formula to compute total Q3 sales from the Total column, assuming the data is in rows 2 to 500.
+   Using only the verified facts, draft a one-page strategic diagnosis. State the central challenge, three strengths, three constraints and two uncertainties. Cite each source and avoid unsupported causal claims.
    ```
 
-3. In Excel, put that formula in an empty cell and confirm it matches the figure Claude reported.
+3. Generate alternative strategic choices and compare their trade-offs in the workbook. Prompt to give Claude:
 
    ```bash
-   =SUM(F2:F500)
+   Propose three coherent strategic choice sets. For each: where to play, how to win, required capability, investment implication, key risk and what Lumina Living will stop doing. Keep choices mutually distinct and cite the evidence behind them.
    ```
 
-4. Ask for a conditional formula and verify it too — for example sales for the top region.
+4. Select one choice set and record the management rationale in the Decision Log.
+5. Ask Claude to draft the strategy-on-a-page in Word using the existing company template. Prompt to give Claude:
 
    ```bash
-   Give me an Excel formula that totals the Total column only for rows where the Region column equals "North".
+   Draft the strategy-on-a-page in the open template: ambition, strategic diagnosis, three choices, six initiatives, outcome measures and governance. Preserve styles. Each initiative must have an owner, Q1 milestone, 12-month target, dependency and risk.
    ```
 
-5. Paste it into Excel and cross-check by filtering the sheet to that region and reading the status-bar Sum.
+6. Populate the initiative portfolio and balanced scorecard in Excel. Verify that every measure has a definition, baseline, target, source and review frequency. Prompt to give Claude:
 
    ```bash
-   =SUMIF(D2:D500,"North",F2:F500)
+   Build the initiative portfolio and balanced scorecard in the open workbook. Use formulas for status and variance. Do not invent baselines; mark missing values as 'Owner to confirm'.
    ```
 
-6. Learn from a formula: paste an unfamiliar one and ask Claude to explain it step by step.
+7. Run a sceptical strategy review. Prompt to give Claude:
 
    ```bash
-   Explain, step by step, what this Excel formula does: =IF(F2>500,"Large","Standard")
+   Act as a sceptical board adviser. Test this strategy for conflicting choices, unfunded initiatives, missing capabilities, weak measures, dependency collisions and risks without owners. Rank findings by decision impact and cite the plan section or workbook row.
    ```
 
-7. Set the rule and record the checked figures: never accept a number you cannot tie back to a formula in the sheet. Note the verified headline figures where the report can reuse them.
+8. Resolve the top findings, update tracked changes and record the Executive Committee decision status.
+9. Save the reviewed Word plan and Excel scorecard in the lab folder.
 
 **Test it**
 
-Your key Q3 figures each match an Excel formula you ran yourself, one conditional total agrees with a filtered status-bar Sum, and you can explain in one sentence what the =IF formula does.
+The strategy contains explicit choices and trade-offs, six owned initiatives, balanced measures with sources, a governance cadence and a resolved high-impact risk review.
 
-> **Note:** Full commands and screenshots are in labs/lab-06-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- The strategy is a wish list â€” Force trade-offs: name what will not be prioritised and connect each initiative to one approved choice.
+- Measures are vague â€” Require definition, unit, baseline, target, source owner and review frequency.
+- Owners are generic departments â€” Assign one accountable role and list supporting roles separately.
+
+**Challenge**
+
+Create a scenario trigger that would cause management to revisit one strategic choice.
+
+**Reflection**
+
+Which trade-off made the strategy more executable?
+
+> **Note:** The matching detailed lab folder is in labs/lab-05-develop-a-strategic-plan-with-owners-and-measures/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 7 — Generate Slide Outlines and Content for PowerPoint
+### Lab 6 â€” Draft Sustainability Reporting and HR Policy
 
-Learning outcome: Use Claude to turn the report and analysis into a slide-by-slide outline with titles, bullets and speaker notes..
+Learning outcome: Draft source-aware sustainability reporting and an HR policy with appropriate review controls..
 
-Goal: You produce the deck for the management meeting. You have Claude turn the checked report and figures into a slide-by-slide outline — titles, three bullets each and short speaker notes — refine the flow and length, then build the slides in PowerPoint from that outline. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+Goal: Create a management sustainability report section and a flexible-work HR policy while separating evidence, interpretation, procedure and legal review.
+
+**Company use case**
+
+- Department: Sustainability and People
+- Sponsor: Chief People and Sustainability Officer
+- Decision: Is the evidence and control environment strong enough for internal release?
+- Evidence: Energy and waste register; Travel summary; Workforce profile; Flexible-work pilot feedback
+- Controls: Reporting boundary; Method note; No green claims without evidence; HR and legal approval
 
 **What you'll build**
 
-A Q3 review slide deck in Microsoft PowerPoint, built from a Claude-generated outline you refined and checked.   (Tools: Microsoft PowerPoint, Claude (slide outline / speaker notes), Outline view, copy-paste.)
+A sustainability performance section, metric register and flexible-work policy draft with review and approval records.   (Tools: Claude for Word, reporting boundary, metric methodology, HR policy drafting, comments, approval workflow.)
+
+**Prerequisites**
+
+- Labs 1â€“5 completed.
+- Open the sustainability metric workbook and HR source note.
+- Do not treat this exercise as legal or regulatory advice.
+
+**Process map**
+
+Define boundary â†’ Verify metrics â†’ Draft narrative â†’ Separate policy from procedure â†’ Obtain specialist approval
 
 **Step-by-step**
 
-1. Ask Claude to convert your report and verified figures into a slide outline.
+1. Review the metric register and flag missing owner, unit, method, boundary, period or evidence.
+2. Ask Claude to create a reporting-boundary statement before drafting performance commentary. Prompt to give Claude:
 
    ```bash
-   Turn the Q3 review report and the verified figures into a 6-slide deck for a 10-minute management meeting. For each slide give a title, no more than three short bullets, and two lines of speaker notes. Keep every figure consistent with the report.
+   Using the open metric register, draft a reporting-boundary statement for FY2026. Include entities, Singapore sites, reporting period, included metrics, exclusions, calculation methods and data limitations. Cite the workbook rows and do not invent an assurance level.
    ```
 
-2. Read the outline and check the figures on each slide against your verified numbers from Lab 6. Fix any that drift.
-3. Refine the flow with a follow-up.
+3. Ask Claude to draft a factual performance section that separates results from interpretation. Prompt to give Claude:
 
    ```bash
-   Reorder so the recommended actions are the final slide, and make the opening slide a single headline that states how the quarter went.
+   Draft a 500-word internal sustainability performance section. Structure: boundary, energy, waste, travel, people metrics, limitations and next actions. Cite each metric row. Label interpretation and avoid words such as 'leading', 'green' or 'net zero' unless the evidence explicitly supports them.
    ```
 
-4. Tighten wording so no bullet runs over one line.
+4. Verify all units, denominators, direction-of-change statements and limitations against Excel.
+5. Map the HR policy source note into purpose, scope, eligibility, principles, process, manager decision rights, information security, health and safety, exceptions, records and review.
+6. Ask Claude to draft only the policyâ€”not legal conclusions or employee-specific decisions. Prompt to give Claude:
 
    ```bash
-   Shorten every bullet to at most eight words, keeping the meaning.
+   Draft a flexible-work policy in the open company template. Use the mapped sections, plain language and neutral criteria. Distinguish policy from procedure. Add placeholders for jurisdiction-specific legal review and do not make claims about statutory entitlement that are absent from the approved source note.
    ```
 
-5. Build the slides: open PowerPoint, use View > Outline, and paste the titles and bullets so each slide is created from the outline (Tab to demote a line to a bullet).
-6. Add the speaker notes: for each slide, paste Claude's two lines into the Notes pane (View > Notes).
-7. Do the final human check: click through the deck, confirm every figure matches the report and workbook, then save it as 'Lumina Living — Q3 Review.pptx'.
+7. Run an equity and operational review. Prompt to give Claude:
+
+   ```bash
+   Review this policy for inconsistent eligibility, hidden bias, unclear manager discretion, privacy risk, security gaps, inaccessible language and missing appeal or exception routes. Cite the clause and propose a precise revision. Do not approve the policy.
+   ```
+
+8. Use tracked changes to resolve approved findings. Add HR, legal, IT security and management review rows to the approval table.
+9. Save both reviewed drafts and the completed metric register.
 
 **Test it**
 
-You have a saved 6-slide PowerPoint deck with a headline opener and an actions closer, one-line bullets, and speaker notes — with every figure consistent with your Word report and Excel analysis.
+The sustainability section states its boundary and limitations and reconciles every metric; the HR policy separates policy from procedure and carries named HR, legal, security and management reviews.
 
-> **Note:** Full commands and screenshots are in labs/lab-07-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- Claude overstates sustainability performance â€” Require neutral wording, metric citations, limitations and a ban on unsupported leadership or net-zero claims.
+- Policy sounds legally definitive â€” Replace legal conclusions with review placeholders and obtain authorised jurisdiction-specific advice.
+- Units do not reconcile â€” Check numerator, denominator, reporting period and conversion method in the metric register before editing the narrative.
+
+**Challenge**
+
+Add a methodology-change disclosure showing how a revised conversion factor affects comparability.
+
+**Reflection**
+
+Which control most reduced the risk of a misleading sustainability or HR statement?
+
+> **Note:** The matching detailed lab folder is in labs/lab-06-draft-sustainability-reporting-and-hr-policy/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-### Lab 8 — Draft and Reply to Email in Outlook and Teams
+## Topic 03 â€” Financial Analysis and Executive Storytelling  (25%)
 
-Learning outcome: Use Claude to draft, adjust the tone of, and reply to work messages, then send the pack — verifying before it goes..
+Excel modelling Â· controls Â· KPI dashboard Â· native charts Â· strategic and marketing PowerPoint
 
-Goal: The capstone. You send the pack out. You have Claude draft the stakeholder email that carries the review, adjust its tone and length, draft a reply to a likely question, and write a short Teams announcement — checking every detail before anything is sent. BUILDING BLOCK — what you do in this lab becomes part of your Lumina Living Q3 review pack, the single deliverable you write, analyse, present and send across all 8 labs.
+**Key concepts**
+
+- Financial model architecture â€” separate assumptions, transaction data, calculations, outputs and review notes so changes remain traceable.
+- Formula-first analysis â€” use dynamic formulas, tables and pivot-ready structures instead of pasted totals or unexplained AI answers.
+- Decision-led dashboard â€” combine a small set of KPIs, trends, variances and definitions around the questions management must answer.
+- Chart integrity â€” choose the visual for the question, keep native Excel sources, verify scale and units, and avoid implying causation without evidence.
+- Message-first presentation â€” every slide title states a conclusion; supporting detail goes into speaker notes, appendix or source register.
+- Beyond one-click slides â€” professional value comes from an editable company template, native charts, coherent narrative, source traceability and deliberate visual hierarchy.
+
+
+### Lab 7 â€” Build Financial Analysis and an Excel Dashboard
+
+Learning outcome: Build an auditable financial model and management dashboard in Excel with Claude..
+
+Goal: Move from transaction data and budget assumptions to formula-driven analysis, scenario testing, native charts and a one-screen management dashboard.
+
+**Company use case**
+
+- Department: Finance and Business Performance
+- Sponsor: Chief Financial Officer
+- Decision: Which revenue, margin and cost actions should management prioritise?
+- Evidence: FY2026 transaction ledger; Monthly budget; Product cost table; Scenario assumptions
+- Controls: Dynamic formulas; No formula errors; Source ranges cited; Independent KPI checks
 
 **What you'll build**
 
-A ready-to-send Outlook email carrying the Q3 pack, a drafted reply, and a short Teams announcement — all checked by you.   (Tools: Microsoft Outlook, Microsoft Teams, Claude (draft / tone / reply), copy-paste.)
+A controlled FY2026 financial workbook with actual-vs-budget analysis, scenarios, three native charts and an executive dashboard.   (Tools: Claude for Excel, tables, formulas, pivots, scenarios, chart selection, dashboard, audit log.)
+
+**Prerequisites**
+
+- Labs 1â€“6 completed.
+- Open the supplied Finance Model workbook and Data Dictionary.
+- Use only the fictional transaction data supplied in this lab.
+
+**Process map**
+
+Understand the model â†’ Validate inputs â†’ Build formulas â†’ Explain drivers â†’ Dashboard and senior review
 
 **Step-by-step**
 
-1. Ask Claude to draft the covering email for the management team.
+1. Inspect the workbook manually: identify input, calculation, output and control sheets before using Claude.
+2. Ask Claude to map the workbook and cite the key ranges without editing. Prompt to give Claude:
 
    ```bash
-   Draft a short email to the management team introducing the attached Q3 business-review report and slide deck. Say what the quarter's headline was, list the three recommended actions, and ask for comments by Friday. Professional and warm, under 150 words.
+   Map this workbook before making changes. For each sheet state its purpose, input ranges, formula ranges, outputs, named tables, charts and control checks. Cite cells or table names and flag any ambiguity.
    ```
 
-2. Read it and verify: the headline and the three actions must match your report exactly. Fix any drift, and confirm no confidential detail is included.
-3. Adjust the tone or length if needed, and keep the version you will send.
+3. Validate the transaction and budget tables for duplicates, blanks, invalid dates, unexpected categories, negative values and inconsistent formula columns. Prompt to give Claude:
 
    ```bash
-   Make it a little more concise and add a one-line thank-you at the end.
+   Audit tblFinance and tblBudget for duplicates, blanks, invalid dates, unrecognised regions/channels/products, negative amounts and formula inconsistencies. Create a Data_Quality summary with issue count, affected rows and proposed fix. Do not silently delete or overwrite data.
    ```
 
-4. Draft a reply to a question you can expect, so you are ready.
+4. Approve only justified fixes and require a change-log entry for each edit. Prompt to give Claude:
 
    ```bash
-   Draft a brief, friendly reply to a manager who asks: 'Can you confirm the total Q3 sales figure and which region led?' Leave placeholders <TOTAL> and <REGION> for me to fill from the verified data.
+   Apply only the approved data-quality corrections. Record old value, new value, reason, source and reviewer in Audit_Log. Re-run the checks and stop if any high-impact issue remains.
    ```
 
-5. Fill the placeholders from your verified Lab 6 figures — never from memory — and check they are right.
-6. Write a short Teams announcement for the team channel.
+5. Build formula-driven Actual vs Budget analysis by month, channel and product. Prompt to give Claude:
 
    ```bash
-   Write a 2-sentence Microsoft Teams message announcing that the Q3 review pack is ready and where to find it, friendly and clear.
+   Using tblFinance and tblBudget, build a formula-driven Actual vs Budget analysis for Revenue, Gross Profit, Gross Margin and Operating Contribution by month and channel. Use formulas or pivots, cite source ranges, keep assumptions on the Assumptions sheet and do not hardcode totals. List the formulas and checks before editing.
    ```
 
-7. Send safely: open Outlook, paste the covering email, attach 'Q3 Review Report.docx' and 'Q3 Review.pptx', check the recipients and the attachments, and only then send. Post the Teams message to the channel.
+6. Trace and explain the Gross Margin and Operating Contribution formulas. Check for range, sign, timing and allocation errors. Prompt to give Claude:
+
+   ```bash
+   Explain the Gross Margin and Operating Contribution formulas, trace their precedents and test whether each range includes all twelve months. Audit for hardcoded totals, inconsistent signs, omitted rows, circular references and #REF!, #VALUE!, #N/A or #DIV/0! errors.
+   ```
+
+7. Create Base, Upside and Downside scenarios using explicit growth, discount and cost assumptions. Keep the assumptions separate from actuals. Prompt to give Claude:
+
+   ```bash
+   Create Base, Upside and Downside scenarios for FY2027. Inputs: unit growth, average discount, unit-cost inflation and marketing spend. Keep scenario inputs on Assumptions, calculate Revenue, Gross Profit, Gross Margin and Operating Contribution dynamically, and show the change versus Base.
+   ```
+
+8. Ask Claude to recommend charts by decision question, then approve a monthly trend, actual-vs-budget variance and contribution by channel visual. Prompt to give Claude:
+
+   ```bash
+   Recommend three management charts. For each state the decision question, source range, chart type, scale, unit and risk of misinterpretation. Prioritise monthly performance, budget variance and contribution by channel.
+   ```
+
+9. Create native editable charts and a one-screen Dashboard with four KPI cards, three charts, definitions, scenario selector note and last-refreshed timestamp. Prompt to give Claude:
+
+   ```bash
+   Build a one-screen Executive Dashboard using the verified Analysis outputs. Include Revenue, Gross Profit, Gross Margin and Operating Contribution KPI cards; the three approved native charts; definitions; selected scenario; and last-refreshed note. Use restrained company colours and no 3D effects.
+   ```
+
+10. Run a sceptical CFO review. Prompt to give Claude:
+
+   ```bash
+   Act as a sceptical CFO. Review the model for weak assumptions, hardcodes, timing or allocation errors, misleading scales, unsupported causal claims and decision-relevant sensitivities. Rank findings by financial impact and cite the cell, range or chart source.
+   ```
+
+11. Resolve material findings, recalculate the workbook, independently reproduce two KPIs and complete the Audit Log.
 
 **Test it**
 
-You have a checked covering email in Outlook with the correct headline, the three matching actions and both files attached; a reply drafted with verified figures; and a short Teams announcement — and you confirmed every figure and name before sending.
+The model has no formula errors, all four KPIs reconcile, scenarios change through named assumptions, three native charts answer management questions and the audit log records independent checks.
 
-> **Note:** Full commands and screenshots are in labs/lab-08-*.md. Use only documents and data you are authorised to use. Never paste passwords, personal identifiers or confidential business data into an AI prompt — use the supplied Lumina Living sample material if in doubt. Claude's screens, menu names and buttons may differ slightly between accounts and plans and may change over time; the trainer will point out the current location on the day.
+**Troubleshooting**
+
+- A KPI does not recalculate â€” Trace precedents and replace any pasted value with a formula tied to the approved table.
+- The variance sign is confusing â€” Define favourable/unfavourable logic once and apply it consistently across tables, charts and narrative.
+- The dashboard is crowded â€” Keep four KPIs and three decision charts; move details to Analysis and document definitions.
+
+**Challenge**
+
+Add a sensitivity table showing which assumption has the largest effect on Operating Contribution.
+
+**Reflection**
+
+Which model control gave you the strongest evidence that the dashboard can be trusted?
+
+> **Note:** The matching detailed lab folder is in labs/lab-07-build-financial-analysis-and-an-excel-dashboard/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
 
 ---
 
 
-## Wrap-Up
+### Lab 8 â€” Create an Executive Strategy and Marketing Deck
 
-In one day you have taken a quarter's raw material — a brief, a spreadsheet and a handful of facts — and turned it into a finished business-review pack, using Claude alongside Microsoft 365 at every step and checking its work before trusting it.
+Learning outcome: Create a highly visual, editable PowerPoint that integrates strategy, marketing and verified Excel charts..
 
-**What you built**
+Goal: Build a company-standard Executive Committee presentation with a coherent decision story, native charts, process maps, evidence notes and meaningful speaker notes.
 
-- Claude set up and connected to your Microsoft 365 files, with a Project holding your review pack.
-- A reusable prompt pattern (role, context, task, output) and a personal safe-use checklist.
-- A written business-review report in Word, drafted, restructured and tightened with Claude.
-- A verified data analysis in Excel — figures, trends and formulas you checked yourself.
-- A PowerPoint deck generated as a slide-by-slide outline with titles, bullets and speaker notes.
-- A stakeholder email in Outlook and a short Teams announcement, each checked before sending.
+**Company use case**
 
-**What to do next**
+- Department: Corporate Strategy and Marketing
+- Sponsor: Chief Executive Officer
+- Decision: Approve the strategic choices, marketing allocation, financial guardrails and owners.
+- Evidence: Reviewed marketing plan; Reviewed strategic plan; Verified financial dashboard; Sustainability and people commitments
+- Controls: Company slide master; One message per slide; Native editable visuals; Figure reconciliation
 
-- Point these techniques at one real, recurring task in your own week and measure the time saved.
-- Keep verifying: check every figure, name and claim in Claude's output against a source you trust.
-- Save your best prompts and your Project so you and your team can reuse them.
-- Keep confidential data out of prompts, and note where AI helped so your work stays accountable.
+**What you'll build**
+
+A ten-slide strategic and marketing presentation with native Excel charts, varied layouts and an executive decision page.   (Tools: Claude for PowerPoint, slide master, native Excel charts, process maps, executive narrative, speaker notes, visual QA.)
+
+**Prerequisites**
+
+- Labs 1â€“7 completed.
+- Open the lab PowerPoint template, reviewed Word plans and verified Excel Dashboard.
+- Confirm the Excel workbook is the source of truth for financial figures.
+
+**Process map**
+
+Decision question â†’ Message map â†’ Template system â†’ Native evidence visuals â†’ Executive rehearsal and approval
+
+**Step-by-step**
+
+1. Inspect the PowerPoint template: slide master, layouts, typography, colours, placeholder rules and existing example slides.
+2. Ask Claude to analyse the template and source pack before building slides. Prompt to give Claude:
+
+   ```bash
+   Analyse the open company template, reviewed strategy and marketing documents, and verified Excel dashboard. Return the available layouts, the management decision, five evidence points, unresolved mismatches and a recommended ten-slide story. Do not create slides yet.
+   ```
+
+3. Resolve every mismatch in the source Word or Excel file before building the presentation.
+4. Create a message map with ten conclusion-led titles: decision, context, strategic choices, marketing priorities, financial outlook, drivers, sustainability/people commitments, Q1 roadmap, risks and approval. Prompt to give Claude:
+
+   ```bash
+   Create a ten-slide Executive Committee message map. Each title must state a conclusion, not a topic. For every slide specify purpose, evidence source, visual form and decision implication. Use one message per slide and flag any unsupported claim.
+   ```
+
+5. Ask Claude to build in the existing template using native text, shapes, tables, charts and diagrams. Prompt to give Claude:
+
+   ```bash
+   Build the ten slides in the open company template. Preserve the slide master, fonts, colours, margins and footer. Use native editable charts linked to the approved Excel summary ranges, native process maps and decision cards. Do not paste screenshots of charts. Add a concise source note to each data slide.
+   ```
+
+6. Replace any generic bullet wall with a scorecard, comparison, timeline, process map, chart or decision-card layout. Prompt to give Claude:
+
+   ```bash
+   Review the deck for text-heavy slides. For each, choose the most suitable native visualâ€”scorecard, comparison, timeline, process map, chart or decision cardsâ€”without changing the verified conclusion. Keep body text at presentation size and preserve whitespace.
+   ```
+
+7. Integrate the Excel monthly trend, budget variance and contribution-by-channel charts. Verify axes, scales, currency, period and source range.
+8. Add short speaker notes to every content slide: point, evidence, caveat, transition and decision request. Prompt to give Claude:
+
+   ```bash
+   Add speaker notes to each content slide: management point, evidence, caveat, transition and decision request. Do not repeat the visible slide text and do not add new figures.
+   ```
+
+9. Run a content and visual review against the quality rubric: evidence, narrative, hierarchy, variety, alignment, contrast, overflow, chart integrity and executive usability. Prompt to give Claude:
+
+   ```bash
+   Act as a presentation director and finance reviewer. Audit every slide for message clarity, evidence traceability, visual hierarchy, native editability, layout variety, tiny text, overflow, inconsistent spacing, misleading chart choices and unsupported figures. Rank required fixes and cite the slide number.
+   ```
+
+10. Apply pinpoint fixes, rehearse the ten-minute story and save the reviewed deck as 'Lumina Living FY2027 Executive Plan â€” Reviewed.pptx'.
+
+**Test it**
+
+The ten-slide deck uses the company master, shows verified native Excel charts, contains varied substantive visuals and speaker notes, and reconciles every figure and decision with the approved source pack.
+
+**Troubleshooting**
+
+- Claude ignores the master â€” Analyse and name the existing layouts first; require use of those layouts and edit selected slides rather than rebuilding the file.
+- Slides look generic â€” Use company evidence, conclusion-led titles, native charts, specific decision cards and the approved visual motif.
+- A chart changes from Excel â€” Correct the source workbook, confirm the approved range and replace only the affected chart.
+- Text becomes too small â€” Split the idea or move detail to speaker notes; never shrink body text to rescue an overloaded slide.
+
+**Challenge**
+
+Create an appendix slide that reconciles every deck KPI to its Excel source cell and owner.
+
+**Reflection**
+
+Which design decision made the deck more useful to management than a generic one-click presentation?
+
+> **Note:** The matching detailed lab folder is in labs/lab-08-create-an-executive-strategy-and-marketing-deck/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
+
+---
+
+
+## Topic 04 â€” Agentic Coordination with Outlook, Cowork and Claude Code  (23%)
+
+Outlook triage and replies Â· Claude Cowork Â· Claude Code Â· Excel updates Â· email search Â· daily brief
+
+**Key concepts**
+
+- Outlook control â€” Claude can triage and draft, but Claude for Outlook leaves replies and invitations in native compose forms for the authorised user to review and send.
+- Claude Cowork â€” a task-oriented Claude desktop mode that works across scoped folders, Projects, plugins and connected tools to produce real files over multiple steps.
+- Cowork plus Microsoft 365 â€” retrieve approved organisational context through the connector, work in a bounded project folder, then review the resulting Office files in the native add-ins.
+- Copilot Cowork is distinct â€” Microsoft's Cowork experience lives inside Microsoft 365 Copilot and has its own licensing, governance and action-approval model even when Anthropic models are used.
+- Claude Code automation â€” local scripts and approved MCP connectors can update a workbook, search relevant mail and assemble a repeatable daily brief with explicit tool approvals.
+- Safe automation boundary â€” read and draft first, validate recipients and versions, and reserve consequential write or send actions for explicit approval.
+
+
+### Lab 9 â€” Triage and Prepare Approved Outlook Replies
+
+Learning outcome: Triage Outlook messages and prepare consistent replies with a human send gate..
+
+Goal: Use Claude for Outlook and approved Microsoft 365 context to classify planning mail, summarise threads, prepare draft replies and coordinate meetings without silently sending anything.
+
+**Company use case**
+
+- Department: Executive Office
+- Sponsor: Chief of Staff
+- Decision: Which messages need escalation, a standard draft, a tailored reply or no action?
+- Evidence: Planning inbox sample; Reply policy; Executive tone guide; Meeting calendar
+- Controls: No silent send; Recipient verification; Attachment/version check; Escalation rules
+
+**What you'll build**
+
+A triage queue, cited thread summary, approved reply templates, draft responses and an unsent meeting invitation.   (Tools: Claude for Outlook beta, Outlook categories, thread citations, reply templates, calendar, approval queue.)
+
+**Prerequisites**
+
+- Labs 1â€“8 completed.
+- Open the supplied fictional Outlook thread export and Reply Policy.
+- Claude for Outlook may require tenant deployment and Graph consent for inbox-wide features.
+
+**Process map**
+
+Classify â†’ Summarise with citations â†’ Select approved template â†’ Draft in native form â†’ Review recipients and send
+
+**Step-by-step**
+
+1. Review the Reply Policy and configure four categories in the Triage Queue: Executive decision, Draft eligible, Information only and Escalate.
+2. Open the supplied planning thread in Outlook or use the trainer-prepared mailbox. Activate Claude in the message ribbon.
+3. Ask for a cited thread summary before drafting. Prompt to give Claude:
+
+   ```bash
+   Summarise this planning thread into decisions made, unresolved questions, owner, deadline and required reply. Cite the source email for every item and flag any contradictory date, amount or attachment version. Do not draft or send yet.
+   ```
+
+4. Compare the summary with the Word and Excel source files. Resolve any figure or version mismatch in the source artifact.
+5. If inbox-wide access is approved, ask Claude to classify only the fictional planning messages against the four categories. Prompt to give Claude:
+
+   ```bash
+   Classify the approved FY2027 planning messages into Executive decision, Draft eligible, Information only or Escalate. For each, state reason, priority, SLA and source citation. Do not move, archive, delete, reply or send.
+   ```
+
+6. Select a Draft eligible message and choose the matching approved reply template.
+7. Ask Claude to prepare the response in the native compose form and leave it unsent. Prompt to give Claude:
+
+   ```bash
+   Draft a reply using the approved Executive Office template and tone guide. Confirm the decision, list the agreed actions with owners, cite the correct attached file versions and request comments by the stated deadline. Keep it under 160 words. Place it in Outlook as a draft and do not send.
+   ```
+
+8. Review To, Cc, Bcc, subject, names, dates, amounts, commitments, attachments, sensitivity and tone. Record the reviewer in the queue.
+9. Ask Claude to find a 30-minute review slot and prepare an invitation with purpose, agenda, pre-read and decision required. Leave it unsent. Prompt to give Claude:
+
+   ```bash
+   Find a 30-minute review time for the people on this thread. Prepare an Outlook invitation with purpose, three-item agenda, named pre-read files and the decision required. Leave the invitation unsent for review.
+   ```
+
+10. The authorised user may send only after trainer approval in the classroom simulation; otherwise retain or discard the draft.
+
+**Test it**
+
+The triage queue is complete, the thread summary cites every decision, each draft uses an approved template and the reviewer has checked recipients, content, attachments and deadline before any send action.
+
+**Troubleshooting**
+
+- Outlook requests admin approval â€” Treat the visible state as real and use the supplied thread export for the exercise; the authorised administrator must grant the required access.
+- Claude is ready to draft but not send â€” This is the expected Claude for Outlook control. Review in the native compose form and retain the human send gate.
+- The summary misses context â€” Open the full conversation, ask for per-message citations and compare the source thread manually.
+
+**Challenge**
+
+Create an escalation rule for messages that contain a financial commitment, legal interpretation or personal data.
+
+**Reflection**
+
+Which part of email handling should remain human even if drafting becomes nearly automatic?
+
+> **Note:** The matching detailed lab folder is in labs/lab-09-triage-and-prepare-approved-outlook-replies/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
+
+---
+
+
+### Lab 10 â€” Coordinate the Planning Pack with Claude Cowork
+
+Learning outcome: Use Claude Cowork and Microsoft 365 context to coordinate a bounded multi-file company task..
+
+Goal: Set up a scoped Cowork project, bring in approved Microsoft 365 evidence, create a multi-step plan and deliver reviewed Office files back to the company workflow.
+
+**Company use case**
+
+- Department: Business Transformation Office
+- Sponsor: Chief Operating Officer
+- Decision: Can the planning pack proceed to Executive Committee review without unresolved evidence or version conflicts?
+- Evidence: Approved lab outputs; Microsoft 365 planning messages; Decision log; Source register
+- Controls: Scoped folder; Read-first connector; Checkpoint approvals; Native Office review
+
+**What you'll build**
+
+A Cowork project folder, execution plan, consolidated management brief, discrepancy log and reviewed Office hand-off.   (Tools: Claude Cowork, work folder, Projects, plugins, Microsoft 365 connector, multi-step execution, approvals.)
+
+**Prerequisites**
+
+- Labs 1â€“9 completed.
+- Claude desktop with Cowork access.
+- The Microsoft 365 connector is approved or the supplied local source pack is used as fallback.
+
+**Process map**
+
+Scope the folder â†’ Connect approved context â†’ Plan the task â†’ Watch and steer â†’ Review files in Microsoft 365
+
+**Step-by-step**
+
+1. Create a clean work folder inside the Lab 10 folder and copy only the reviewed Word, Excel and PowerPoint outputs from earlier labs.
+2. Open Claude desktop, select Cowork and run the guided setup if required. Choose only the Lab 10 work folder. Command or in-app command:
+
+   ```bash
+   /setup-cowork
+   ```
+
+3. Inspect the active plugins, connectors and folder boundary. Record unavailable capabilities rather than requesting broad access.
+4. Give Cowork a result-oriented task and require a plan before file changes. Prompt to give Claude:
+
+   ```bash
+   Using only this work folder and the approved Microsoft 365 planning context, prepare a consolidated FY2027 Executive Committee hand-off. First show a plan with inputs, reconciliation checks, output files and approval checkpoints. Do not modify or create files until I approve the plan.
+   ```
+
+5. Review the plan. Confirm source priority: verified Excel for figures, approved Word documents for narrative, Outlook for decisions and the source register for ownership.
+6. Approve the analysis phase only. Ask Cowork to create a discrepancy log covering figures, dates, owners, versions, commitments and missing approvals. Prompt to give Claude:
+
+   ```bash
+   Create a discrepancy log before drafting the brief. Compare the approved files and planning messages for figures, dates, owners, version names, commitments and approvals. Cite every source and do not resolve conflicts by guessing.
+   ```
+
+7. Resolve high-impact discrepancies in the source files with the named owner. Replace the work-folder copy with the reviewed version.
+8. Ask Cowork to create a two-page management brief and updated hand-off index in the folder. Prompt to give Claude:
+
+   ```bash
+   Create a two-page management brief and hand-off index from the reconciled sources. Include decision required, strategic choices, marketing priorities, financial outlook, sustainability/people commitments, Q1 milestones, risks and approvals. Cite the source file or message for each section.
+   ```
+
+9. Open the generated Word, Excel and PowerPoint files in their native apps. Use Claude for Microsoft 365 to make only selected, tracked corrections.
+10. Record final approvals and keep the Cowork task, discrepancy log and source files together as the audit trail.
+
+**Test it**
+
+Cowork worked only inside the scoped project, produced a visible plan and discrepancy log, and every generated Office artifact was reviewed in its native app before the hand-off was approved.
+
+**Troubleshooting**
+
+- Cowork cannot access Microsoft 365 â€” Use the local approved source pack and record the connector limitation; do not widen permissions merely to complete the lab.
+- Cowork writes too early â€” Require a plan-first approval and give staged approval for analysis, drafting and final file creation.
+- Files disagree â€” Resolve the conflict in the authoritative source with its owner, then rerun only the affected output.
+
+**Challenge**
+
+Turn the approved hand-off workflow into a reusable Cowork skill outline with explicit inputs, checks and approval points.
+
+**Reflection**
+
+Which checkpoint gave you the most control over a multi-step agentic task?
+
+> **Note:** The matching detailed lab folder is in labs/lab-10-coordinate-the-planning-pack-with-claude-cowork/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
+
+---
+
+
+### Lab 11 â€” Automate Excel, Outlook and a Daily Brief with Claude Code
+
+Learning outcome: Use Claude Code and approved connectors to update Excel, search Outlook and produce a daily management brief..
+
+Goal: Build a safe, repeatable work process that refreshes a local Excel control workbook, searches approved planning mail and generates a source-linked daily brief without embedding secrets or auto-sending messages.
+
+**Company use case**
+
+- Department: Business Performance
+- Sponsor: Chief Operating Officer
+- Decision: Which KPI exception, decision request or overdue action needs management attention today?
+- Evidence: Daily control workbook; Approved Outlook planning mail; Brief template; Automation configuration
+- Controls: No secrets in source; Explicit MCP approval; No auto-send; Idempotent update and backup
+
+**What you'll build**
+
+A reviewed automation plan, local workbook-update script, connector-assisted Outlook search and generated daily brief with run log.   (Tools: Claude Code, MCP, Microsoft 365 connector, Python, openpyxl, python-docx, run log, approval gates.)
+
+**Prerequisites**
+
+- Labs 1â€“10 completed.
+- Claude Code installed and authenticated with the approved Claude.ai account.
+- Python 3 with openpyxl and python-docx available; the lab provides an offline-ready starter.
+
+**Process map**
+
+Plan and inspect â†’ Verify MCP and files â†’ Update Excel locally â†’ Search approved Outlook context â†’ Generate and review daily brief
+
+**Step-by-step**
+
+1. Open a terminal in the Lab 11 folder and inspect every supplied file before starting Claude Code. Command or in-app command:
+
+   ```bash
+   pwd
+find . -maxdepth 2 -type f -print | sort
+   ```
+
+2. Create and activate a local virtual environment, then install only the two required document libraries if they are not already present. Command or in-app command:
+
+   ```bash
+   python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install openpyxl python-docx
+   ```
+
+3. Start Claude Code and verify its version and MCP status. The approved Microsoft 365 connector configured in Claude.ai should appear when the same subscription authentication is active. Command or in-app command:
+
+   ```bash
+   claude --version
+claude mcp list
+   ```
+
+4. Inside Claude Code, open /mcp, authenticate the approved Microsoft 365 connector if prompted and inspect the available read/write tools. Do not approve a write tool for this exercise. Command or in-app command:
+
+   ```bash
+   /mcp
+   ```
+
+5. Ask Claude Code to inspect the workbook, brief template and starter script, then propose a plan before editing. Prompt to give Claude:
+
+   ```bash
+   Inspect this lab folder. Explain the workbook sheets, formulas and control cells; the daily-brief template; the starter Python script; and the run-log contract. Propose the smallest safe implementation. Do not edit or run anything until I approve the plan.
+   ```
+
+6. Approve the local-file phase. Ask Claude Code to complete or review the workbook updater so it writes today's approved inputs, preserves formulas and formats, creates a timestamped backup and appends a run-log row. Prompt to give Claude:
+
+   ```bash
+   Implement the local workbook update only. Preserve formulas, named tables, charts and formats; create a timestamped backup; make the update idempotent; validate expected sheets and columns; and append date, input file, rows changed, status and reviewer placeholder to Run_Log. Do not access Outlook yet.
+   ```
+
+7. Run the updater on the fictional input file and inspect the workbook output. Command or in-app command:
+
+   ```bash
+   python automation/update_daily_control.py --input inputs/daily-input.csv --workbook Lumina-Living-Daily-Control.xlsx --output outputs/Lumina-Living-Daily-Control-Updated.xlsx
+   ```
+
+8. Ask Claude Code to use the approved Microsoft 365 connector to search only the fictional planning messages for the last business day. Require source citations and no draft/send action. Prompt to give Claude:
+
+   ```bash
+   Search the approved Lumina Living planning mailbox context for the last business day. Return only decisions requested, overdue actions, material risks and changed deadlines. Cite each message. Do not create, update, draft or send anything in Microsoft 365.
+   ```
+
+9. Provide the cited mail findings to the local brief generator and require workbook cell citations for KPI exceptions. Prompt to give Claude:
+
+   ```bash
+   Generate today's management brief from outputs/Lumina-Living-Daily-Control-Updated.xlsx and the cited Outlook findings. Use the supplied Word template. Include KPI exceptions with cell citations, decisions requested with message citations, overdue actions, risks, and a reviewer checklist. Do not invent missing information or send the brief.
+   ```
+
+10. Run the local brief generator and open the DOCX for review. Command or in-app command:
+
+   ```bash
+   python automation/generate_daily_brief.py --workbook outputs/Lumina-Living-Daily-Control-Updated.xlsx --mail inputs/outlook-findings.json --template templates/Daily-Brief-Template.docx --output outputs/Lumina-Living-Daily-Brief.docx
+   ```
+
+11. Verify backup creation, formula integrity, cited messages, cited cells, no embedded secrets and a completed run log. Record the human approval without sending the file.
+
+**Test it**
+
+The reviewed scripts run successfully, the updated workbook preserves formulas and charts, the daily brief cites Excel and Outlook evidence, the run log is complete and no email was sent or secret stored.
+
+**Troubleshooting**
+
+- The M365 connector is absent in Claude Code â€” Run /status to confirm Claude.ai subscription authentication, configure the connector in Claude.ai, then use /mcp; do not hardcode tokens or unreviewed endpoints.
+- The workbook loses formulas or formatting â€” Write only designated input cells, load without data_only, preserve styles and validate formulas before saving.
+- The updater duplicates rows â€” Use a stable business key and make the update idempotent before rerunning.
+- Mail search returns too much â€” Narrow the date, mailbox context, subject prefix and allowed output fields; require citations.
+
+**Challenge**
+
+Add a dry-run flag that reports proposed cell changes and mail-query scope without writing any output.
+
+**Reflection**
+
+Which automation step needs the strongest approval boundary, and how would you monitor it in production?
+
+> **Note:** The matching detailed lab folder is in labs/lab-11-automate-excel-outlook-and-a-daily-brief-with-claude-code/. Use the matching lab folder and its supplied fictional Office files. Claude interfaces and availability can change by plan, platform and tenant. Do not widen permissions, bypass administrator controls or send externally merely to complete a classroom activity.
+
+---
+
+
+## Wrap-Up â€” One Governed Company Workflow
+
+You have built a connected Lumina Living planning and management pack rather than a collection of isolated AI demonstrations.
+
+**Business outputs**
+
+- Marketing, strategy, sustainability and HR drafts that use company templates and named reviewers.
+- A financial analysis and dashboard with dynamic formulas, controls and management-ready visuals.
+- An editable executive deck with native charts, a coherent decision story and source notes.
+
+**Operating controls**
+
+- A permission and source map, prompt contract, review log and human approval boundary.
+- An Outlook triage-and-draft pattern that does not silently send mail.
+- A scoped Cowork workflow and a Claude Code daily-brief automation with explicit tool approvals.
 
 ---
 
 
 ## Next Steps
 
-- First pass: complete every lab yourself, following the steps and verifying each 'Test it' check.
-- Second pass: rebuild the Word-Excel-PowerPoint-Outlook flow on the sample pack from memory, writing your own prompts.
-- Apply the techniques to a real, non-confidential task from your own organisation.
-- Review each lab's detailed steps in this guide and re-run the tasks on your own machine.
+- Re-run the full Lumina Living flow and verify that every figure and recommendation remains consistent across files.
+- Adapt one activity to an approved recurring process in your organisation and define a baseline for time, quality and review effort.
+- Ask your Microsoft 365 and Claude administrators which add-ins, connectors, write tools and Cowork surfaces are approved for your role.
+- Keep prompts, source registers, decision logs and approval evidence with the final work product.
 
 
 ## Glossary
 
-- **Claude** — Anthropic's AI assistant, used here at claude.ai and in the Claude desktop app to read, write, analyse and explain in plain language.
-- **Anthropic** — The company that makes Claude.
-- **Microsoft 365** — Microsoft's suite of work apps — including Word, Excel, PowerPoint, Outlook and Teams — used in the browser or as desktop apps.
-- **Prompt** — The plain-language instruction you give Claude; a good one states the role, context, task and output format.
-- **Project** — A Claude workspace that keeps files and custom instructions together so related chats start with the right context.
-- **Connector** — An optional link that lets Claude read from a cloud service such as OneDrive, SharePoint or Google Drive, where your plan supports it.
-- **Upload** — Attaching a file (Word, Excel, PowerPoint, PDF, CSV or image) to a Claude chat so Claude can work on its contents.
-- **Artifact** — A self-contained document, table or draft Claude produces in a side panel that you can copy or refine.
-- **Summarising** — Condensing a long document into its key points, actions or a shorter version.
-- **Rewriting** — Changing the wording, tone or length of text while keeping its meaning.
-- **Formula** — An Excel instruction (such as =SUM or =IF) that calculates a result from your data.
-- **Speaker notes** — The per-slide notes in PowerPoint that guide what you say when presenting.
-- **Verification** — Checking that an AI result is correct by comparing it against a source you can confirm yourself.
-- **Hallucination** — A confident but wrong AI output; the reason every AI result must be verified before use.
-- **Human in the loop** — The practice of a person reviewing and approving AI output before it is relied upon.
+- **Claude for Microsoft 365** â€” Anthropic's in-app assistants for Word, Excel, PowerPoint and Outlook.
+- **Microsoft 365 connector** â€” A delegated connection that lets Claude work with authorised SharePoint, OneDrive, Outlook and Teams context.
+- **Claude Cowork** â€” Anthropic's task-oriented desktop mode for multi-step work across scoped files and connected tools.
+- **Copilot Cowork** â€” A separate Microsoft 365 Copilot experience with Microsoft licensing, governance, Work IQ and action approvals.
+- **Claude Code** â€” Anthropic's command-line agent that can work with local files, scripts and approved MCP connectors.
+- **MCP** â€” Model Context Protocol, a standard that lets Claude connect to approved tools and data sources.
+- **Delegated permission** â€” Access exercised on behalf of the signed-in user and limited by that user's existing permissions.
+- **Write tool** â€” A connector capability that can create or update content and therefore needs stronger consent and review.
+- **Evidence chain** â€” The trace from a claim or chart back to its source file, cell, message or approved assumption.
+- **Human send gate** â€” The required user review and approval before an email, invitation or other consequential action is sent.
+
+
+## References and Further Learning
+
+- Claude for Microsoft 365 overview: https://claude.com/claude-for-microsoft-365
+- Set up the Microsoft 365 connector: https://support.claude.com/en/articles/12542951-set-up-the-microsoft-365-connector
+- Use Claude for Microsoft 365 with third-party platforms: https://claude.com/docs/office-agents/third-party-platforms
+- Get started in Claude Cowork in three steps: https://claude.com/resources/tutorials/get-started-in-claude-cowork-in-three-steps
+- Connect Claude Code to tools via MCP: https://code.claude.com/docs/en/mcp
+- Copilot Cowork overview: https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/
+- Microsoft 365 Copilot with Anthropic models: https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-anthropic-apps
+- Syracuse University: Claude Microsoft 365 connector: https://its.syr.edu/your-work-apps-meet-your-ai-assistant-using-claudes-microsoft-365-connector/
+- Claude for Microsoft 365 setup and use cases: https://justinmckelvey.com/blog/claude-for-microsoft-365

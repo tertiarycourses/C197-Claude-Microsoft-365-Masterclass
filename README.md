@@ -3,170 +3,102 @@
 # Claude Microsoft 365 Masterclass
 
 [![Course](https://img.shields.io/badge/Course-C197-1f6feb?style=for-the-badge)](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html)
-[![Duration](https://img.shields.io/badge/Duration-1_day_7_5_instructional_hours-5E5E5E?style=for-the-badge)](#course-toolkit)
-[![Labs](https://img.shields.io/badge/Labs-8-34d399?style=for-the-badge)](labs/README.md)
-[![License](https://img.shields.io/badge/License-Educational-fbbf24?style=for-the-badge)](#license)
+[![Duration](https://img.shields.io/badge/Duration-1_day_·_7.5_hours-5E5E5E?style=for-the-badge)](#course-package)
+[![Labs](https://img.shields.io/badge/Labs-11-10b981?style=for-the-badge)](labs/README.md)
+[![Version](https://img.shields.io/badge/Version-2.0-7c3aed?style=for-the-badge)](#course-package)
 
-**A connected, hands-on course in Claude Microsoft 365 Masterclass — progress through 8 practical labs from Get Started with Claude for Microsoft 365 to Draft and Reply to Email in Outlook and Teams.**
+**Build one governed company workflow across Claude, Word, Excel, PowerPoint, Outlook, Claude Cowork and Claude Code.**
 
-[📘 Course Page](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html) · [🧪 Hands-On Labs](labs/README.md) · [📖 Learner Guide](<LG-Claude Microsoft 365 Masterclass (C197).md>) · [🐛 Report Bug](https://github.com/tertiarycourses/C197---Claude-Microsoft-365-Masterclass/issues) · [💡 Request Feature](https://github.com/tertiarycourses/C197---Claude-Microsoft-365-Masterclass/issues)
+[Course Page](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html) · [Lab Index](labs/README.md) · [Learner Guide](<LG-Claude Microsoft 365 Masterclass (C197).md>) · [Courseware](courseware/)
 
 </div>
 
-> [!NOTE]
-> **These are the official hands-on lab materials for the commercial course:**
-> ### 🎓 Claude Microsoft 365 Masterclass
-> **Course Code:** `C197` · by Tertiary Courses / Tertiary Infotech<br>
-> **Duration:** 1 day · 7.5 instructional hours<br>
-> **Course page:** https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html
+![Claude-generated Excel dashboard exhibit](screenshot.png)
 
----
+## Course package
 
-## Lab Activities
+This repository contains the complete non-WSQ package for **C197 Claude Microsoft 365 Masterclass**: a 101-slide visual presentation, detailed Learner Guide, Lesson Plan and 11 connected lab folders. It uses one fictional Singapore company, **Lumina Living Pte Ltd**, so plans, policies, analysis, charts, presentations, Outlook work and automations share one evidence chain.
 
-The 8 labs form one connected practical journey. Complete them in order so each verified output can support the activities that follow.
+| Item | Scope |
+|---|---|
+| Duration | 1 day · 7.5 instructional hours |
+| Topics | 4 aligned sections |
+| Activities | 11 hands-on company activities |
+| Office files | Realistic `.docx`, `.xlsx` and `.pptx` samples in every lab folder |
+| Controls | Source traceability, formula checks, approval records and human send gates |
 
-| # | Activity | Outcome |
-|---:|----------|---------|
-| **1** | [Get Started with Claude for Microsoft 365](labs/lab-01-get-started-with-claude-for-microsoft-365.md) | Sign in to Claude, understand how it works alongside Microsoft 365, and run a first prompt on your task. |
-| **2** | [Connect Claude to Your Microsoft 365 Files and Apps](labs/lab-02-connect-claude-to-your-microsoft-365-files-and-apps.md) | Give Claude your working files by uploading and pasting, and keep them together in a Project. |
-| **3** | [Write Effective Prompts for Everyday Work Tasks](labs/lab-03-write-effective-prompts-for-everyday-work-tasks.md) | Compare a vague prompt with a specific one and capture a reusable four-part prompt pattern for work tasks. |
-| **4** | [Use AI Responsibly, Securely and Privately at Work](labs/lab-04-use-ai-responsibly-securely-and-privately-at-work.md) | Decide what is safe to share with AI, and write a personal safe-use checklist you apply to the review pack. |
-| **5** | [Write, Rewrite and Summarise in Word](labs/lab-05-write-rewrite-and-summarise-in-word.md) | Use Claude to draft, restructure and tighten a document, and to summarise a long one, then finish it in Word. |
-| **6** | [Analyse and Explain Data in Excel](labs/lab-06-analyse-and-explain-data-in-excel.md) | Use Claude to analyse a dataset, build the formulas you need, and explain a formula — verifying every figure in Excel. |
-| **7** | [Generate Slide Outlines and Content for PowerPoint](labs/lab-07-generate-slide-outlines-and-content-for-powerpoint.md) | Use Claude to turn the report and analysis into a slide-by-slide outline with titles, bullets and speaker notes. |
-| **8** | [Draft and Reply to Email in Outlook and Teams](labs/lab-08-draft-and-reply-to-email-in-outlook-and-teams.md) | Use Claude to draft, adjust the tone of, and reply to work messages, then send the pack — verifying before it goes. |
+## What learners build
 
----
+1. Governed Claude and Microsoft 365 operating-surface, permission and prompt contracts.
+2. A marketing plan, three-year strategy, sustainability report section and flexible-work HR policy in Word.
+3. A formula-driven financial model, three native Excel charts and an executive dashboard.
+4. A ten-slide strategic and marketing PowerPoint with native charts and source notes.
+5. An Outlook triage and approved-draft workflow that never silently sends messages.
+6. A scoped Claude Cowork planning project and a Claude Code daily-brief automation.
 
-## About
+## Lab sequence
 
-This repository contains the complete lab and courseware package for **Claude Microsoft 365 Masterclass** (**C197**) by Tertiary Courses / Tertiary Infotech. The practical activities build progressively from **Get Started with Claude for Microsoft 365** to **Draft and Reply to Email in Outlook and Teams**, with explicit checks that help learners verify each result before moving on.
+| Topic | Labs | Company activities |
+|---|---:|---|
+| Governed foundations | 1–3 | Select the Claude surface; map Microsoft 365 context and permissions; build the prompt-and-review contract |
+| Planning, reporting and policy | 4–6 | Marketing plan; strategic plan; sustainability reporting and HR policy |
+| Analysis and executive story | 7–8 | Excel financial dashboard; strategic and marketing PowerPoint |
+| Agentic coordination | 9–11 | Outlook triage and drafts; Claude Cowork; Claude Code automation |
 
-### What you'll learn
+Open [labs/README.md](labs/README.md) for the activity-by-activity index. Each lab folder is self-contained and includes:
 
-- Complete **8 connected hands-on activities** and carry their outputs through one coherent learning journey.
-- Practise with **Claude · Microsoft SharePoint · Microsoft Excel · Microsoft Word · Microsoft PowerPoint · Microsoft Outlook · Microsoft Teams** and the supporting resources supplied in the repository.
-- Begin with **Get Started with Claude for Microsoft 365** and finish with **Draft and Reply to Email in Outlook and Teams**.
-- Apply safe data handling, evidence checks and named human review before using AI-generated or automated outputs.
+- a realistic Lumina Living company brief and Claude-generated Word sample;
+- a working Excel workbook and reusable approval log;
+- an editable executive PowerPoint starter; and
+- a detailed README with full prompts, procedures, tests and troubleshooting.
 
-> 📖 **Full walkthrough:** see the [Learner Guide](<LG-Claude Microsoft 365 Masterclass (C197).md>) for the complete course narrative, and [labs/README.md](labs/README.md) for the lab index. Slides, the Learner Guide and the Lesson Plan are in [courseware/](courseware/).
+Lab 7 contains the main finance dashboard, Lab 8 contains the richer executive deck, and Lab 11 adds safe local automation scripts and inputs.
 
----
-
-## Course Toolkit
-
-| Category | Details |
-|----------|---------|
-| **Duration** | 1 day · 7.5 instructional hours |
-| **Delivery** | Instructor-led, hands-on practical labs |
-| **Core tools** | Claude · Microsoft SharePoint · Microsoft Excel · Microsoft Word · Microsoft PowerPoint · Microsoft Outlook · Microsoft Teams |
-| **Practical work** | 8 connected labs with verification steps |
-| **Courseware** | PowerPoint and PDF slides, Word and PDF guides, Markdown lab instructions |
-
----
-
-## Learning Journey
+## Project structure
 
 ```text
-START
-  Lab 1    Get Started with Claude for Microsoft 365
-     │
-     ▼
-  Connected Practical Labs
-  Labs 1–8
-     │
-     ▼
-FINISH
-  Lab 8   Draft and Reply to Email in Outlook and Teams
-```
-
----
-
-## Project Structure
-
-```text
-C197---Claude-Microsoft-365-Masterclass/
-├── README.md
+C197-Claude-Microsoft-365-Masterclass/
+├── CLAUDE.md                         # Project operating contract
+├── CONTEXT.md                        # Persistent project context
 ├── LG-Claude Microsoft 365 Masterclass (C197).md
-│
-├── labs/
-│   ├── README.md                 # Start here: complete lab index
-│   └── lab-*.md                    # 8 connected practical activities
-│
-└── courseware/
-    ├── *.pptx / *.pdf             # Trainer and learner slides
-    ├── LG-*.docx / LG-*.pdf       # Learner Guide
-    └── LP-*.docx / LP-*.pdf       # Lesson Plan
+├── courseware/
+│   ├── Claude Microsoft 365 Masterclass (C197)-v2.0.pptx
+│   ├── Claude Microsoft 365 Masterclass (C197)-v2.0.pdf
+│   ├── LG-*.docx / LG-*.pdf
+│   ├── LP-*.docx / LP-*.pdf
+│   └── archive/                      # Superseded local versions
+└── labs/
+    ├── README.md
+    ├── tools.md
+    └── lab-01-* … lab-11-*/
+        ├── README.md
+        ├── *.docx / *.xlsx / *.pptx
+        └── templates/
 ```
 
----
-
-## Getting Started
-
-### Prerequisites
-
-- The accounts and software required for **Claude · Microsoft SharePoint · Microsoft Excel · Microsoft Word · Microsoft PowerPoint · Microsoft Outlook · Microsoft Teams**. Follow the setup and access notes in each lab.
-- Review [`labs/tools.md`](labs/tools.md) before class for environment, account and safe-use requirements.
-- A modern web browser and Git for cloning the materials.
-- Synthetic or authorised data only. Do not place secrets, personal data or confidential material into an unapproved service.
-- A named human reviewer for facts, calculations, decisions and any externally released output.
-
-### 1. Clone the repository
+## Getting started
 
 ```bash
-git clone https://github.com/tertiarycourses/C197---Claude-Microsoft-365-Masterclass.git
-cd C197---Claude-Microsoft-365-Masterclass
+git clone https://github.com/tertiarycourses/C197-Claude-Microsoft-365-Masterclass.git
+cd C197-Claude-Microsoft-365-Masterclass
 ```
 
-### 2. Open the lab index
+Then review [labs/tools.md](labs/tools.md), open the [lab index](labs/README.md), and complete Labs 1–11 in order. Classroom credentials are supplied privately by the trainer and are never stored in published courseware.
 
-Start with [labs/README.md](labs/README.md), then complete Labs 1–8 in order. Each lab provides the activity context, practical steps and a way to verify the result.
+## Product distinctions taught in the course
 
-### 3. Keep your connected outputs
-
-Store each lab output in the suggested working folder and retain the evidence or review notes requested by the lab. Later activities depend on these approved outputs.
-
----
-
-## Contributing
-
-Contributions, corrections and improvements are welcome:
-
-1. **Fork** the repository.
-2. Create a feature branch: `git checkout -b feature/my-improvement`.
-3. Commit your changes: `git commit -m "Add my improvement"`.
-4. Push the branch: `git push origin feature/my-improvement`.
-5. Open a **Pull Request**.
-
-Found a bug or have an idea? Open an [issue](https://github.com/tertiarycourses/C197---Claude-Microsoft-365-Masterclass/issues).
-
----
+- **Claude for Microsoft 365** works in Word, Excel, PowerPoint and Outlook.
+- The **Microsoft 365 connector** retrieves authorised organisational context subject to tenant consent and the signed-in user's permissions.
+- **Claude Cowork** is Anthropic's task-oriented desktop workflow for scoped files, projects and connected tools.
+- **Copilot Cowork** is a separate Microsoft 365 Copilot experience with Microsoft licensing and governance.
+- **Claude Code** can coordinate approved local scripts and MCP connectors for repeatable work processes.
 
 ## License
 
-This material is provided for **educational use** as part of the commercial course **Claude Microsoft 365 Masterclass (C197)**. © Tertiary Infotech Pte. Ltd. All rights reserved.
-
----
-
-## Developed By
-
-**Tertiary Infotech Pte. Ltd.** — [Tertiary Courses](https://www.tertiarycourses.com.sg)<br>
-Course: [Claude Microsoft 365 Masterclass (C197)](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html)
-
-## Acknowledgements
-
-- The teams behind Claude · Microsoft SharePoint · Microsoft Excel · Microsoft Word · Microsoft PowerPoint · Microsoft Outlook · Microsoft Teams.
-- Course trainers and learners of C197.
-
----
+Educational course material for **Claude Microsoft 365 Masterclass (C197)**. © 2026 Tertiary Infotech Academy Pte Ltd. All rights reserved.
 
 <div align="center">
 
-⭐ **If these materials helped you learn Claude Microsoft 365 Masterclass, star the repository!**
-
-Powered by [Tertiary Infotech Academy Pte Ltd](https://www.tertiaryinfotech.com/)
-
-[📘 Course Page](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html) · [🧪 Hands-On Labs](labs/README.md) · [📖 Learner Guide](<LG-Claude Microsoft 365 Masterclass (C197).md>)
+[Tertiary Courses](https://www.tertiarycourses.com.sg) · [C197 Course Page](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html)
 
 </div>
