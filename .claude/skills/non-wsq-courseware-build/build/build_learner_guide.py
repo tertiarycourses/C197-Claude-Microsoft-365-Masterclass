@@ -31,6 +31,7 @@ def _load_domains():
     return acts
 ACT=_load_domains()
 import prodoc
+import lab_files
 def _find_repo(start):
     env=os.environ.get("COURSE_REPO")
     if env and os.path.isdir(env): return env
@@ -89,6 +90,7 @@ def p(t):  B.append(("p",t))
 def bullets(xs): B.append(("bullets",xs))
 def steps(xs): B.append(("steps",xs))
 def code(t): B.append(("code",t))
+def table(headers,rows): B.append(("table",headers,rows))
 def note(t): B.append(("note",t))
 def rule(): B.append(("rule",))
 
@@ -126,9 +128,29 @@ if _PROMPTS:
     p("A professional prompt is a compact work contract. It defines the result, evidence, constraints, output and approval boundary before Claude edits the work product.")
     h3("Five practices")
     bullets([f"{title} — {body}" for title,body in _PROMPTS.get("principles",[])])
-    for ex in _PROMPTS.get("examples",[]):
+    if _PROMPTS.get("intro"):
+        p(_PROMPTS["intro"])
+
+    def _render_example(ex):
         h3(f"{ex['app']} example — {ex['title']}")
+        if ex.get("open_file"):
+            p(f"**Open this file first: {ex['open_file']}**")
+        elif ex.get("before"):
+            p(f"**Before you type this: {ex['before']}**")
         code(ex["prompt"])
+
+    for grp in _PROMPTS.get("groups",[]):
+        h2(grp["surface"])
+        if grp.get("how"):
+            p(grp["how"])
+        if grp.get("how_steps"):
+            steps([(s,"") for s in grp["how_steps"]])
+        if grp.get("how_note"):
+            note(grp["how_note"])
+        for ex in grp.get("examples",[]):
+            _render_example(ex)
+    for ex in _PROMPTS.get("examples",[]):
+        _render_example(ex)
 
 # ---------------- per-topic, per-lab ----------------
 TOPICS_BY_NUM={t["num"]:t for t in C.TOPICS}
@@ -153,6 +175,14 @@ for t in C.TOPICS:
         p(a["build"]+f"   (Tools: {a['services']}.)")
         h3("Prerequisites")
         bullets(a.get("prerequisites",[]))
+        _folder=f"lab-{a['num']:02d}-{C.LAB_SLUGS[a['num']]}"
+        _rows=lab_files.describe(os.path.join(REPO,"labs",_folder))
+        if _rows:
+            h3("Files you will use, and what the steps call them")
+            p(f"Every file for this lab is in one folder: labs/{_folder}/ . The steps below "
+              "name these items in plain English; use this table to find the exact file to open "
+              "and the exact sheet tab to click at the bottom of the Excel window.")
+            table(["The steps call it","App","Open this file","Then click"],_rows)
         h3("Process map")
         p(" → ".join(a.get("deck_flow",[])))
         h3("Step-by-step")
@@ -227,9 +257,14 @@ def render_md():
         elif kind=="steps":
             for i,(instr,cmd) in enumerate(rest[0],1):
                 out.append(f"{i}. {instr}")
-                if cmd: out+=["",f"   ```bash",f"   {cmd}","   ```",""]
+                if cmd: out+=["",f"   ```text",f"   {cmd}","   ```",""]
             out.append("")
-        elif kind=="code": out+=["```bash",rest[0],"```",""]
+        elif kind=="code": out+=["```text",rest[0],"```",""]
+        elif kind=="table":
+            heads,rows=rest[0],rest[1]
+            out+=["| "+" | ".join(heads)+" |","|"+"---|"*len(heads)]
+            out+=["| "+" | ".join(str(c) for c in r)+" |" for r in rows]
+            out+=[""]
         elif kind=="note": out+=[f"> **Note:** {rest[0]}",""]
         elif kind=="rule": out+=["---",""]
         elif kind=="dl":
@@ -260,8 +295,11 @@ def code_para(text):
         ppr=para._p.get_or_add_pPr(); shd=OxmlElement("w:shd"); shd.set(qn("w:fill"),"EAF2FF"); ppr.append(shd)
         para.paragraph_format.keep_together=True
         para.paragraph_format.left_indent=Pt(10); para.paragraph_format.right_indent=Pt(10)
-        para.paragraph_format.space_before=Pt(4); para.paragraph_format.space_after=Pt(7)
-        r=para.add_run(line); r.font.name="Consolas"; r.font.size=Pt(9.5); r.font.color.rgb=INKCODE
+        # Blank lines separate parts of a prompt; keep them tight.
+        blank=not line.strip()
+        para.paragraph_format.space_before=Pt(0 if blank else 4)
+        para.paragraph_format.space_after=Pt(0 if blank else 3)
+        r=para.add_run(line); r.font.name="Consolas"; r.font.size=Pt(3 if blank else 9.5); r.font.color.rgb=INKCODE
 
 for kind,*rest in B:
     if kind=="h1": doc.add_heading(rest[0],level=1)
@@ -269,9 +307,22 @@ for kind,*rest in B:
     elif kind=="h3":
         para=doc.add_paragraph(); r=para.add_run(rest[0]); r.bold=True; r.font.size=Pt(11); r.font.color.rgb=BRAND
     elif kind=="p":
-        para=doc.add_paragraph(rest[0]); para.paragraph_format.keep_together=True
+        # Honour **bold** spans so emphasis survives into Word instead of
+        # printing literal asterisks.
+        para=doc.add_paragraph(); para.paragraph_format.keep_together=True
+        for i,seg in enumerate(_re.split(r"\*\*(.+?)\*\*",rest[0])):
+            if seg: para.add_run(seg).bold=bool(i%2)
     elif kind=="bullets":
         for x in rest[0]: doc.add_paragraph(x,style="List Bullet")
+    elif kind=="table":
+        heads,rows=rest[0],rest[1]
+        tbl=doc.add_table(rows=1,cols=len(heads)); tbl.style="Table Grid"
+        for cell,head in zip(tbl.rows[0].cells,heads):
+            cell.text=""; r=cell.paragraphs[0].add_run(head); r.bold=True; r.font.size=Pt(9.5)
+            prodoc._shade_cell(cell,"EAF2FF")
+        for row in rows:
+            for cell,val in zip(tbl.add_row().cells,row):
+                cell.text=""; r=cell.paragraphs[0].add_run(str(val)); r.font.size=Pt(9.5)
     elif kind=="steps":
         for i,(instr,cmd) in enumerate(rest[0],1):
             # Literal per-lab step numbers (Word's List Number style numbers

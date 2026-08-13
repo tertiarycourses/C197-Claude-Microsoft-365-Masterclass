@@ -164,6 +164,61 @@ def cover():
     txt(s,Inches(0.9),Inches(6.5),Inches(12),Inches(0.4),[[(f"Version {C.VERSION}  ·  {C.VERSION_DATE}",12,_grey(),False)]])
     txt(s,Inches(0.9),Inches(6.85),Inches(12),Inches(0.34),[[("© 2026 Tertiary Infotech Academy Pte Ltd. All rights reserved.  ·  www.tertiarycourses.com.sg",10,_grey(),False)]])
 
+def learner_login():
+    """Front-of-deck learner LMS access page with OTP-first sign-in."""
+    url=getattr(C,"COURSE_MATERIALS_URL","https://www.tertiarycourses.com.sg/learnerlogin")
+    fallback=getattr(C,"LEARNER_DEFAULT_PASSWORD","student12345")
+    s=head(slide(),"Download Your Course Materials","LEARNER LMS ACCESS",BLUE)
+
+    # Left: browser-style portal card and clickable call to action.
+    rect(s,Inches(0.85),Inches(2.05),Inches(5.15),Inches(4.55),_panel(),line=_line())
+    rect(s,Inches(0.85),Inches(2.05),Inches(5.15),Inches(0.52),_acc(BLUE))
+    for i,col in enumerate((RED,AMBER,TEAL)):
+        oval(s,Inches(1.08+i*0.27),Inches(2.21),Inches(0.12),Inches(0.12),col)
+    txt(s,Inches(1.15),Inches(2.88),Inches(4.55),Inches(0.42),
+        [[("LEARNER PORTAL",13,_acc(BLUE),True)]],align=PP_ALIGN.CENTER)
+    txt(s,Inches(1.12),Inches(3.36),Inches(4.6),Inches(0.72),
+        [[("Sign in to access the course deck, Learner Guide and activity files.",17,_ink(),True)]],
+        align=PP_ALIGN.CENTER)
+    url_box=txt(s,Inches(1.12),Inches(4.25),Inches(4.6),Inches(0.72),
+        [[("tertiarycourses.com.sg/learnerlogin",13,_acc(BLUE),True)]],align=PP_ALIGN.CENTER,
+        anchor=MSO_ANCHOR.MIDDLE)
+    for paragraph in url_box.text_frame.paragraphs:
+        for run in paragraph.runs:
+            run.hyperlink.address=url
+    button=rect(s,Inches(1.45),Inches(5.25),Inches(3.95),Inches(0.76),_acc(BLUE))
+    button.click_action.hyperlink.address=url
+    button_label=txt(s,Inches(1.45),Inches(5.25),Inches(3.95),Inches(0.76),
+        [[("OPEN LEARNER LOGIN",16,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+    button_label.click_action.hyperlink.address=url
+    txt(s,Inches(1.12),Inches(6.12),Inches(4.6),Inches(0.28),
+        [[("Click the button or type the web address above.",11,_ink(),False)]],align=PP_ALIGN.CENTER)
+
+    # Right: OTP-first process with a clearly separated fallback.
+    txt(s,Inches(6.4),Inches(2.02),Inches(5.95),Inches(0.42),
+        [[("Use OTP to sign in",17,_acc(TEAL),True)]])
+    steps=[
+        ("1","Enter the email address registered for your course."),
+        ("2","Choose OTP sign-in and request a code. Check your registered email."),
+        ("3","Enter the OTP, open C197 and download your materials."),
+    ]
+    for i,(number,body) in enumerate(steps):
+        y=Inches(2.58+i*0.91)
+        oval(s,Inches(6.4),y,Inches(0.55),Inches(0.55),_acc(TEAL))
+        txt(s,Inches(6.4),y,Inches(0.55),Inches(0.55),[[(number,16,WHITE,True)]],
+            align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
+        txt(s,Inches(7.18),y-Inches(0.02),Inches(5.0),Inches(0.62),[[(body,15,_ink(),False)]],
+            anchor=MSO_ANCHOR.MIDDLE)
+
+    rect(s,Inches(6.4),Inches(5.42),Inches(5.95),Inches(1.18),_panel(),line=_acc(AMBER))
+    rect(s,Inches(6.4),Inches(5.42),Inches(0.11),Inches(1.18),_acc(AMBER))
+    txt(s,Inches(6.72),Inches(5.62),Inches(5.25),Inches(0.32),
+        [[("Cannot receive the OTP? Use password sign-in",13,_acc(AMBER),True)]])
+    txt(s,Inches(6.72),Inches(5.98),Inches(5.25),Inches(0.38),
+        [[(f"Same registered email  ·  Password: {fallback}",15,_ink(),True)]])
+    footer(s)
+    return s
+
 def section(kicker,title,n,sub="",accent=BLUE):
     s=slide(); rect(s,0,0,SW,SH,_bg()); rect(s,0,0,Inches(0.28),SH,accent)
     rect(s,Inches(0.85),Inches(2.5),Inches(0.14),Inches(2.0),accent)
@@ -592,11 +647,18 @@ def shot(title,img,kicker=None,caption=""):
         s.shapes.add_picture(img,x,y,width=W,height=H)
         px=Inches(5.18); pw=Inches(7.12)
         txt(s,px,Inches(2.08),pw,Inches(0.38),[[('WHAT TO NOTICE',12,_acc(TEAL),True)]])
-        cues=[
-            ('Business outcome','The opening section states the management decision and intended use.'),
-            ('Evidence structure','Headings, tables and source notes make claims reviewable in native Word.'),
-            ('Approval boundary','The status and named reviewer remain visible before release or send.'),
-        ]
+        if "permission" in title.lower() or "consent" in title.lower():
+            cues=[
+                ('Verified application','Confirm the Microsoft 365 client name and the verified Anthropic publisher.'),
+                ('Permission scope','Read the calendar, channel, chat, file and mail permissions before continuing.'),
+                ('Administrator boundary','Stop when tenant approval is required; a learner must not consent for the organisation.'),
+            ]
+        else:
+            cues=[
+                ('Business outcome','The opening section states the management decision and intended use.'),
+                ('Evidence structure','Headings, tables and source notes make claims reviewable in native Word.'),
+                ('Approval boundary','The status and named reviewer remain visible before release or send.'),
+            ]
         cy=Inches(2.62)
         for i,(label,body) in enumerate(cues):
             col=PALETTE[i%3]
@@ -612,7 +674,9 @@ def shot(title,img,kicker=None,caption=""):
         rect(s,x-Inches(0.06),y-Inches(0.06),W+Inches(0.12),H+Inches(0.12),_line())
         s.shapes.add_picture(img,x,y,width=W,height=H)
     if caption:
-        txt(s,Inches(0.85),Inches(6.68),Inches(11.6),Inches(0.35),[[(caption,12,_grey(),False)]],align=PP_ALIGN.CENTER)
+        long_caption=len(caption)>120
+        txt(s,Inches(0.85),Inches(6.43 if long_caption else 6.68),Inches(11.6),Inches(0.54 if long_caption else 0.35),
+            [[(caption,10.5 if long_caption else 12,_grey(),False)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
     footer(s); return s
 
 def trust_standard(st):
@@ -742,6 +806,7 @@ def brk(kind,dur,color=AMBER):
 
 # ============================================================ BUILD
 cover()
+learner_login()
 
 # ---------------- ADMIN ----------------
 section("COURSE ADMINISTRATION","Welcome & Housekeeping","")
@@ -766,8 +831,11 @@ _dl=tile_grid("Your Connected Course Workspace",[
  ("Eleven lab folders","A connected Lumina Living workflow with a README in every activity folder."),
  ("Native Office artifacts","Editable Word, Excel and PowerPoint samples plus reusable review templates.")],
  kicker="COURSE RESOURCES",cols=2,size=14,accent=BLUE)
-txt(_dl,Inches(0.85),Inches(6.5),Inches(11.6),Inches(0.4),
-    [[("Portal:  https://lms-tms.tertiaryinfotech.com",16,_acc(BLUE),True)]],align=PP_ALIGN.CENTER)
+_dl_login=txt(_dl,Inches(0.85),Inches(6.5),Inches(11.6),Inches(0.4),
+    [[(f"Learner login:  {C.COURSE_MATERIALS_URL}",16,_acc(BLUE),True)]],align=PP_ALIGN.CENTER)
+for _p in _dl_login.text_frame.paragraphs:
+    for _r in _p.runs:
+        _r.hyperlink.address=C.COURSE_MATERIALS_URL
 # Lesson plan overview — derived entirely from course_data (day themes + the
 # topic→lab mapping) so it can never drift from the LP or the labs.
 def _lab_range(acts):
@@ -937,8 +1005,9 @@ for t in C.TOPICS:
             flow_h(f"Lab {a['num']} — Process Map", a["deck_flow"],
                    kicker="CONCEPT-TO-OUTCOME", color=accent)
         if a.get("deck_cards"):
-            tile_grid(f"Lab {a['num']} — Professional Practice", a["deck_cards"],
-                      kicker="KEY DECISIONS & CONTROLS", cols=2, size=14, accent=accent)
+            title = f"Lab {a['num']} — What You Teach" if a["num"] == 1 else f"Lab {a['num']} — Professional Practice"
+            kicker = "TRAINER AND LEARNER ROLES" if a["num"] == 1 else "KEY DECISIONS & CONTROLS"
+            tile_grid(title, a["deck_cards"], kicker=kicker, cols=2, size=14, accent=accent)
         test_slide(a["title"], a["test"], kicker=f"LAB {a['num']} · VERIFY")
     # topic recap
     _recap=[]

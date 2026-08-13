@@ -18,3 +18,12 @@ courseware/archive/
 # OS
 .DS_Store
 Thumbs.db
+
+# Screenshots containing real accounts or personal data — never published
+*-original.png
+
+# Source material the project was derived from — not ours to republish.
+**/reference/
+# ...but skill builder scripts are a reference implementation the repo needs.
+!.claude/skills/**/reference/
+!.claude/skills/**/reference/**

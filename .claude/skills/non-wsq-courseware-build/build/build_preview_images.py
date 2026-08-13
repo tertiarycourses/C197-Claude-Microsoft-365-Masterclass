@@ -59,7 +59,9 @@ def render(source, dest, page=1):
 
 for num in range(1, 12):
     folder = glob.glob(os.path.join(REPO, "labs", f"lab-{num:02d}-*"))[0]
-    if num == 7:
+    if num == 1:
+        source = os.path.join(folder, "templates", "Lab-01-Trainer-Demonstration-Guide.docx"); page = 1
+    elif num == 7:
         source = glob.glob(os.path.join(folder, "*-Working-Workbook.xlsx"))[0]; page = 1
     elif num == 8:
         source = glob.glob(os.path.join(folder, "*-Executive-Starter.pptx"))[0]; page = 8

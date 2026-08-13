@@ -45,10 +45,21 @@ def lab_dir(a):
 
 def resource_names(a):
     stem = f"Lumina-Living-Lab-{a['num']:02d}"
+    if a["num"] == 1:
+        return [
+            "README.md",
+            "TRAINER-GUIDE.md",
+            f"{stem}-Candidates.xlsx" if a["num"]==1 else f"{stem}-Staff-Information.xlsx" if a["num"]==2 else f"{stem}-People-Numbers.xlsx" if a["num"]==7 else f"{stem}-Staff-Questions.xlsx" if a["num"]==9 else f"{stem}-Working-Workbook.xlsx",
+            "templates/Lab-01-Trainer-Demonstration-Guide.docx",
+        ]
+    workbook = (
+        f"{stem}-Candidates.xlsx" if a["num"]==1 else f"{stem}-Staff-Information.xlsx" if a["num"]==2 else f"{stem}-People-Numbers.xlsx" if a["num"]==7 else f"{stem}-Staff-Questions.xlsx" if a["num"]==9 else f"{stem}-Working-Workbook.xlsx"
+        if a["num"] == 1 else f"{stem}-Working-Workbook.xlsx"
+    )
     return [
-        f"{stem}-Company-Brief.docx",
+        f"{stem}-HR-Brief.docx",
         f"{stem}-Claude-Generated-Work-Sample.docx",
-        f"{stem}-Working-Workbook.xlsx",
+        workbook,
         f"{stem}-Executive-Starter.pptx",
         "templates/Prompt-and-Review-Template.docx",
         "templates/Decision-and-Approval-Log.xlsx",
@@ -92,6 +103,15 @@ for a in ACTS:
         ])
     out.extend(["", "## Prerequisites", ""])
     out.extend(f"- {x}" for x in a["prerequisites"])
+    if a.get("trainer_plan"):
+        out.extend(["", "## Trainer delivery plan", "", "**Lab 01 is a 20-minute demonstration and guided practice. It is not a prompt-contract exercise.**", ""])
+        out.extend(["| Time | Trainer action | What to teach | Learner evidence |", "|---|---|---|---|"])
+        for timing, action, teaching, evidence in a["trainer_plan"]:
+            out.append(f"| {timing} | {action} | {teaching} | {evidence} |")
+        out.extend(["", "### Before class", ""])
+        out.extend(f"- {x}" for x in a.get("trainer_preclass", []))
+        out.extend(["", "### Do not teach in Lab 01", ""])
+        out.extend(f"- {x}" for x in a.get("trainer_exclusions", []))
     out.extend(["", "## Process map", "", " → ".join(a["deck_flow"]), "", "## Steps", ""])
     for i, (instruction, payload) in enumerate(a["steps"], 1):
         out.extend([f"### Step {i}", "", instruction, ""])
@@ -113,13 +133,39 @@ for a in ACTS:
     # Keep individual guides compact; authoritative references are relevant to all
     # activities and the complete supplied-source list remains in labs/README.md.
     for name, url in C.LG_REFERENCES:
-        if any(key in name.lower() for key in ("microsoft 365", "connector", "cowork", "claude code")):
+        keys = ("microsoft 365", "connector", "cowork", "claude code")
+        if a["num"] == 1:
+            keys += ("chrome", "word", "outlook", "office add-ins")
+        if any(key in name.lower() for key in keys):
             out.append(f"- [{name}]({url})")
     out.extend(["", "---", "", f"*{C.TITLE} · {C.COURSE_CODE} · Version {C.VERSION} · © 2026 Tertiary Infotech Academy Pte Ltd*", ""])
     path = os.path.join(folder, "README.md")
     with open(path, "w", encoding="utf-8") as fh:
         fh.write("\n".join(out))
     print("Saved", path)
+    if a.get("trainer_plan"):
+        trainer = [
+            f"# Trainer Guide — Lab {a['num']}", "",
+            f"**Teaching outcome:** {a['objective']}", "",
+            "## What you teach", "",
+            "1. The Office add-in works with the open Office item.",
+            "2. The Microsoft 365 connector is a separate route in Claude Desktop for authorised Microsoft 365 context.",
+            "3. Claude in Chrome is the hands-on Outlook web route for this lab.",
+            "4. Learners review the live message and send only after trainer approval.", "",
+            "## 20-minute run sheet", "",
+            "| Time | Trainer action | What to teach | Learner evidence |", "|---|---|---|---|",
+        ]
+        for timing, action, teaching, evidence in a["trainer_plan"]:
+            trainer.append(f"| {timing} | {action} | {teaching} | {evidence} |")
+        trainer.extend(["", "## Before class", ""])
+        trainer.extend(f"- {x}" for x in a.get("trainer_preclass", []))
+        trainer.extend(["", "## Keep out of Lab 01", ""])
+        trainer.extend(f"- {x}" for x in a.get("trainer_exclusions", []))
+        trainer.extend(["", "## Completion standard", "", a["test"], ""])
+        trainer_path = os.path.join(folder, "TRAINER-GUIDE.md")
+        with open(trainer_path, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(trainer))
+        print("Saved", trainer_path)
 
 # The requested v2 structure replaces generated flat lab Markdown files.  The
 # previous version remains recoverable from Git history and courseware/archive.
