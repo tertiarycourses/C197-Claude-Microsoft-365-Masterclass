@@ -13,11 +13,11 @@ VERSION = "v3.0"
 VERSION_DATE = "13 August 2026"
 ORG = "Tertiary Infotech Academy Pte Ltd"
 UEN = "UEN: 201200696W"
-TRAINER = "Jim Gan Chiu Liang (JL)"
+TRAINER = "Dr. Alfred Ang"
 DAYS = 1
 MODE = "Instructor-led, company-scenario workshops and hands-on practical labs"
 DARK_THEME = False
-COURSE_MATERIALS_URL = "https://www.tertiarycourses.com.sg/learnerlogin"
+COURSE_MATERIALS_URL = "https://www.tertiarycourses.com.sg/lmslogin"
 LEARNER_DEFAULT_PASSWORD = "student12345"
 
 COMPANY = "Lumina Living Pte Ltd"

@@ -10,7 +10,7 @@ Generate and maintain the complete aligned courseware package for the one-day no
 - Date: 12 August 2026
 - Duration: 7.5 instructional hours
 - Delivery: instructor-led company-scenario workshops and hands-on labs
-- Trainer: Jim Gan Chiu Liang (JL)
+- Trainer: Dr. Alfred Ang
 
 ## Single-company narrative
 

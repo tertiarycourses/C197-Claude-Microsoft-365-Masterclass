@@ -166,7 +166,7 @@ def cover():
 
 def learner_login():
     """Front-of-deck learner LMS access page with OTP-first sign-in."""
-    url=getattr(C,"COURSE_MATERIALS_URL","https://www.tertiarycourses.com.sg/learnerlogin")
+    url=getattr(C,"COURSE_MATERIALS_URL","https://www.tertiarycourses.com.sg/lmslogin")
     fallback=getattr(C,"LEARNER_DEFAULT_PASSWORD","student12345")
     s=head(slide(),"Download Your Course Materials","LEARNER LMS ACCESS",BLUE)
 
@@ -181,7 +181,7 @@ def learner_login():
         [[("Sign in to access the course deck, Learner Guide and activity files.",17,_ink(),True)]],
         align=PP_ALIGN.CENTER)
     url_box=txt(s,Inches(1.12),Inches(4.25),Inches(4.6),Inches(0.72),
-        [[("tertiarycourses.com.sg/learnerlogin",13,_acc(BLUE),True)]],align=PP_ALIGN.CENTER,
+        [[("tertiarycourses.com.sg/lmslogin",13,_acc(BLUE),True)]],align=PP_ALIGN.CENTER,
         anchor=MSO_ANCHOR.MIDDLE)
     for paragraph in url_box.text_frame.paragraphs:
         for run in paragraph.runs:

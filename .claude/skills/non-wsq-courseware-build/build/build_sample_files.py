@@ -329,6 +329,7 @@ Apply this to any Lumina Living leadership deck.
 
 def save_draft_deck(a, folder):
     prs = Presentation()
+    prs.slide_width, prs.slide_height = PIn(13.333), PIn(7.5)
     titles = [("Turnover", "Turnover was reviewed this quarter across all teams."),
               ("Headcount", "Headcount numbers for the four teams are shown here."),
               ("Warehouse", "The warehouse team was looked at in detail."),
@@ -662,8 +663,9 @@ def save_lab05_source(a, folder):
 
 
 def save_blank_deck(a, folder):
-    """A genuinely blank deck: title slide only, company colours on the master."""
+    """A genuinely blank deck: title slide only, standard 16:9 widescreen."""
     prs = Presentation()
+    prs.slide_width, prs.slide_height = PIn(13.333), PIn(7.5)
     slide = prs.slides.add_slide(prs.slide_layouts[0])
     slide.shapes.title.text = "Lumina Living"
     slide.placeholders[1].text = "Q1 People Update  ·  for the leadership team"
