@@ -810,12 +810,22 @@ learner_login()
 
 # ---------------- ADMIN ----------------
 section("COURSE ADMINISTRATION","Welcome & Housekeeping","")
+# Two trainer pages: a blank general template the trainer fills in, then the
+# named trainer for this run.  Initials are derived so they can never disagree
+# with the name printed beneath them.
+trainer_slide("YOUR TRAINER · GENERAL","Your Trainer",
+ "General Trainer template —\nto be completed by the trainer",
+ [("Name",""),("Title / Designation",""),("Qualifications",""),
+  ("Areas of Expertise",""),("Training & Industry Experience",""),("Contact","")],
+ initials="?",accent=GREY)
+_tn=[w for w in C.TRAINER.replace(".","").split() if w.lower() not in ("dr","mr","ms","mrs","prof")]
+_ini="".join(w[0] for w in _tn[:2]).upper() or "T"
 trainer_slide("YOUR TRAINER",C.TRAINER,"Principal Trainer\nTertiary Infotech Academy Pte. Ltd.",
  [("Role","Principal Trainer, Tertiary Infotech Academy Pte. Ltd."),
-  ("Certification",getattr(C,"TRAINER_CERT","Industry certified in the subject area of this course.")),
+  ("Background",getattr(C,"TRAINER_BACKGROUND","PhD — 20+ years of industry and training experience in data, analytics and applied AI.")),
   ("Delivers",getattr(C,"TRAINER_DELIVERS","Professional short courses for Tertiary Infotech Academy.")),
   ("Founder","Founder and lead instructor at Tertiary Infotech / Tertiary Courses.")],
- initials="JL",accent=BLUE)
+ initials=_ini,accent=BLUE)
 content("Let's Know Each Other",getattr(C,"ICE_BREAKER",[
  "Your name and organisation / role.",
  "Your experience with this subject (if any).",
