@@ -5,7 +5,7 @@
 [![Course](https://img.shields.io/badge/Course-C197-1f6feb?style=for-the-badge)](https://www.tertiarycourses.com.sg/claude-microsoft-365-masterclass.html)
 [![Duration](https://img.shields.io/badge/Duration-1_day_·_7.5_hours-5E5E5E?style=for-the-badge)](#course-package)
 [![Labs](https://img.shields.io/badge/Labs-16-10b981?style=for-the-badge)](labs/README.md)
-[![Version](https://img.shields.io/badge/Version-3.0-7c3aed?style=for-the-badge)](#course-package)
+[![Version](https://img.shields.io/badge/Version-4.0-7c3aed?style=for-the-badge)](#course-package)
 
 **Run one HR quarter end to end with Claude across Word, Excel, PowerPoint and Outlook — then make it repeatable with Skills, Cowork and Projects.**
 
@@ -17,7 +17,7 @@
 
 ## Course package
 
-This repository contains the complete non-WSQ package for **C197 Claude Microsoft 365 Masterclass**: a 114-slide visual presentation, detailed Learner Guide, Lesson Plan and 16 connected lab folders. It uses one fictional Singapore company, **Lumina Living Pte Ltd**, and follows its HR team through a single quarter, so screening, policy drafting, headcount analysis, leadership reporting, staff replies and automation all share one evidence chain.
+This repository contains the complete non-WSQ package for **C197 Claude Microsoft 365 Masterclass**: a 115-slide visual presentation, detailed Learner Guide, Lesson Plan and 16 connected lab folders. It uses one fictional Singapore company, **Lumina Living Pte Ltd**, and follows its HR team through a single quarter, so screening, policy drafting, headcount analysis, leadership reporting, staff replies and automation all share one evidence chain.
 
 | Item | Scope |
 |---|---|
@@ -64,8 +64,8 @@ C197-Claude-Microsoft-365-Masterclass/
 ├── CONTEXT.md                        # Persistent project context
 ├── LG-Claude Microsoft 365 Masterclass (C197).md
 ├── courseware/
-│   ├── Claude Microsoft 365 Masterclass (C197)-v3.0.pptx
-│   ├── Claude Microsoft 365 Masterclass (C197)-v3.0.pdf
+│   ├── Claude Microsoft 365 Masterclass (C197)-v4.0.pptx
+│   ├── Claude Microsoft 365 Masterclass (C197)-v4.0.pdf
 │   ├── LG-*.docx / LG-*.pdf
 │   ├── LP-*.docx / LP-*.pdf
 │   └── archive/                      # Superseded local versions
